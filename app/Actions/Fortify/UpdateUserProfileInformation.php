@@ -37,6 +37,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
+                'is_handyman' => $input['is_handyman'],
+                'is_admin' => $input['is_admin'],
+                'is_moderator' => $input['is_moderator'],
             ])->save();
         }
     }
@@ -53,6 +56,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         $user->forceFill([
             'name' => $input['name'],
             'email' => $input['email'],
+            'is_handyman' => $input['is_handyman'],
+            'is_admin' => $input['is_admin'],
+            'is_moderator' => $input['is_moderator'],
             'email_verified_at' => null,
         ])->save();
 
