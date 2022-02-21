@@ -41,10 +41,25 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
         'is_admin' => 'boolean',
+        'is_handyman' => 'boolean',
+        'is_client' => 'boolean',
+        'is_moderator' => 'boolean',
 
     ];
     public function isAdmin(): bool
 {
     return $this->is_admin;
+}
+public function isHandyman(): bool
+{
+    return $this->is_handyman;
+}
+public function isClient(): bool
+{
+    return $this->is_client;
+}
+public function isModerator(): bool
+{
+    return $this->is_moderator;
 }
 }
