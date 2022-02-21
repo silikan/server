@@ -20,6 +20,9 @@ class UserResource extends JsonResource
           'email' => $this->email,
           //'avatar' => $this->avatar,
           'isAdmin' => $this->isAdmin(),
+          'isHandyman' => $this->isHandyman(),
+          'isClient' => $this->isClient(),
+          'isModerator' => $this->isModerator(),
           'emailVerified' => $this->email_verified_at,
         ];
     }
