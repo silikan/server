@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('is_handyman')->default(false);
             $table->boolean('is_client')->default(true);
             $table->boolean('is_moderator')->default(false);
+            $table->boolean('is_available_to_hire')->default(false);
             $table->boolean('is_online')->default(false);
             $table->string('password');
             $table->longText('bio')->nullable();
@@ -33,6 +34,8 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zip_code')->nullable();
             $table->string('website')->nullable();
             $table->json('education')->nullable();
             $table->json('certifications')->nullable();

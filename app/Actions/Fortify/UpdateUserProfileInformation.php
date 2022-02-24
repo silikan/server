@@ -35,11 +35,31 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
-                'name' => $input['name'],
+                 'name' => $input['name'],
                 'email' => $input['email'],
                 'is_handyman' => $input['is_handyman'],
+                'is_online' => $input['is_online'],
+                'is_available_to_hire' => $input['is_available_to_hire'],
+
                 'is_admin' => $input['is_admin'],
                 'is_moderator' => $input['is_moderator'],
+                'username' => $input['username'],
+                'bio' => $input['bio'],
+                'date_of_birth' => $input['date_of_birth'],
+                'phone_number' => $input['phone_number'],
+                'address' => $input['address'],
+                'country' => $input['country'],
+                'city' => $input['city'],
+                'state' => $input['state'],
+                'zip_code' => $input['zip_code'],
+                'website' => $input['website'],
+         /*        'education' => $input['education'],
+                'certifications' => $input['certifications'],
+                'experience' => $input['experience'],
+                'social_links' => $input['social_links'],
+                'skills' => $input['skills'], */
+
+
             ])->save();
         }
     }
@@ -54,11 +74,30 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     protected function updateVerifiedUser($user, array $input)
     {
         $user->forceFill([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'is_handyman' => $input['is_handyman'],
-            'is_admin' => $input['is_admin'],
-            'is_moderator' => $input['is_moderator'],
+             'name' => $input['name'],
+                'email' => $input['email'],
+                'is_handyman' => $input['is_handyman'],
+                'is_online' => $input['is_online'],
+                'is_admin' => $input['is_admin'],
+                'is_moderator' => $input['is_moderator'],
+                'is_online' => $input['is_online'],
+                'is_available_to_hire' => $input['is_available_to_hire'],
+
+                'username' => $input['username'],
+                'bio' => $input['bio'],
+                'date_of_birth' => $input['date_of_birth'],
+                'phone_number' => $input['phone_number'],
+                'address' => $input['address'],
+                'country' => $input['country'],
+                'city' => $input['city'],
+                'state' => $input['state'],
+                'zip_code' => $input['zip_code'],
+                'website' => $input['website'],
+            /*     'education' => $input['education'],
+                'certifications' => $input['certifications'],
+                'experience' => $input['experience'],
+                'social_links' => $input['social_links'],
+                'skills' => $input['skills'], */
             'email_verified_at' => null,
         ])->save();
 

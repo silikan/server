@@ -21,6 +21,22 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'username',
+        'bio',
+        'date_of_birth',
+        'phone_number',
+        'address',
+
+        'country',
+        'city',
+        'state',
+        'zip_code',
+        'website',
+        'education',
+        'certifications',
+        'experience',
+        'social_links',
+        'skills',
     ];
 
     /**
@@ -44,8 +60,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_handyman' => 'boolean',
         'is_client' => 'boolean',
         'is_moderator' => 'boolean',
+        'is_available_to_hire' => 'boolean',
+        'is_online' => 'boolean',
 
     ];
+
+
     public function isAdmin(): bool
 {
     return $this->is_admin;
@@ -61,5 +81,13 @@ public function isClient(): bool
 public function isModerator(): bool
 {
     return $this->is_moderator;
+}
+public function isOnline(): bool
+{
+    return $this->is_online;
+}
+public function isavailableToHire(): bool
+{
+    return $this->is_available_to_hire;
 }
 }
