@@ -32,7 +32,6 @@ class UserResource extends JsonResource
           'username' => $this->username,
           'is_available_to_hire' => $this->isavailableToHire(),
           'is_online' => $this->isOnline(),
-
           'bio' => $this->bio,
           'date_of_birth' => $this->date_of_birth,
           'phone_number' => $this->phone_number,
