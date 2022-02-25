@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
+use App\User;
+use Image;
 class AvatarController extends Controller
 {
     public function upload_user_photo(Request $request){
@@ -16,19 +18,28 @@ class AvatarController extends Controller
 
           if($user->avatar != NULL){
             // delete existing image file
-            Storage::disk('user_avatars')->delete($user->user()->avatar);
+            Storage::disk('user_avatars')->delete($user->avatar);
           }
           // processing the uploaded image
-          $random = Str::random(20);
-          $avatar_name =    $random.'.'.$request->file('avatar')->getClientOriginalExtension();
-          $avatar_path = $request->file('avatar')->storeAs('',$avatar_name, 'user_avatars');
+
+          $avatar_name =    time().'.'.$request->file('avatar')->getClientOriginalExtension();
+          $image = $request->file('avatar');
+          $img = Image::make($image->path());
 
 
-          // Update user's avatar column on 'users' table
+          $img->resize(250, 250, function ($constraint) {
+            $constraint->aspectRatio();
+        });
+
+          $img->save('storage/user-avatar/'.$avatar_name);
+          $avatar_path =  $path = $img->basePath();
+        error_log($avatar_path);
+
+           // Update user's avatar column on 'users' table
           $profile =  Auth::user();
           $profile->avatar = $avatar_path;
 
-          if($profile->save()){
+           if($profile->save()){
             return response()->json([
               'status'    =>  'success',
               'message'   =>  'Profile Photo Updated!',

@@ -178,7 +178,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\FortifyServiceProvider::class,
-
+        Intervention\Image\ImageServiceProvider::class
 
     ],
 
@@ -195,6 +195,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // ...
+        'Image' => Intervention\Image\Facades\Image::class
     ])->toArray(),
 
 ];
