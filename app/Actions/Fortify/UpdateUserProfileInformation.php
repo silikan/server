@@ -60,7 +60,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'social_links' => $input['social_links'],
                 'skills' => $input['skills'], */
 
-
+                'education' => $input['education'],
+                'certifications' => $input['certifications'],
+                'experience' => $input['experience'],
+                'skills' => $input['skills']
             ])->save();
         }
     }
@@ -98,6 +101,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'experience' => $input['experience'],
                 'social_links' => $input['social_links'],
                 'skills' => $input['skills'], */
+                'education' => $input['education'],
+                'certifications' => $input['certifications'],
+                'experience' => $input['experience'],
+                'skills' => $input['skills'],
             'email_verified_at' => null,
         ])->save();
 
