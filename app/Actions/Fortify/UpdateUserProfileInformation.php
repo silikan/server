@@ -59,7 +59,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'experience' => $input['experience'],
                 'social_links' => $input['social_links'],
                 'skills' => $input['skills'], */
-
+                'facebook_social_link'=> $input['facebook_social_link'],
+                'linkedin_social_link'=> $input['linkedin_social_link'],
+                'twitter_social_link'=> $input['twitter_social_link'],
                 'education' => $input['education'],
                 'certifications' => $input['certifications'],
                 'experience' => $input['experience'],
@@ -101,6 +103,11 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'experience' => $input['experience'],
                 'social_links' => $input['social_links'],
                 'skills' => $input['skills'], */
+
+                'facebook_social_link'=> $input['facebook_social_link'],
+                'linkedin_social_link'=> $input['linkedin_social_link'],
+                'twitter_social_link'=> $input['twitter_social_link'],
+
                 'education' => $input['education'],
                 'certifications' => $input['certifications'],
                 'experience' => $input['experience'],

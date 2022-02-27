@@ -41,7 +41,11 @@ return new class extends Migration
             $table->json('education')->nullable();
             $table->json('certifications')->nullable();
             $table->json('experience')->nullable();
-            $table->json('social_links')->nullable();
+            $table->string('facebook_social_link')->nullable();
+            $table->string('linkedin_social_link')->nullable();
+
+            $table->string('twitter_social_link')->nullable();
+
             $table->json('skills')->nullable();
             $table->rememberToken();
             $table->timestamps();
