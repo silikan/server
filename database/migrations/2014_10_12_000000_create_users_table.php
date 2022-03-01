@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username')->unique()->nullable();;
+            $table->string('username')->unique()->nullable();
             $table->string('slug')->unique()->nullable();;
             $table->string('url')->nullable();
             $table->string('email')->unique();
@@ -28,7 +28,7 @@ return new class extends Migration
             $table->boolean('is_moderator')->default(false);
             $table->boolean('is_available_to_hire')->default(false);
             $table->boolean('is_online')->default(false);
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->longText('bio')->nullable();
             $table->date('date_of_birth')->nullable();
             $table->string('phone_number')->nullable();

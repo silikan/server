@@ -14,6 +14,14 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+      $password_is_null = false ;
+
+      if(  is_null($this->password) ){
+
+        $password_is_null = true ;
+      }else{
+        $password_is_null = false ;
+      }
 
         return [
           'id' => $this->id,
@@ -49,6 +57,8 @@ class UserResource extends JsonResource
           'social_links' => $this->social_links,
           'skills' => $this->skills,
           'timestamps' => $this->timestamps,
+          'password_is_null'=>$password_is_null,
+
         ];
     }
 }
