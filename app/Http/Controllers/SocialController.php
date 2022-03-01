@@ -45,12 +45,18 @@ class SocialController extends Controller
 
         $newUser = User::firstOrCreate([
                 'email' => $user->getEmail()
+
             ], [
                 'email_verified_at' => now(),
                 'name' => $user->getName(),
                 'status' => true,
                 'provider' => $provider,
                 'provider_id' => $user->getId(),
+                'avatar' => $user->getAvatar(),
+                'username' => $user->getNickname(),
+                'slug' => Str::slug($user->getNickname()),
+
+
         ]);
 
         Auth::login($newUser);

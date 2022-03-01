@@ -19,6 +19,12 @@ class UpdateUserPassword implements UpdatesUserPasswords
      */
     public function update($user, array $input)
     {
+        if(is_null($user->password)){
+            $user->forceFill([
+                'password' => Hash::make($input['password']),
+            ])->save();
+
+    }else{
         Validator::make($input, [
             'current_password' => ['required', 'string'],
             'password' => $this->passwordRules(),
@@ -31,5 +37,8 @@ class UpdateUserPassword implements UpdatesUserPasswords
         $user->forceFill([
             'password' => Hash::make($input['password']),
         ])->save();
+    }
+
+
     }
 }
