@@ -61,7 +61,7 @@ return [
     |
     */
 
-    'home' => env('SPA_URL') . '/dashboard',
+    'home' => env('SPA_URL') . '/',
 
 
     /*

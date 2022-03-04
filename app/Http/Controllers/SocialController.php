@@ -61,7 +61,7 @@ class SocialController extends Controller
 
         Auth::login($newUser);
 
-        return redirect(env('SPA_URL') . '/registration-followup');
+        return redirect(env('SPA_URL') . '/profile');
     }
 
     protected function validateProvider($provider)
