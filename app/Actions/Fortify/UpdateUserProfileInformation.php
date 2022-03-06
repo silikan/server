@@ -60,6 +60,13 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'experience' => $input['experience'],
                 'social_links' => $input['social_links'],
                 'skills' => $input['skills'], */
+
+
+                'work_time_length' => $input['work_time_length'],
+                'work_days' => $input['work_days'],
+                'work_hours' => $input['work_hours'],
+                'work_place' => $input['work_place'],
+                'salary' => $input['salary'],
                 'facebook_social_link'=> $input['facebook_social_link'],
                 'linkedin_social_link'=> $input['linkedin_social_link'],
                 'twitter_social_link'=> $input['twitter_social_link'],
@@ -114,6 +121,12 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'certifications' => $input['certifications'],
                 'experience' => $input['experience'],
                 'skills' => $input['skills'],
+
+                'work_time_length' => $input['work_time_length'],
+            'work_days' => $input['work_days'],
+            'work_hours' => $input['work_hours'],
+            'work_place' => $input['work_place'],
+            'salary' => $input['salary'],
             'email_verified_at' => null,
         ])->save();
 

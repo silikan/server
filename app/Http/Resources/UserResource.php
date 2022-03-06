@@ -60,6 +60,13 @@ class UserResource extends JsonResource
           'password_is_null'=>$password_is_null,
           'gender' => $this->gender,
 
+
+   'work_time_length'  => $this->work_time_length,
+   'work_days'  => $this->work_days,
+   'work_hours'  => $this->work_hours,
+   'work_place'  => $this->work_place,
+   'salary'  =>   $this->salary,
+
         ];
     }
 }

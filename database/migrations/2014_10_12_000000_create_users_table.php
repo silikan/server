@@ -46,6 +46,12 @@ return new class extends Migration
 
             $table->string('twitter_social_link')->nullable();
             $table->string('gender')->nullable();
+            $table->string('work_time_length')->nullable();
+            $table->string('work_days')->nullable();
+            $table->time('work_hours')->nullable();
+            $table->string('work_place')->nullable();
+            $table->string('salary')->nullable();
+
 
             $table->json('skills')->nullable();
             $table->rememberToken();
