@@ -58,6 +58,7 @@ class UserResource extends JsonResource
           'skills' => $this->skills,
           'timestamps' => $this->timestamps,
           'password_is_null'=>$password_is_null,
+          'gender' => $this->gender,
 
         ];
     }

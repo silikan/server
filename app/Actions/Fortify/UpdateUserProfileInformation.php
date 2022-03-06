@@ -53,6 +53,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'state' => $input['state'],
                 'zip_code' => $input['zip_code'],
                 'website' => $input['website'],
+                'gender' => $input['gender'],
 
          /*        'education' => $input['education'],
                 'certifications' => $input['certifications'],
@@ -98,6 +99,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'state' => $input['state'],
             'zip_code' => $input['zip_code'],
             'website' => $input['website'],
+            'gender' => $input['gender'],
             /*     'education' => $input['education'],
                 'certifications' => $input['certifications'],
                 'experience' => $input['experience'],

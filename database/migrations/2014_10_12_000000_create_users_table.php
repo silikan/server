@@ -45,6 +45,7 @@ return new class extends Migration
             $table->string('linkedin_social_link')->nullable();
 
             $table->string('twitter_social_link')->nullable();
+            $table->string('gender')->nullable();
 
             $table->json('skills')->nullable();
             $table->rememberToken();
