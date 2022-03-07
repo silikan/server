@@ -62,7 +62,6 @@ class UserResource extends JsonResource
 
 
    'work_time_length'  => $this->work_time_length,
-   'work_days'  => $this->work_days,
    'work_hours'  => $this->work_hours,
    'work_place'  => $this->work_place,
    'salary'  =>   $this->salary,

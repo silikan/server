@@ -59,7 +59,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 
 
                 'work_time_length' => $input['work_time_length'],
-                'work_days' => $input['work_days'],
                 'work_hours' => $input['work_hours'],
                 'work_place' => $input['work_place'],
                 'salary' => $input['salary'],
@@ -115,7 +114,6 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'skills' => $input['skills'],
 
                  'work_time_length' => $input['work_time_length'],
-            'work_days' => $input['work_days'],
             'work_hours' => $input['work_hours'],
             'work_place' => $input['work_place'],
             'salary' => $input['salary'],
