@@ -55,11 +55,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'website' => $input['website'],
                 'gender' => $input['gender'],
 
-         /*        'education' => $input['education'],
-                'certifications' => $input['certifications'],
-                'experience' => $input['experience'],
-                'social_links' => $input['social_links'],
-                'skills' => $input['skills'], */
+
 
 
                 'work_time_length' => $input['work_time_length'],
@@ -107,11 +103,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'zip_code' => $input['zip_code'],
             'website' => $input['website'],
             'gender' => $input['gender'],
-            /*     'education' => $input['education'],
-                'certifications' => $input['certifications'],
-                'experience' => $input['experience'],
-                'social_links' => $input['social_links'],
-                'skills' => $input['skills'], */
+
 
                 'facebook_social_link'=> $input['facebook_social_link'],
                 'linkedin_social_link'=> $input['linkedin_social_link'],
@@ -122,7 +114,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'experience' => $input['experience'],
                 'skills' => $input['skills'],
 
-                'work_time_length' => $input['work_time_length'],
+                 'work_time_length' => $input['work_time_length'],
             'work_days' => $input['work_days'],
             'work_hours' => $input['work_hours'],
             'work_place' => $input['work_place'],
