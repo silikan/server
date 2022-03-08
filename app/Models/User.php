@@ -40,6 +40,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'twitter_social_link',
         'skills',
         'gender',
+        'is_client',
+        'is_handyman',
+        'is_admin' ,
+
+        'is_moderator' ,
+        'is_available_to_hire' ,
+        'is_online' ,
 
    'work_time_length',
             'work_hours',
