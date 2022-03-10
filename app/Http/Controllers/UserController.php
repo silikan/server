@@ -16,10 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->isAdmin()) {
-            return UserResource::collection(User::paginate(10));
-        }
-        return  response()->json(["message" => "Forbidden"], 403);
+            return UserResource::collection(User::paginate(9));
+
+       // return  response()->json(["message" => "Forbidden"], 403);
     }
 
     /**
@@ -41,10 +40,9 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        if (Auth::user()->isAdmin()) {
           return new UserResource($user);
-        }
-        return  response()->json(["message" => "Forbidden"], 403);
+
+       // return  response()->json(["message" => "Forbidden"], 403);
     }
 
     /**

@@ -19,6 +19,10 @@ use App\Models\User;
 |
 */
 
+Route::resource('guest-users', UserController::class)->except([
+  'create', 'store', 'update', 'destroy'
+]);
+
 Route::post('/sanctum/token', TokenController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
@@ -26,5 +30,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::resource('users', UserController::class);
   Route::post('/users/auth/avatar',[ AvatarController::class, 'upload_user_photo']);
 
+
+  Route::get('test', function () {
+    event(new App\Events\Test());
+    return "Event has been sent!";
+});
 
 });
