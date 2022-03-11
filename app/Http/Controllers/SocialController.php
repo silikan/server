@@ -42,6 +42,12 @@ class SocialController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->stateless()->user();
+  // so the default is G+, change according to your needs
+  $avatar = str_replace('s96-c', 's1000-c', $user->avatar);
+
+  if ($provider == 'facebook' || $provider == 'linkedin') {
+      $avatar = $user->avatar_original;
+  }
 
         $newUser = User::firstOrCreate([
                 'email' => $user->getEmail()
@@ -52,7 +58,7 @@ class SocialController extends Controller
                 'status' => true,
                 'provider' => $provider,
                 'provider_id' => $user->getId(),
-                'avatar' => $user->getAvatar(),
+                'avatar' => $avatar,
                 'username' => $user->getNickname(),
                 'slug' => Str::slug($user->getNickname()),
 
