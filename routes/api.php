@@ -22,6 +22,7 @@ use App\Models\User;
 
 
 Route::get('guest-users/handymen', [ UserController::class , 'handymen']);
+Route::get('guest-users/{id}', [ UserController::class , 'getUser']);
 
 Route::post('/sanctum/token', TokenController::class);
 

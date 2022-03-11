@@ -51,6 +51,15 @@ class UserController extends Controller
        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
+    public function getUser($id)
+    {
+        return new UserResource(User::find($id));
+
+
+
+       // return  response()->json(["message" => "Forbidden"], 403);
+    }
+
 
     /**
      * Update the specified resource in storage.
