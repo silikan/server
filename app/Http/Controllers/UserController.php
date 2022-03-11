@@ -21,6 +21,12 @@ class UserController extends Controller
        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
+    public function handymen()  {
+        return UserResource::collection(User::where('is_handyman', true)->paginate(9));
+    }
+
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,6 +50,7 @@ class UserController extends Controller
 
        // return  response()->json(["message" => "Forbidden"], 403);
     }
+
 
     /**
      * Update the specified resource in storage.

@@ -19,9 +19,9 @@ use App\Models\User;
 |
 */
 
-Route::resource('guest-users', UserController::class)->except([
-  'create', 'store', 'update', 'destroy'
-]);
+
+
+Route::get('guest-users/handymen', [ UserController::class , 'handymen']);
 
 Route::post('/sanctum/token', TokenController::class);
 
