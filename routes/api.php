@@ -19,6 +19,7 @@ use App\Models\User;
 |
 */
 
+Route::get('guest-users/search', [ UserController::class , 'searchUser']);
 
 
 Route::get('guest-users/handymen', [ UserController::class , 'handymen']);

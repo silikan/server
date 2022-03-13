@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use App\Http\Resources\UserResource;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable , Searchable;
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
+
+    public $asYouType = true;
+
     protected $fillable = [
         'name',
         'email',
@@ -106,5 +112,18 @@ public function isOnline(): bool
 public function isavailableToHire(): bool
 {
     return $this->is_available_to_hire;
+}
+
+public function toSearchableArray()
+{
+
+    // Customize array...
+
+    return [
+        'id' => $this->id,
+        'name' => $this->name,
+        'email' => $this->email,
+    ];
+
 }
 }

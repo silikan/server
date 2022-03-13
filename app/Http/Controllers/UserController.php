@@ -50,6 +50,15 @@ class UserController extends Controller
 
        // return  response()->json(["message" => "Forbidden"], 403);
     }
+    public function searchUser(Request $request)
+    {
+          $users = User::search($request->get('search'))->get();
+
+          return $users;
+
+       // return  response()->json(["message" => "Forbidden"], 403);
+    }
+
 
     public function getUser($id)
     {
