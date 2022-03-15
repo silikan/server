@@ -50,9 +50,17 @@ class UserController extends Controller
 
        // return  response()->json(["message" => "Forbidden"], 403);
     }
-    public function searchUser(Request $request)
+    public function searchHandymen(Request $request)
     {
-          $users = User::search($request->get('search'))->get();
+          $users = User::search($request->get('search'))->where('is_handyman', true)->take(10)->get();
+
+          return $users;
+
+       // return  response()->json(["message" => "Forbidden"], 403);
+    }
+    public function searchHandymenPaginate(Request $request)
+    {
+          $users = User::search($request->get('search'))->where('is_handyman', true)->get();
 
           return $users;
 

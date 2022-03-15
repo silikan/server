@@ -19,7 +19,8 @@ use App\Models\User;
 |
 */
 
-Route::get('guest-users/search', [ UserController::class , 'searchUser']);
+Route::get('guest-users/handymen/search', [ UserController::class , 'searchHandymen']);
+Route::get('guest-users/handymen/search/paginate', [ UserController::class , 'searchHandymenPaginate']);
 
 
 Route::get('guest-users/handymen', [ UserController::class , 'handymen']);
