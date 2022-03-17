@@ -60,7 +60,7 @@ class UserController extends Controller
     }
     public function searchHandymenPaginate(Request $request)
     {
-          $users = User::search($request->get('search'))->where('is_handyman', true)->get();
+          $users = User::search($request->get('search'))->where('is_handyman', true)->paginate(5);
 
           return $users;
 
