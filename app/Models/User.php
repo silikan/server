@@ -113,7 +113,10 @@ public function isavailableToHire(): bool
 {
     return $this->is_available_to_hire;
 }
-
+public function ratings()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
 public function toSearchableArray()
 {
 
