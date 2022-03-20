@@ -88,7 +88,14 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
-
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+    public function chats()
+    {
+        return $this-> hasMany(Chat::class);
+    }
     public function isAdmin(): bool
 {
     return $this->is_admin;
