@@ -53,6 +53,9 @@ return new class extends Migration
 
 
             $table->json('skills')->nullable();
+
+
+
             $table->rememberToken();
             $table->timestamps();
         });

@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SocialController;
 
+use App\Models\Room;
+use App\Models\User;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,25 +17,12 @@ use App\Http\Controllers\SocialController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('fire', function () {
-    // this fires the event
-    event(new App\Events\MessageSent());
-    return "event fired";
-});
 
-Route::get('test', function () {
-    // this checks for the event
-    return view('test');
-});
-Route::post('/channels/{channel}/messages', function (App\Channel $channel) {
-    $message = Message::forceCreate([
-        'channel_id' => $channel->id,
-        'author_username' => request('username'),
-        'message' => request('message'),
-    ]);
 
-    return $message;
-});
+
+
+
+
 Route::get('/social/{provider}', [SocialController::class,'redirectToProvider']);
 Route::get('social/{provider}/callback', [SocialController::class, 'handleProviderCallback']);
 Route::get('/', function () {
@@ -41,3 +31,17 @@ Route::get('/', function () {
 
 
 
+Route::get('/users', function () {
+
+
+    //all rooms that are attacked to users with id one and two
+    $rooms = Room::whereHas('users', function ($query) {
+        $query->where('user_id', 1);
+    })->andWhereHas('users', function ($query) {
+        $query->where('user_id', 2);
+    })->get();
+
+    return $rooms;
+
+
+    });

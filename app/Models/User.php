@@ -88,9 +88,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
-    public function room()
+    public function rooms()
     {
-        return $this->belongsTo(Room::class);
+        return $this->belongsToMany(Room::class , 'room_user');
     }
     public function chats()
     {

@@ -12,28 +12,24 @@ class MessageSent implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
+    protected $room_id;
+    public $from;
+    public $to;
+    public $message;
 
-    public $data;
-
-    /**
-     * Create a new event instance.
-     *
-     * @return void
-     */
-    public function __construct( )
+    public function __construct(    $room_id, $from, $to, $message)
     {
-        $this->data = array(
-            'power'=> '10'
-        );
+        $this->room_id = $room_id;
+        $this->from = $from;
+        $this->to = $to;
+        $this->message = $message;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return \Illuminate\Broadcasting\Channel|array
-     */
+
     public function broadcastOn()
     {
-        return new Channel('test-channel');
+        return new Channel($this->room_id);
     }
+
+
 }

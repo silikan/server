@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Room;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class RoomController extends Controller
@@ -16,6 +18,23 @@ class RoomController extends Controller
     {
         //
     }
+
+    public function createRoom(Request $request)
+    {
+
+        $room = new Room();
+        $to = User::find($request->to);
+        $from = User::find($request->from);
+        $room->save();
+        $room->users()->attach($to);
+        $room->users()->attach($from);
+
+        $room->save();
+
+        return response()->json(["message" => "Success"], 200);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

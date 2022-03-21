@@ -6,7 +6,8 @@ use App\Http\Controllers\TokenController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AvatarController;
-use App\Models\User;
+use App\Http\Controllers\RoomController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,29 @@ use App\Models\User;
 |
 */
 
+Route::post('/room',[ RoomController::class, 'createRoom']);
+
+/* Route::get('/rooms/{room_id}', function (App\Channel $channel) {
+  if (!request()->wantsJson()) {
+      abort(404);
+  }
+
+  $messages = App\Message::where('channel_id', $channel->id)->get();
+
+  return $messages;
+});
+
+Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message ) {
+
+
+
+
+
+  event(new MessageSent($room_id, $from, $to, $message));
+
+  return response()->json(['status' => 'Message Sent!']);
+
+}); */
 
 
 Route::get('guest-users/handymen/search', [ UserController::class , 'searchHandymen']);
