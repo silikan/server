@@ -22,16 +22,24 @@ class RoomController extends Controller
     public function createRoom(Request $request)
     {
 
-        $room = new Room();
-        $to = User::find($request->to);
-        $from = User::find($request->from);
-        $room->save();
-        $room->users()->attach($to);
-        $room->users()->attach($from);
+        $rooms = Room::whereHas('users', function ($query) {
+            $query->where('user_id', 2);
+        })->WhereHas('users', function ($query) {
+            $query->where('user_id', 1);
+        })->get();
 
-        $room->save();
+            if  ($rooms->count() == 0) {
+                $room = new Room();
+                $room->save();
+                $room->users()->attach(1);
+                $room->users()->attach(2);
+                return $room;
+            } else {
+                return $rooms;
+            }
 
-        return response()->json(["message" => "Success"], 200);
+
+
     }
 
 
