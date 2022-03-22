@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use Illuminate\Http\Request;
-
+use App\Events\MessageSent;
 class ChatController extends Controller
 {
     /**
@@ -59,6 +59,21 @@ class ChatController extends Controller
     {
         //
     }
+
+    public function sendMessage(Request $request)
+    {
+        //fire the messagesent event and get sent data and store it
+
+
+$message    = $request->message;
+
+     event(new MessageSent( $message));
+     //return the message type
+return  $message;
+
+    }
+
+
 
     /**
      * Update the specified resource in storage.

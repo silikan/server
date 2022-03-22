@@ -1,46 +1,45 @@
-var server = require('http').Server();
+var http = require('http').Server();
 const cors = require('cors')
-
-var Redis = require('ioredis');
-var redis = new Redis();
-
-// Create a new Socket.io instance
-const io = require("socket.io")(server, {
+var io = require('socket.io')(http, {
 	cors: {
 		origin: "http://localhost:8080",
 	},
 });
-redis.psubscribe('*');
+var Redis = require('ioredis');
 
-redis.on('pmessage', function (pattern, room_id, message, from, to) {
+var redis = new Redis();
+redis.psubscribe('*', function (err, count) { });
+redis.on('pmessage', function (channel, message) {
 	message = JSON.parse(message);
+	console.log('Message: ' + message.message);
+	console.log('From: ' + message.from);
+	console.log('To: ' + message.to);
+	console.log('Room: ' + message.room_id);
 
-	// Pass data to Socket.io every time we get a new message from Redis
-	// "channel + ':' + message.event" is a unique channel id to broadcast to
-	//
-	// message.data corresponds to the $data variable in the MessageSent event
-	// in Laravel
-	io.emit(channel + ':' + message, from, to);
+
+
+	io.emit(`room-${message.room_id}` + ':' + message);
+
+
+	io.on('connection', (socket) => {
+
+		console.log('made socket connection', socket.id);
+
+		// Handle chat event
+		socket.on(`room-${message.room_id}`, function (data) {
+			console.log(data)
+			io.sockets.emit(`room-${message.room_id}`, data);
+		});
+
+		socket.on('typing', function (data) {
+			console.log(data)
+			socket.broadcast.emit('typing', data);
+		});
+	});
 });
 
 
-io.on('connection', (socket) => {
 
-	console.log('made socket connection', socket.id);
-
-	// Handle chat event
-	socket.on('chat', function (data) {
-		console.log(data)
-		io.sockets.emit('chat', data);
-	});
-
-	socket.on('typing', function (data) {
-		console.log(data)
-		socket.broadcast.emit('typing', data);
-	});
+http.listen(3000, function () {
+	console.log('Listening on Port: 3000');
 });
-
-server.listen(3001);
-
-// Just to be sure it's working
-console.log('Server started on 3001');

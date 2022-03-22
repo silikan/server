@@ -36,12 +36,12 @@ Route::get('/users', function () {
 
     //all rooms that are attacked to users with id one and two
     $rooms = Room::whereHas('users', function ($query) {
-        $query->where('user_id', 2);
+        $query->where('user_id', 2) ;
     })->WhereHas('users', function ($query) {
-        $query->where('user_id', 1);
+        $query->where('user_id', 1) ;
     })->get();
 
-    return $rooms;
+    return  $rooms;
 
 
     });

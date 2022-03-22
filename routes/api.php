@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AvatarController;
 use App\Http\Controllers\RoomController;
 
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,10 @@ use App\Http\Controllers\RoomController;
 */
 
 Route::post('/room',[ RoomController::class, 'createRoom']);
+Route::get('/room/{room_id}', [AuthController::class, 'show']);
+Route::get('/room/users', [RoomController::class, 'getRoomByUsersId']);
+Route::get('/room/{room_id}/users/{user_id}', [RoomController::class, 'getRoomByIdAndGetUsersData']);
+Route::get('/room/{room_id}/users', [RoomController::class, 'getRoomUsers']);
 
 /* Route::get('/rooms/{room_id}', function (App\Channel $channel) {
   if (!request()->wantsJson()) {
@@ -44,9 +49,12 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
 
 }); */
 
+Route::post('/chat', [ChatController::class, 'sendMessage']);
+
 
 Route::get('guest-users/handymen/search', [ UserController::class , 'searchHandymen']);
 Route::get('guest-users/handymen/search/paginate', [ UserController::class , 'searchHandymenPaginate']);
+
 
 
 Route::get('guest-users/handymen', [ UserController::class , 'handymen']);
