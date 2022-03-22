@@ -11,10 +11,7 @@ var redis = new Redis();
 redis.psubscribe('*', function (err, count) { });
 redis.on('pmessage', function (channel, message) {
 	message = JSON.parse(message);
-	console.log('Message: ' + message.message);
-	console.log('From: ' + message.from);
-	console.log('To: ' + message.to);
-	console.log('Room: ' + message.room_id);
+
 
 
 
