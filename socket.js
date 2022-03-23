@@ -9,7 +9,13 @@ var Redis = require('ioredis');
 
 var redis = new Redis();
 redis.psubscribe('*', function (err, count) { });
+redis.on('pmessage', function (channel, message) {
+	message = JSON.parse(message);
+	io.sockets.in(`room-${message.room_id}`).emit('message', message);
 
+
+
+});
 
 io.on('connection', (socket) => {
 
@@ -21,19 +27,9 @@ io.on('connection', (socket) => {
 	});
 
 
-	redis.on('pmessage', function (channel, message) {
-		message = JSON.parse(message);
-		io.sockets.in(`room-${message.room_id}`).emit("message" + ':' + message);
 
 
-		console.log(`room-${message.room_id}`)
 
-	});
-
-	socket.on('message', function (data) {
-		console.log(data)
-
-	});
 
 
 	socket.on('typing', function (data) {
