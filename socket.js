@@ -9,32 +9,38 @@ var Redis = require('ioredis');
 
 var redis = new Redis();
 redis.psubscribe('*', function (err, count) { });
-redis.on('pmessage', function (channel, message) {
-	message = JSON.parse(message);
 
 
+io.on('connection', (socket) => {
+
+	console.log('made socket connection', socket.id);
+
+	socket.on('room', function (room) {
+		socket.join(room);
+		console.log(room)
+	});
 
 
-	io.emit(`room-${message.room_id}` + ':' + message);
+	redis.on('pmessage', function (channel, message) {
+		message = JSON.parse(message);
+		io.sockets.in(`room-${message.room_id}`).emit("message" + ':' + message);
 
 
-	io.on('connection', (socket) => {
+		console.log(`room-${message.room_id}`)
 
-		console.log('made socket connection', socket.id);
+	});
 
-		// Handle chat event
-		socket.on(`room-${message.room_id}`, function (data) {
-			console.log(data)
-			io.sockets.emit(`room-${message.room_id}`, data);
-		});
+	socket.on('message', function (data) {
+		console.log(data)
 
-		socket.on('typing', function (data) {
-			console.log(data)
-			socket.broadcast.emit('typing', data);
-		});
+	});
+
+
+	socket.on('typing', function (data) {
+		console.log(data)
+		socket.broadcast.emit('typing', data);
 	});
 });
-
 
 
 http.listen(3000, function () {

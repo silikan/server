@@ -23,6 +23,7 @@
         "dotenv": "^16.0.0",
         "express": "^4.17.3",
         "ioredis": "^4.28.5",
+        "monitor.io": "^0.1.0",
         "redis": "^4.0.4",
         "redis-server": "^1.2.2",
         "save": "^2.4.0",

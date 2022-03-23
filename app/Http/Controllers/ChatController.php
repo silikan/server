@@ -68,8 +68,23 @@ class ChatController extends Controller
 $message    = $request->message;
 
      event(new MessageSent( $message));
-     //return the message type
-return  $message;
+
+
+$encodeMessage = json_encode($message);
+$decodeMessageEncode = json_decode($encodeMessage);
+$chat = new Chat();
+$chat->message = $decodeMessageEncode->message;
+$chat->to = $decodeMessageEncode->to;
+$chat->from = $decodeMessageEncode->from;
+$chat->room_id = $decodeMessageEncode->room_id;
+//associate chat with room and user
+
+$chat->save();
+$chat->room()->associate($decodeMessageEncode->room_id);
+$chat->user()->associate($decodeMessageEncode->from);
+
+return  $chat;
+
 
     }
 
