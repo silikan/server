@@ -17,7 +17,10 @@ class MessageSent implements ShouldBroadcast
 
     public function __construct( $message)
     {
-        $this->message     = $message;
+// decode message
+
+        $this->message = json_decode($message) ;
+
 
     }
 
@@ -27,7 +30,7 @@ class MessageSent implements ShouldBroadcast
         //combine the word room with room id
         //get room id from message
 
-        return json_encode($this->message);
+        return new Channel('room-'.$this->message->room_id);
     }
 
 

@@ -26,6 +26,7 @@ return [
         'sanctum/csrf-cookie',
         'user/profile-information',
         'email/verification-notification',
+        'chat',
       ],
     'allowed_methods' => ['*'],
 

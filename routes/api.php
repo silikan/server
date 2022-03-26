@@ -49,8 +49,8 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
 
 }); */
 
-Route::post('/chat', [ChatController::class, 'sendMessage']);
-
+Route::post('/chat', [ChatController::class, 'store']);
+Route::post('/sendmsg', [ChatController::class, 'sendMessage']);
 
 Route::get('guest-users/handymen/search', [ UserController::class , 'searchHandymen']);
 Route::get('guest-users/handymen/search/paginate', [ UserController::class , 'searchHandymenPaginate']);

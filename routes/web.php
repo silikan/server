@@ -5,6 +5,8 @@ use App\Http\Controllers\SocialController;
 
 use App\Models\Room;
 use App\Models\User;
+use App\Events\MessageSent;
+use App\Http\Controllers\ChatController;
 
 
 /*
@@ -21,6 +23,7 @@ use App\Models\User;
 
 
 
+Route::post('/chat', [ChatController::class, 'sendMessage']);
 
 
 Route::get('/social/{provider}', [SocialController::class,'redirectToProvider']);
@@ -45,3 +48,26 @@ Route::get('/users', function () {
 
 
     });
+
+
+
+
+    Route::get('/event', function () {
+
+        $message = [
+
+                'room_id' => 1,
+                'from' => 1,
+                'to' => 2,
+                'message' => 'hello'
+
+
+        ];
+
+        $encode = json_encode($message);
+
+        broadcast(new MessageSent($encode));
+
+
+
+        });

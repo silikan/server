@@ -2,18 +2,14 @@ var http = require('http').Server();
 const cors = require('cors')
 var io = require('socket.io')(http, {
 	cors: {
-		origin: "http://localhost:8080",
+		origin: ["http://localhost:8080", "http://localhost:8000"],
+
 	},
 });
 var Redis = require('ioredis');
 
 var redis = new Redis();
-redis.psubscribe('*', function (err, count) { });
-redis.on('pmessage', function (channel, message) {
-	message = JSON.parse(message);
-	io.sockets.in(`room-${message.room_id}`).emit('message', message);
-
-
+redis.on('messages', function () {
 
 });
 
@@ -22,15 +18,19 @@ io.on('connection', (socket) => {
 	console.log('made socket connection', socket.id);
 
 	socket.on('room', function (room) {
+		redis.subscribe(room, function (err, count) { });
+
 		socket.join(room);
-		console.log(room)
 	});
 
 
+	socket.on('message', function (data) {
+		io.sockets.in(`room-${data.data.room_id}`).emit('message', data.data);
 
 
 
 
+	});
 
 	socket.on('typing', function (data) {
 		console.log(data)

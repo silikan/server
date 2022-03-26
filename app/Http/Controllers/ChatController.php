@@ -35,7 +35,22 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $message    = $request->message;
+
+        $encodeMessage = json_encode($message);
+$decodeMessageEncode = json_decode($encodeMessage);
+$chat = new Chat();
+$chat->message = $decodeMessageEncode->message;
+$chat->to = $decodeMessageEncode->to;
+$chat->from = $decodeMessageEncode->from;
+$chat->room_id = $decodeMessageEncode->room_id;
+//associate chat with room and user
+
+$chat->save();
+$chat->room()->associate($decodeMessageEncode->room_id);
+$chat->user()->associate($decodeMessageEncode->from);
+
+return  $chat;
     }
 
     /**
@@ -65,26 +80,16 @@ class ChatController extends Controller
         //fire the messagesent event and get sent data and store it
 
 
-$message    = $request->message;
+/* $message    = $request->message; */
+
+ $message = json_encode($request->data) ;
+
+
+
 
      event(new MessageSent( $message));
 
-
-$encodeMessage = json_encode($message);
-$decodeMessageEncode = json_decode($encodeMessage);
-$chat = new Chat();
-$chat->message = $decodeMessageEncode->message;
-$chat->to = $decodeMessageEncode->to;
-$chat->from = $decodeMessageEncode->from;
-$chat->room_id = $decodeMessageEncode->room_id;
-//associate chat with room and user
-
-$chat->save();
-$chat->room()->associate($decodeMessageEncode->room_id);
-$chat->user()->associate($decodeMessageEncode->from);
-
-return  $chat;
-
+return $message;
 
     }
 
