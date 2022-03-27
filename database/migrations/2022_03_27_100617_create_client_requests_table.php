@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('slug');
             $table->text('description');
             //price
-            $this->decimal('price', 10, 2);
+            $table->decimal('price', 10, 2);
             $table->string('currency');
             $table->json('payment_method');
 
