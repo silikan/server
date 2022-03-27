@@ -88,6 +88,28 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
+public function cart ()
+{
+    return $this->hasOne(Cart::class);
+}
+public function task ()
+{
+    return $this->hasOne(Task::class);
+}
+
+//user has many gigs
+public function gigs()
+{
+    return $this->hasMany(Gig::class);
+}
+//user has many requests
+public function requests()
+{
+    return $this->hasMany(ClientRequest::class);
+}
+
+//user has many
+
     public function rooms()
     {
         return $this->belongsToMany(Room::class , 'room_user');
