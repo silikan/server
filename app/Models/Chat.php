@@ -17,5 +17,4 @@ class Chat extends Model
     {
         return $this->belongsTo(Room::class);
     }
-
 }

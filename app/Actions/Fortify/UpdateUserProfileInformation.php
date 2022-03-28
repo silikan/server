@@ -30,8 +30,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             ],
         ])->validateWithBag('updateProfileInformation');
 
-        if ($input['email'] !== $user->email &&
-            $user instanceof MustVerifyEmail) {
+        if (
+            $input['email'] !== $user->email &&
+            $user instanceof MustVerifyEmail
+        ) {
             $this->updateVerifiedUser($user, $input);
         } else {
             $user->forceFill([
@@ -62,9 +64,9 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'work_hours' => $input['work_hours'],
                 'work_place' => $input['work_place'],
                 'salary' => $input['salary'],
-                'facebook_social_link'=> $input['facebook_social_link'],
-                'linkedin_social_link'=> $input['linkedin_social_link'],
-                'twitter_social_link'=> $input['twitter_social_link'],
+                'facebook_social_link' => $input['facebook_social_link'],
+                'linkedin_social_link' => $input['linkedin_social_link'],
+                'twitter_social_link' => $input['twitter_social_link'],
                 'education' => $input['education'],
                 'certifications' => $input['certifications'],
                 'experience' => $input['experience'],
@@ -104,16 +106,16 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'gender' => $input['gender'],
 
 
-                'facebook_social_link'=> $input['facebook_social_link'],
-                'linkedin_social_link'=> $input['linkedin_social_link'],
-                'twitter_social_link'=> $input['twitter_social_link'],
+            'facebook_social_link' => $input['facebook_social_link'],
+            'linkedin_social_link' => $input['linkedin_social_link'],
+            'twitter_social_link' => $input['twitter_social_link'],
 
-                'education' => $input['education'],
-                'certifications' => $input['certifications'],
-                'experience' => $input['experience'],
-                'skills' => $input['skills'],
+            'education' => $input['education'],
+            'certifications' => $input['certifications'],
+            'experience' => $input['experience'],
+            'skills' => $input['skills'],
 
-                 'work_time_length' => $input['work_time_length'],
+            'work_time_length' => $input['work_time_length'],
             'work_hours' => $input['work_hours'],
             'work_place' => $input['work_place'],
             'salary' => $input['salary'],

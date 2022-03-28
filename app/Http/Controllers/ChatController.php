@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
+
 class ChatController extends Controller
 {
     /**
@@ -35,23 +36,32 @@ class ChatController extends Controller
      */
     public function store(Request $request)
     {
-        $message    = $request->message;
+        $message    = $request->data;
 
         $encodeMessage = json_encode($message);
-$decodeMessageEncode = json_decode($encodeMessage);
-$chat = new Chat();
-$chat->message = $decodeMessageEncode->message;
-$chat->to = $decodeMessageEncode->to;
-$chat->from = $decodeMessageEncode->from;
-$chat->room_id = $decodeMessageEncode->room_id;
-//associate chat with room and user
+        $decodeMessageEncode = json_decode($encodeMessage);
+        $chat = new Chat();
+        $chat->message = $decodeMessageEncode->message;
+        $chat->to = $decodeMessageEncode->to;
+        $chat->from = $decodeMessageEncode->from;
+        $chat->room_id = $decodeMessageEncode->room_id;
+        //associate chat with room and user
 
-$chat->save();
-$chat->room()->associate($decodeMessageEncode->room_id);
-$chat->user()->associate($decodeMessageEncode->from);
+        $chat->save();
+        $chat->room()->associate($decodeMessageEncode->room_id);
+        $chat->user()->associate($decodeMessageEncode->from);
 
-return  $chat;
+        return  $chat;
     }
+
+    public function getChat($room_id)
+    {
+       //infinite scrolling
+        $chats = Chat::where('room_id', $room_id) ->orderBy('created_at','desc')
+        ->paginate(6);
+        return $chats;
+    }
+
 
     /**
      * Display the specified resource.
@@ -80,17 +90,16 @@ return  $chat;
         //fire the messagesent event and get sent data and store it
 
 
-/* $message    = $request->message; */
+        /* $message    = $request->message; */
 
- $message = json_encode($request->data) ;
-
-
+        $message = json_encode($request->data);
 
 
-     event(new MessageSent( $message));
 
-return $message;
 
+        event(new MessageSent($message));
+
+        return $message;
     }
 
 

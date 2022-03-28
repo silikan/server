@@ -13,7 +13,7 @@ use App\Http\Resources\UserResource;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable , Searchable;
+    use HasApiTokens, HasFactory, Notifiable, Searchable;
 
     /**
      * The attributes that are mass assignable.
@@ -48,16 +48,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'gender',
         'is_client',
         'is_handyman',
-        'is_admin' ,
+        'is_admin',
 
-        'is_moderator' ,
-        'is_available_to_hire' ,
-        'is_online' ,
+        'is_moderator',
+        'is_available_to_hire',
+        'is_online',
 
-   'work_time_length',
-            'work_hours',
-            'work_place',
-            'salary'
+        'work_time_length',
+        'work_hours',
+        'work_place',
+        'salary'
 
 
     ];
@@ -88,74 +88,73 @@ class User extends Authenticatable implements MustVerifyEmail
 
     ];
 
-public function cart ()
-{
-    return $this->hasOne(Cart::class);
-}
-public function task ()
-{
-    return $this->hasOne(Task::class);
-}
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+    public function task()
+    {
+        return $this->hasOne(Task::class);
+    }
 
-//user has many gigs
-public function gigs()
-{
-    return $this->hasMany(Gig::class);
-}
-//user has many requests
-public function requests()
-{
-    return $this->hasMany(ClientRequest::class);
-}
+    //user has many gigs
+    public function gigs()
+    {
+        return $this->hasMany(Gig::class);
+    }
+    //user has many requests
+    public function requests()
+    {
+        return $this->hasMany(ClientRequest::class);
+    }
 
-//user has many
+    //user has many
 
     public function rooms()
     {
-        return $this->belongsToMany(Room::class , 'room_user');
+        return $this->belongsToMany(Room::class, 'room_user');
     }
     public function chats()
     {
-        return $this-> hasMany(Chat::class);
+        return $this->hasMany(Chat::class);
     }
     public function isAdmin(): bool
-{
-    return $this->is_admin;
-}
-public function isHandyman(): bool
-{
-    return $this->is_handyman;
-}
-public function isClient(): bool
-{
-    return $this->is_client;
-}
-public function isModerator(): bool
-{
-    return $this->is_moderator;
-}
-public function isOnline(): bool
-{
-    return $this->is_online;
-}
-public function isavailableToHire(): bool
-{
-    return $this->is_available_to_hire;
-}
-public function ratings()
+    {
+        return $this->is_admin;
+    }
+    public function isHandyman(): bool
+    {
+        return $this->is_handyman;
+    }
+    public function isClient(): bool
+    {
+        return $this->is_client;
+    }
+    public function isModerator(): bool
+    {
+        return $this->is_moderator;
+    }
+    public function isOnline(): bool
+    {
+        return $this->is_online;
+    }
+    public function isavailableToHire(): bool
+    {
+        return $this->is_available_to_hire;
+    }
+    public function ratings()
     {
         return $this->hasMany('App\Models\Rating');
     }
-public function toSearchableArray()
-{
+    public function toSearchableArray()
+    {
 
-    // Customize array...
+        // Customize array...
 
-    return [
-        'id' => $this->id,
-        'name' => $this->name,
-        'email' => $this->email,
-    ];
-
-}
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
+    }
 }

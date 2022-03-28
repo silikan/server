@@ -28,18 +28,15 @@ class RoomController extends Controller
             $query->where('user_id', $request->from);
         })->get();
 
-            if  ($room->count() == 0) {
-                $room = new Room();
-                $room->save();
-                $room->users()->attach( $request->to);
-                $room->users()->attach($request->from);
-                return $room;
-            } else {
-                return $room[0];
-            }
-
-
-
+        if ($room->count() == 0) {
+            $room = new Room();
+            $room->save();
+            $room->users()->attach($request->to);
+            $room->users()->attach($request->from);
+            return $room;
+        } else {
+            return $room[0];
+        }
     }
     public function getRoomByUsersId(Request $request)
     {
@@ -52,24 +49,29 @@ class RoomController extends Controller
         return $rooms;
     }
 
-public function getRoomByIdAndGetUsersData (Request $request)
-{
-    $room = Room::find($request->room_id);
-    $users = $room->users;
-    return $users;
-}
-public function getRoomById (Request $request)  {
-    $room = Room::find($request->room_id);
-    return response()->json($room);
+    public function getRoomByIdAndGetUsersData(Request $request)
+    {
+        $room = Room::find($request->room_id);
+        $users = $room->users;
+        return $users;
+    }
+    public function getRoomById(Request $request)
+    {
+        $room = Room::find($request->room_id);
+        return response()->json($room);
+    }
 
-}
+
+    public function getRoomUsers(Request $request)
+    {
+        $room = Room::find($request->room_id);
+        $users = $room->users;
+        return response()->json($users);
+    }
 
 
-public function getRoomUsers (Request $request)  {
-    $room = Room::find($request->room_id);
-    $users = $room->users;
-    return response()->json($users);
-}
+    //get user rooms
+
     /**
      * Show the form for creating a new resource.
      *

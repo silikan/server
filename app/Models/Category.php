@@ -11,11 +11,11 @@ class Category extends Model
 
     public function gigs()
     {
-        return $this->belongsToMany(Gig::class , 'category_gig');
+        return $this->belongsToMany(Gig::class, 'category_gig');
     }
 
     public function requests()
     {
-        return $this->belongsToMany(ClientRequest::class , 'category_request');
+        return $this->belongsToMany(ClientRequest::class, 'category_request');
     }
 }

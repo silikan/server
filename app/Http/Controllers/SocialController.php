@@ -42,25 +42,25 @@ class SocialController extends Controller
     public function handleProviderCallback($provider)
     {
         $user = Socialite::driver($provider)->stateless()->user();
-  // so the default is G+, change according to your needs
-  $avatar = str_replace('s96-c', 's1000-c', $user->avatar);
+        // so the default is G+, change according to your needs
+        $avatar = str_replace('s96-c', 's1000-c', $user->avatar);
 
-  if ($provider == 'facebook' || $provider == 'linkedin') {
-      $avatar = $user->avatar_original;
-  }
+        if ($provider == 'facebook' || $provider == 'linkedin') {
+            $avatar = $user->avatar_original;
+        }
 
         $newUser = User::firstOrCreate([
-                'email' => $user->getEmail()
+            'email' => $user->getEmail()
 
-            ], [
-                'email_verified_at' => now(),
-                'name' => $user->getName(),
-                'status' => true,
-                'provider' => $provider,
-                'provider_id' => $user->getId(),
-                'avatar' => $avatar,
-                'username' => $user->getNickname(),
-                'slug' => Str::slug($user->getNickname()),
+        ], [
+            'email_verified_at' => now(),
+            'name' => $user->getName(),
+            'status' => true,
+            'provider' => $provider,
+            'provider_id' => $user->getId(),
+            'avatar' => $avatar,
+            'username' => $user->getNickname(),
+            'slug' => Str::slug($user->getNickname()),
 
 
         ]);
@@ -72,7 +72,7 @@ class SocialController extends Controller
 
     protected function validateProvider($provider)
     {
-        if (!in_array($provider, ['facebook', 'google' , 'linkedin'])) {
+        if (!in_array($provider, ['facebook', 'google', 'linkedin'])) {
             return response()->json(['error' => 'Please login using facebook or google or linkedin'], 422);
         }
     }

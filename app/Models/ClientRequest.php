@@ -26,7 +26,7 @@ class ClientRequest extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class , 'category_request');
+        return $this->belongsToMany(Category::class, 'category_request');
     }
 
     public function images()

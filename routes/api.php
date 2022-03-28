@@ -21,12 +21,12 @@ use App\Http\Controllers\ChatController;
 |
 */
 
-Route::post('/room',[ RoomController::class, 'createRoom']);
+Route::post('/room', [RoomController::class, 'createRoom']);
 Route::get('/room/{room_id}', [AuthController::class, 'show']);
 Route::get('/room/users', [RoomController::class, 'getRoomByUsersId']);
 Route::get('/room/{room_id}/users/{user_id}', [RoomController::class, 'getRoomByIdAndGetUsersData']);
 Route::get('/room/{room_id}/users', [RoomController::class, 'getRoomUsers']);
-
+Route::get('/user/{user_id}/rooms', [UserController::class, 'getUserRooms']);
 /* Route::get('/rooms/{room_id}', function (App\Channel $channel) {
   if (!request()->wantsJson()) {
       abort(404);
@@ -52,25 +52,23 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
 Route::post('/chat', [ChatController::class, 'store']);
 Route::post('/sendmsg', [ChatController::class, 'sendMessage']);
 
-Route::get('guest-users/handymen/search', [ UserController::class , 'searchHandymen']);
-Route::get('guest-users/handymen/search/paginate', [ UserController::class , 'searchHandymenPaginate']);
+Route::get('/chat/{room_id}', [ChatController::class, 'getChat']);
+
+Route::get('guest-users/handymen/search', [UserController::class, 'searchHandymen']);
+Route::get('guest-users/handymen/search/paginate', [UserController::class, 'searchHandymenPaginate']);
 
 
 
-Route::get('guest-users/handymen', [ UserController::class , 'handymen']);
-Route::get('guest-users/{id}', [ UserController::class , 'getUser']);
+Route::get('guest-users/handymen', [UserController::class, 'handymen']);
+Route::get('guest-users/{id}', [UserController::class, 'getUser']);
 
 Route::post('/sanctum/token', TokenController::class);
 
 Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/users/auth', AuthController::class);
   Route::resource('users', UserController::class);
-  Route::post('/users/auth/avatar',[ AvatarController::class, 'upload_user_photo']);
+  Route::post('/users/auth/avatar', [AvatarController::class, 'upload_user_photo']);
 
 
-  Route::get('test', function () {
-    event(new App\Events\Test());
-    return "Event has been sent!";
-});
 
 });

@@ -16,16 +16,22 @@ class UserController extends Controller
      */
     public function index()
     {
-            return UserResource::collection(User::paginate(9));
+        return UserResource::collection(User::paginate(9));
 
-       // return  response()->json(["message" => "Forbidden"], 403);
+        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
-    public function handymen()  {
+    public function handymen()
+    {
         return UserResource::collection(User::where('is_handyman', true)->paginate(9));
     }
 
-
+    public function getUserRooms(Request $request)
+    {
+        $user = User::find($request->user_id);
+        $rooms = $user->rooms;
+        return response()->json($rooms);
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -46,25 +52,25 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-          return new UserResource($user);
+        return new UserResource($user);
 
-       // return  response()->json(["message" => "Forbidden"], 403);
+        // return  response()->json(["message" => "Forbidden"], 403);
     }
     public function searchHandymen(Request $request)
     {
-          $users = User::search($request->get('search'))->where('is_handyman', true)->take(10)->get();
+        $users = User::search($request->get('search'))->where('is_handyman', true)->take(10)->get();
 
-          return $users;
+        return $users;
 
-       // return  response()->json(["message" => "Forbidden"], 403);
+        // return  response()->json(["message" => "Forbidden"], 403);
     }
     public function searchHandymenPaginate(Request $request)
     {
-          $users = User::search($request->get('search'))->where('is_handyman', true)->paginate(5);
+        $users = User::search($request->get('search'))->where('is_handyman', true)->paginate(5);
 
-          return $users;
+        return $users;
 
-       // return  response()->json(["message" => "Forbidden"], 403);
+        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
 
@@ -74,7 +80,7 @@ class UserController extends Controller
 
 
 
-       // return  response()->json(["message" => "Forbidden"], 403);
+        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
 

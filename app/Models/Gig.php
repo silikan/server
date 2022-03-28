@@ -34,7 +34,7 @@ class Gig extends Model
     //belongs to many categories
     public function categories()
     {
-        return $this->belongsToMany(Category::class , 'category_gig');
+        return $this->belongsToMany(Category::class, 'category_gig');
     }
 
     //gig hasmany images
@@ -42,6 +42,4 @@ class Gig extends Model
     {
         return $this->hasMany(GigImages::class);
     }
-
-
 }
