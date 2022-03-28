@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->id();
-            $table->string('message');
+            $table->longText('message');
             $table->string('to');
             $table->string('from');
             $table->string('room_id');

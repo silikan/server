@@ -58,7 +58,7 @@ class ChatController extends Controller
     {
        //infinite scrolling
         $chats = Chat::where('room_id', $room_id) ->orderBy('created_at','desc')
-        ->paginate(6);
+        ->paginate(15);
         return $chats;
     }
 
