@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
+use App\Http\Resources\ChatResource;
 
 class ChatController extends Controller
 {
@@ -57,8 +58,8 @@ class ChatController extends Controller
     public function getChat($room_id)
     {
        //infinite scrolling
-        $chats = Chat::where('room_id', $room_id) ->orderBy('created_at','desc')
-        ->paginate(15);
+        $chats = ChatResource::collection(Chat::where('room_id', $room_id) ->orderBy('created_at','desc')
+        ->paginate(15));
         return $chats;
     }
 

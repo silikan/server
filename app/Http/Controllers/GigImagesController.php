@@ -35,8 +35,53 @@ class GigImagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+
+        $input=$request->all();
+        $images=array();
+        if($files=$request->file('gigimages')){
+            foreach($files as $file){
+
+
+
+                  // processing the uploaded image
+
+          $image_name =    time() . '.' . $file->getClientOriginalExtension();
+          $image = $file;
+          $img = Image::make($image->path());
+
+
+          $img->resize(250, 250, function ($constraint) {
+            $constraint->aspectRatio();
+          });
+
+
+          $img->save('storage/gig-image/' . $image_name);
+
+
+
+
+
+            }
+
+
+
+
+
+          // Update user's avatar column on 'users' table
+    /*       $profile =  Auth::user();
+          $profile->avatar = $avatar_path; */
+
+
+
+        }
+
+        return response()->json([
+          'status'    => 'failure',
+          'message'   => 'No image file uploaded!',
+
+        ]);
+      }
 
     /**
      * Display the specified resource.

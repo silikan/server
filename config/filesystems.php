@@ -59,6 +59,16 @@ return [
     'url' => env('APP_URL').'/storage/user-avatar',
     'visibility' => 'public',
   ],
+
+  'gig_images' => [
+    'driver' => 'local',
+    'root' => storage_path('app/public/gig-image'),
+    'url' => env('APP_URL').'/storage/gig-image',
+    'visibility' => 'public',
+  ],
+
+
+
     ],
 
     /*
