@@ -35,7 +35,54 @@ class RequestImagesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $reqId = $request->reqId;
+        $images=$request->images;
+        $images=array();
+        if($files=$request->file('reqimages')){
+            foreach($files as $file){
+
+
+
+                  // processing the uploaded image
+
+          $image_name =    time() . '.' . $file->getClientOriginalExtension();
+          $image = $file;
+          $img = Image::make($image->path());
+
+
+          $img->resize(250, 250, function ($constraint) {
+            $constraint->aspectRatio();
+          });
+
+
+          $img->save('storage/req-image/' . $image_name);
+
+          //find a gid with the gidid
+          $req = req::find($reqId);
+          $req->images()->associate( $img);
+
+
+
+            }
+
+
+
+
+
+          // Update user's avatar column on 'users' table
+    /*       $profile =  Auth::user();
+          $profile->avatar = $avatar_path; */
+
+
+
+        }
+
+        return response()->json([
+          'status'    => 'failure',
+          'message'   => 'No image file uploaded!',
+
+        ]);
     }
 
     /**

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\ClientRequest;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\User;
 class ClientRequestController extends Controller
 {
     /**
@@ -24,7 +25,17 @@ class ClientRequestController extends Controller
      */
     public function create()
     {
-        //
+        //create a request
+        $request = new ClientRequest();
+        $request->title = $request->title;
+        $request->description = $request->description;
+        $request->price = $request->price;
+        $request->save();
+        $user =  Auth::user();
+        $request->user()->assosiate($user);
+        //associate to a category
+        $request->categories()->attach($request->category);
+
     }
 
     /**

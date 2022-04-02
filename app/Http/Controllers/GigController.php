@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Gig;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use App\User;
 class GigController extends Controller
 {
     /**
@@ -36,6 +37,19 @@ class GigController extends Controller
     public function store(Request $request)
     {
 
+        //create a gig
+        $gig = new Gig();
+        $gig->title = $request->title;
+        $gig->description = $request->description;
+        $gig->price = $request->price;
+        $gig->save();
+        $user =  Auth::user();
+        $gig->user()->assosiate($user);
+        //associate to a category
+        $gig->categories()->attach($request->category);
+
+
+
       }
 
 
@@ -49,6 +63,7 @@ class GigController extends Controller
     public function show(Gig $gig)
     {
         //
+
     }
 
     /**

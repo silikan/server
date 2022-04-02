@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\GigImages;
+use App\Models\Gig;
+
 use Illuminate\Http\Request;
 
 class GigImagesController extends Controller
@@ -36,8 +38,8 @@ class GigImagesController extends Controller
     public function store(Request $request)
     {
 
-
-        $input=$request->all();
+        $gigId = $request->gigId;
+        $images=$request->images;
         $images=array();
         if($files=$request->file('gigimages')){
             foreach($files as $file){
@@ -58,7 +60,9 @@ class GigImagesController extends Controller
 
           $img->save('storage/gig-image/' . $image_name);
 
-
+          //find a gid with the gidid
+          $gig = Gig::find($gigId);
+          $gig->images()->associate( $img);
 
 
 
