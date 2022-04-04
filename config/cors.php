@@ -27,6 +27,7 @@ return [
         'user/profile-information',
         'email/verification-notification',
         'chat',
+
       ],
     'allowed_methods' => ['*'],
 
@@ -42,5 +43,5 @@ return [
 
     'supports_credentials' => true,
 
-
+    'Access-Control-Allow-Origin' => ['*'],
 ];

@@ -36,11 +36,11 @@ class GigImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request ,  $gigId)
     {
 
-/*         $gigId = $request->gigId;
- */
+
+
         if($files=$request->file('GigImages')){
             foreach($files as $file){
 
@@ -61,13 +61,16 @@ class GigImagesController extends Controller
 
           $img->save($path);
 
-
-
+          $gig_image =  $img->basePath();
+     $GigImages = new GigImages();
+        $GigImages->url = $gig_image;
+        $GigImages->save();
           //find a gid with the gidid
-         /*  $gig = Gig::find($gigId);
-          $gig->images()->associate( $img); */
+           $gig = Gig::find($gigId);
+           $GigImages->gig()->associate( $gig);
 
 
+return dd($gig);
 
             }
 

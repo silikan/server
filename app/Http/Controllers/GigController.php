@@ -56,7 +56,7 @@ class GigController extends Controller
 /*         $gig->categories()->attach($request->category);
  */
 
-
+return $gig;
       }
 
 
