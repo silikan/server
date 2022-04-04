@@ -6,6 +6,7 @@ use App\Models\GigImages;
 use App\Models\Gig;
 
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class GigImagesController extends Controller
 {
@@ -38,9 +39,8 @@ class GigImagesController extends Controller
     public function store(Request $request)
     {
 
-        $gigId = $request->gigId;
-        $images=$request->images;
-        $images=array();
+/*         $gigId = $request->gigId;
+ */
         if($files=$request->file('GigImages')){
             foreach($files as $file){
 
@@ -48,7 +48,7 @@ class GigImagesController extends Controller
 
                   // processing the uploaded image
 
-          $image_name =    time() . '.' . $file->getClientOriginalExtension();
+          $image_name =    time() . $file->getClientOriginalName() ;
           $image = $file;
           $img = Image::make($image->path());
 
@@ -56,13 +56,16 @@ class GigImagesController extends Controller
           $img->resize(250, 250, function ($constraint) {
             $constraint->aspectRatio();
           });
+          $path = 'storage/gig-image/' . $image_name;
 
 
-          $img->save('storage/gig-image/' . $image_name);
+          $img->save($path);
+
+
 
           //find a gid with the gidid
-          $gig = Gig::find($gigId);
-          $gig->images()->associate( $img);
+         /*  $gig = Gig::find($gigId);
+          $gig->images()->associate( $img); */
 
 
 
@@ -80,11 +83,7 @@ class GigImagesController extends Controller
 
         }
 
-        return response()->json([
-          'status'    => 'failure',
-          'message'   => 'No image file uploaded!',
 
-        ]);
       }
 
     /**

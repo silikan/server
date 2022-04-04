@@ -62,7 +62,7 @@ return [
 
   'gig_images' => [
     'driver' => 'local',
-    'root' => storage_path('app/public/gig-image'),
+    'root' => storage_path('app/public/gig-images'),
     'url' => env('APP_URL').'/storage/gig-image',
     'visibility' => 'public',
   ],
