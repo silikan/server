@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::create('gigs', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->text('description');
-            $table->json('premium');
-            $table->json('standard');
-            $table->json('basic');
-
+            $table->json('premium')->nullable();
+            $table->json('standard')->nullable();
+            $table->json('basic')->nullable();
+            $table->json('paymentMethod')->nullable();
             $table->timestamps();
         });
     }

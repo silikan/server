@@ -10,6 +10,11 @@ use App\Http\Controllers\RoomController;
 
 use App\Http\Controllers\ChatController;
 
+use App\Http\Controllers\GigImagesController;
+
+use App\Http\Controllers\GigController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -52,11 +57,9 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
 Route::post('/chat', [ChatController::class, 'store']);
 Route::post('/sendmsg', [ChatController::class, 'sendMessage']);
 
-Route::get('/chat/{room_id}', [ChatController::class, 'getChat']);
 
 Route::get('guest-users/handymen/search', [UserController::class, 'searchHandymen']);
 Route::get('guest-users/handymen/search/paginate', [UserController::class, 'searchHandymenPaginate']);
-
 
 
 Route::get('guest-users/handymen', [UserController::class, 'handymen']);
@@ -69,6 +72,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::resource('users', UserController::class);
   Route::post('/users/auth/avatar', [AvatarController::class, 'upload_user_photo']);
 
+  Route::post('gig', [GigController::class, 'store']);
+  Route::post('gig/images', [GigImagesController::class, 'store']);
 
 
 });

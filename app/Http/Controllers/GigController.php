@@ -41,13 +41,20 @@ class GigController extends Controller
         $gig = new Gig();
         $gig->title = $request->title;
         $gig->description = $request->description;
-        $gig->price = $request->price;
+        $basic = json_encode($request->basic);
+        $standard = json_encode($request->standard);
+        $premium = json_encode($request->premium);
+        $paymentMethod = json_encode($request->paymentMethod);
+        $gig->basic = $basic;
+        $gig->standard = $standard;
+        $gig->premium = $premium;
+        $gig->paymentMethod = $paymentMethod;
         $gig->save();
-        $user =  Auth::user();
-        $gig->user()->assosiate($user);
-        //associate to a category
-        $gig->categories()->attach($request->category);
 
+        $user =  Auth::user();
+        $gig->user()->associate($user);
+/*         $gig->categories()->attach($request->category);
+ */
 
 
       }

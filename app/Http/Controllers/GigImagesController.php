@@ -41,7 +41,7 @@ class GigImagesController extends Controller
         $gigId = $request->gigId;
         $images=$request->images;
         $images=array();
-        if($files=$request->file('gigimages')){
+        if($files=$request->file('GigImages')){
             foreach($files as $file){
 
 
