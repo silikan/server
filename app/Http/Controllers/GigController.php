@@ -67,9 +67,12 @@ return $gig;
      * @param  \App\Models\Gig  $gig
      * @return \Illuminate\Http\Response
      */
-    public function show(Gig $gig)
+    public function show($id)
     {
-        //
+        //get gig by id
+        $gig = Gig::find($id);
+        return $gig;
+
 
     }
 

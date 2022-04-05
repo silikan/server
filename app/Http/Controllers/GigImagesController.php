@@ -53,7 +53,7 @@ class GigImagesController extends Controller
           $img = Image::make($image->path());
 
 
-          $img->resize(250, 250, function ($constraint) {
+          $img->resize(200, 500, function ($constraint) {
             $constraint->aspectRatio();
           });
           $path = 'storage/gig-image/' . $image_name;
@@ -64,10 +64,10 @@ class GigImagesController extends Controller
           $gig_image =  $img->basePath();
      $GigImages = new GigImages();
         $GigImages->url = $gig_image;
-        $GigImages->save();
+        $GigImages->gig_id = $gigId;
           //find a gid with the gidid
            $gig = Gig::find($gigId);
-           $GigImages->gig()->associate( $gig);
+           $GigImages->gig()->associate( $gig)->save();;
 
 
 
@@ -94,9 +94,13 @@ class GigImagesController extends Controller
      * @param  \App\Models\GigImages  $gigImages
      * @return \Illuminate\Http\Response
      */
-    public function show(GigImages $gigImages)
+    public function show($id)
     {
-        //
+        //get gig by id
+        $gig = Gig::find($id);
+        return $gig->images;
+
+
     }
 
     /**
