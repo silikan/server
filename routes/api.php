@@ -26,6 +26,7 @@ use App\Http\Controllers\ClientRequestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
 
 Route::post('/room', [RoomController::class, 'createRoom']);
 Route::get('/room/{room_id}', [AuthController::class, 'show']);

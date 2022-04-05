@@ -49,10 +49,13 @@ class GigController extends Controller
         $gig->standard = $standard;
         $gig->premium = $premium;
         $gig->paymentMethod = $paymentMethod;
-        $gig->save();
+
 
         $user =  Auth::user();
         $gig->user()->associate($user);
+
+/*         $gig->user_id = $user->id;
+ */        $gig->save();
 /*         $gig->categories()->attach($request->category);
  */
 
@@ -71,9 +74,15 @@ return $gig;
     {
         //get gig by id
         $gig = Gig::find($id);
-        return $gig;
+        return $gig->user;
 
 
+    }
+
+    public function getGigUser ($id){
+        $gig = Gig::find($id);
+       /*  $user = $gig->user; */
+        return $gig->user;
     }
 
     /**

@@ -21,6 +21,8 @@ return new class extends Migration
             $table->json('premium')->nullable();
             $table->json('standard')->nullable();
             $table->json('basic')->nullable();
+            $table->unsignedBigInteger('user_id');
+
             $table->json('paymentMethod')->nullable();
             $table->timestamps();
         });
