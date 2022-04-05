@@ -37,15 +37,15 @@ class ClientRequestController extends Controller
     public function store(Request $request)
     {
                //create a request
-               $request = new ClientRequest();
-               $request->title = $request->title;
-               $request->description = $request->description;
-               $request->price = $request->price;
-               $request->currency = $request->currency;
-               $request->paymentMethod = $request->payment_method;
-               $request->save();
+               $clientRequest = new ClientRequest();
+               $clientRequest->title = $request->title;
+               $clientRequest->description = $request->description;
+               $clientRequest->price = $request->price;
+               $clientRequest->priceDescription = $request->priceDescription;
+               $clientRequest->payment_method = $request->paymentMethod;
+               $clientRequest->save();
                $user =  Auth::user();
-               $request->user()->assosiate($user);
+               $clientRequest->user()->associate($user);
                //associate to a category
        /*         $request->categories()->attach($request->category);
         */

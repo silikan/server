@@ -20,7 +20,8 @@ return new class extends Migration
             $table->text('description');
             //price
             $table->decimal('price', 10, 2);
-            $table->string('currency');
+
+            $table->string('priceDescription');
             $table->json('payment_method');
 
 
