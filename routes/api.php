@@ -14,6 +14,7 @@ use App\Http\Controllers\GigImagesController;
 
 use App\Http\Controllers\GigController;
 
+use App\Http\Controllers\ClientRequestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   Route::post('gig', [GigController::class, 'store']);
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
+  Route::post('request', [ClientRequestController::class, 'store']);
 
 
 });

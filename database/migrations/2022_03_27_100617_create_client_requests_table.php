@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('client_requests', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('slug');
+            $table->string('slug')->nullable();
             $table->text('description');
             //price
             $table->decimal('price', 10, 2);
