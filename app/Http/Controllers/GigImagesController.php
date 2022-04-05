@@ -70,7 +70,6 @@ class GigImagesController extends Controller
            $GigImages->gig()->associate( $gig);
 
 
-return dd($gig);
 
             }
 
