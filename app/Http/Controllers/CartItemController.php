@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CartItem;
 use Illuminate\Http\Request;
+use App\Models\Gig;
 
 class CartItemController extends Controller
 {
@@ -35,7 +36,28 @@ class CartItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = $request->type;
+        if($type == "gig"){
+
+                $cartItem = new CartItem();
+               $gig =  Gig::find($request->gig_id);
+               $cart =  Cart::find($request->cart_id);
+
+                $cartItem->save();
+                $cartItem->cart()->associate($cart);
+                $gig->user()->cartItem($cartItem);
+
+        }else if($type == "request"){
+
+
+                $cartItem = new CartItem();
+               $clientRequest =  ClientRequest::find($request->request_id);
+               $cart =  Cart::find($request->cart_id);
+
+                $cartItem->save();
+                $cartItem->cart()->associate($cart);
+                $clientRequest->user()->cartItem($cartItem);
+        }
     }
 
     /**

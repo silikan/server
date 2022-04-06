@@ -14,6 +14,8 @@ use App\Http\Controllers\GigImagesController;
 
 use App\Http\Controllers\GigController;
 use App\Http\Controllers\ClientRequestController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CartItemController;
 
 
 /*
@@ -89,7 +91,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
   Route::post('request', [ClientRequestController::class, 'store']);
-
-
+  Route::post('cart', [CartController::class, 'create']);
+  Route::get('add-to-cart', [CartItemController::class, 'store']);
 
 });

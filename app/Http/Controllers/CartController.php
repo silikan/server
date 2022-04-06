@@ -24,7 +24,17 @@ class CartController extends Controller
      */
     public function create()
     {
-        //
+        //create a cart and if cart exist return cart
+        $cart = Cart::where('user_id', auth()->user()->id)->first();
+        if($cart){
+            return $cart;
+        }else{
+            $cart = new Cart();
+            $cart->user_id = auth()->user()->id;
+            $cart->save();
+            return $cart;
+        }
+
     }
 
     /**
