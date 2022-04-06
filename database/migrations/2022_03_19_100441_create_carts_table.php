@@ -15,8 +15,10 @@ return new class extends Migration
     {
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
-            $table->integer('total_gigs');
-            $table->float('total_price');
+
+
+            $table->unsignedBigInteger('user_id');
+
             $table->timestamps();
         });
     }

@@ -14,15 +14,9 @@ class Task extends Model
         return $this->belongsTo(User::class);
     }
 
-
-    public function gigs()
+    public function taskItems()
     {
-        return $this->hasMany(Gig::class);
+        return $this->hasMany(TaskItem::class);
     }
 
-    //cart hasmny requests
-    public function requests()
-    {
-        return $this->hasMany(ClientRequest::class);
-    }
 }

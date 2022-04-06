@@ -37,7 +37,7 @@ Route::get('request/{id}/user', [ClientRequestController::class, 'getRequestUser
 Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);
 
 Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
-
+Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
 Route::post('/room', [RoomController::class, 'createRoom']);
 Route::get('/room/{room_id}', [AuthController::class, 'show']);
 Route::get('/room/users', [RoomController::class, 'getRoomByUsersId']);
@@ -89,7 +89,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
   Route::post('request', [ClientRequestController::class, 'store']);
-  Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
+
 
 
 });

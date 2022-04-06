@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('slug')->nullable();
             $table->text('description');
             //price
-            $table->decimal('price', 10, 2);
+            $table->decimal('price', 65, 2);
+            $table->string('duration');
 
             $table->text('priceDescription');
             $table->json('payment_method');

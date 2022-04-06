@@ -13,15 +13,9 @@ class Cart extends Model
     {
         return $this->belongsTo(User::class);
     }
-    //cart hasmany gigs
-    public function gigs()
-    {
-        return $this->hasMany(Gig::class);
-    }
 
-    //cart hasmny requests
-    public function requests()
+    public function cartItems()
     {
-        return $this->hasMany(ClientRequest::class);
+        return $this->hasMany(CartItem::class);
     }
 }
