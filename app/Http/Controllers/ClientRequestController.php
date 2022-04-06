@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ClientRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 class ClientRequestController extends Controller
 {
     /**
@@ -43,12 +43,17 @@ class ClientRequestController extends Controller
                $clientRequest->price = $request->price;
                $clientRequest->priceDescription = $request->priceDescription;
                $clientRequest->payment_method = $request->paymentMethod;
-               $clientRequest->save();
-               $user =  Auth::user();
-               $clientRequest->user()->associate($user);
+
+        $user =  Auth::user();
+        $clientRequest->user()->associate($user);
+
+/*         $clientRequest->user_id = $user->id;
+ */        $clientRequest->save();
                //associate to a category
        /*         $request->categories()->attach($request->category);
         */
+
+        return  $clientRequest;
     }
 
     /**
@@ -57,10 +62,39 @@ class ClientRequestController extends Controller
      * @param  \App\Models\ClientRequest  $clientRequest
      * @return \Illuminate\Http\Response
      */
-    public function show(ClientRequest $clientRequest)
+    public function show($id)
     {
-        //
+        $clientRequest = ClientRequest::find($id);
+        return $clientRequest;
     }
+
+    public function getRequestUser($id)
+    {
+        $clientRequest = ClientRequest::find($id);
+        $user = $clientRequest->user;
+        return $user;
+    }
+
+public function getUserRequests($id)
+    {
+        $user = User::find($id);
+        $clientRequests = $user->requests;
+        $requestData = array();
+        foreach ($clientRequests as $request) {
+            //put the data in an object
+              array_push($requestData,array(
+                'request' => array(
+                   'data' => $request,
+                   "user"=>$user
+                ), )
+              );
+
+        }
+
+
+        return $requestData;
+    }
+
 
     /**
      * Show the form for editing the specified resource.

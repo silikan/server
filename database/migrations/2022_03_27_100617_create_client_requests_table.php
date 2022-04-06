@@ -21,9 +21,10 @@ return new class extends Migration
             //price
             $table->decimal('price', 10, 2);
 
-            $table->string('priceDescription');
+            $table->text('priceDescription');
             $table->json('payment_method');
 
+            $table->unsignedBigInteger('user_id');
 
 
 

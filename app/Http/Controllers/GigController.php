@@ -90,7 +90,7 @@ return $gig;
         $user = User::find($id);
         $userGigs = $user->gigs;
         //get images from the gigs
-        $gigsData = array("user"=>$user);
+        $gigsData = array();
         foreach ($userGigs as $gig) {
            $img =  $gig->images;
             //put the data in an object
@@ -98,13 +98,14 @@ return $gig;
                 'gig' => array(
                    'data' => $gig,
                    'images' => $img ,
+                   "user"=>$user
                 ), )
               );
 
         }
 
 
-        return dd($gigsData);
+        return $gigsData;
     }
 
     /**

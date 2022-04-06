@@ -13,8 +13,8 @@ use App\Http\Controllers\ChatController;
 use App\Http\Controllers\GigImagesController;
 
 use App\Http\Controllers\GigController;
-
 use App\Http\Controllers\ClientRequestController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +28,11 @@ use App\Http\Controllers\ClientRequestController;
 */
 
 //getUserGigs
+Route::get('request/{id}', [ClientRequestController::class, 'show']);
+Route::get('user/{id}/request', [ClientRequestController::class, 'getUserRequests']);
+Route::get('request/{id}/user', [ClientRequestController::class, 'getRequestUser']);
+
+
 
 Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);
 
