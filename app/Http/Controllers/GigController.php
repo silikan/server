@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Gig;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
+
 class GigController extends Controller
 {
     /**
@@ -74,7 +75,7 @@ return $gig;
     {
         //get gig by id
         $gig = Gig::find($id);
-        return $gig->user;
+        return $gig;
 
 
     }
@@ -83,6 +84,27 @@ return $gig;
         $gig = Gig::find($id);
        /*  $user = $gig->user; */
         return $gig->user;
+    }
+
+    public function getUserGigs ($id){
+        $user = User::find($id);
+        $userGigs = $user->gigs;
+        //get images from the gigs
+        $gigsData = array("user"=>$user);
+        foreach ($userGigs as $gig) {
+           $img =  $gig->images;
+            //put the data in an object
+              array_push($gigsData,array(
+                'gig' => array(
+                   'data' => $gig,
+                   'images' => $img ,
+                ), )
+              );
+
+        }
+
+
+        return dd($gigsData);
     }
 
     /**

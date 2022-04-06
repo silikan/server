@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->nullable();
             $table->text('description');
-            $table->json('premium')->nullable();
-            $table->json('standard')->nullable();
-            $table->json('basic')->nullable();
+            $table->json('premium');
+            $table->json('standard');
+            $table->json('basic');
             $table->unsignedBigInteger('user_id');
 
             $table->json('paymentMethod')->nullable();

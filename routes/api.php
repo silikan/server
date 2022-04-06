@@ -26,6 +26,11 @@ use App\Http\Controllers\ClientRequestController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+//getUserGigs
+
+Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);
+
 Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
 
 Route::post('/room', [RoomController::class, 'createRoom']);
@@ -55,6 +60,7 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
   return response()->json(['status' => 'Message Sent!']);
 
 }); */
+Route::get('gig/{id}', [GigController::class, 'show']);
 
 Route::post('/chat', [ChatController::class, 'store']);
 Route::post('/sendmsg', [ChatController::class, 'sendMessage']);
@@ -78,7 +84,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
   Route::post('request', [ClientRequestController::class, 'store']);
-  Route::get('gig/{id}', [GigController::class, 'show']);
   Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
 
 
