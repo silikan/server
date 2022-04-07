@@ -16,6 +16,9 @@ use App\Http\Controllers\GigController;
 use App\Http\Controllers\ClientRequestController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CartItemController;
+use App\Http\Controllers\TaskController;
+
+use App\Http\Controllers\TaskItemController;
 
 
 /*
@@ -95,8 +98,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('request', [ClientRequestController::class, 'store']);
   Route::post('cart', [CartController::class, 'create']);
   Route::post('add-to-cart', [CartItemController::class, 'store']);
-  Route::post('task', [CartController::class, 'create']);
-  Route::post('add-to-task-list', [CartItemController::class, 'store']);
+  Route::post('task', [TaskController::class, 'create']);
+  Route::post('add-to-task-list', [TaskItemController::class, 'store']);
 
 
 });

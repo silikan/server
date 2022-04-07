@@ -46,6 +46,7 @@ class CartItemController extends Controller
                 $cartItem = new CartItem();
                $gig =  Gig::find($request->gig_id);
                $cart =  Cart::find($request->cart_id);
+               $cartItem->type =  $request->type;
                $cartItem->cart()->associate($cart);
                 $cartItem->save();
                 $gig->cartItem()->associate($cartItem);
@@ -62,6 +63,7 @@ class CartItemController extends Controller
                 $cartItem = new CartItem();
                $clientRequest =  ClientRequest::find($request->request_id);
                $cart =  Cart::find($request->cart_id);
+               $cartItem->type =  $request->type;
                $cartItem->cart()->associate($cart);
                $cartItem->save();
                $clientRequest->cartItem()->associate($cartItem);

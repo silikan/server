@@ -43,8 +43,9 @@ class TaskItemController extends Controller
 
                 $taskItem = new TaskItem();
                $gig =  Gig::find($request->gig_id);
+               $taskItem->type =  $request->type;
                $task =  Task::find($request->task_id);
-               $taskItem->cart()->associate($task);
+               $taskItem->task()->associate($task);
                 $taskItem->save();
                 $gig->taskItem()->associate($taskItem);
                 $gig->save();
@@ -60,7 +61,9 @@ class TaskItemController extends Controller
             $taskItem = new TaskItem();
                $clientRequest =  ClientRequest::find($request->request_id);
                $task =  Task::find($request->task_id);
-               $taskItem->cart()->associate($task);
+               $taskItem->type =  $request->type;
+
+               $taskItem->task()->associate($task);
                 $taskItem->save();
                $clientRequest->taskItem()->associate($taskItem);
                $clientRequest->save();

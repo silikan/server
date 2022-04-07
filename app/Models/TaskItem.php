@@ -17,4 +17,9 @@ class TaskItem extends Model
     {
         return $this->hasMany(ClientRequest::class);
     }
+
+    public function task()
+    {
+        return $this->belongsTo(Task::class);
+    }
 }

@@ -25,7 +25,9 @@ class CartController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(Request $request)
-    { $user_id =  $request->user_id;
+    {
+
+        $user_id =  $request->user_id;
         //create a cart and if cart exist return cart
         $cart = Cart::where('user_id',  $user_id)->first();
         if($cart){
