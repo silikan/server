@@ -94,6 +94,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/users/auth/avatar', [AvatarController::class, 'upload_user_photo']);
 
   Route::post('gig', [GigController::class, 'store']);
+  Route::get('chat/{room_id}', [ChatController::class, 'getChat']);
 
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
   Route::post('request', [ClientRequestController::class, 'store']);
