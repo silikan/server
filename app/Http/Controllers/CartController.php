@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class CartController extends Controller
 {
@@ -22,15 +24,16 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(Request $request)
+    { $user_id =  $request->user_id;
         //create a cart and if cart exist return cart
-        $cart = Cart::where('user_id', auth()->user()->id)->first();
+        $cart = Cart::where('user_id',  $user_id)->first();
         if($cart){
             return $cart;
         }else{
             $cart = new Cart();
-            $cart->user_id = auth()->user()->id;
+            $user =  User::find($user_id);
+            $cart->user()->associate($user);
             $cart->save();
             return $cart;
         }

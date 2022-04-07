@@ -22,9 +22,19 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user_id =  $request->user_id;
+        $task = Task::where('user_id',  $user_id)->first();
+        if($task){
+            return $task;
+        }else{
+            $task = new Task();
+            $user =  User::find($user_id);
+            $task->user()->associate($user);
+            $task->save();
+            return $task;
+        }
     }
 
     /**

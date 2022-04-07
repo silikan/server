@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\TaskItem;
 use Illuminate\Http\Request;
+use App\Models\Gig;
+use App\Models\ClientRequest;
+use App\Models\Task;
 
 class TaskItemController extends Controller
 {
@@ -35,7 +38,38 @@ class TaskItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $type = $request->type;
+        if($type == "gig"){
+
+                $taskItem = new TaskItem();
+               $gig =  Gig::find($request->gig_id);
+               $task =  Task::find($request->task_id);
+               $taskItem->cart()->associate($task);
+                $taskItem->save();
+                $gig->taskItem()->associate($taskItem);
+                $gig->save();
+
+                return response()->json([
+                    'status'    =>  'success',
+                    'message'   =>  'Gig added to Task!',
+                    'taskItem'  =>  $taskItem
+                ]);
+        }else if($type == "request"){
+
+
+            $taskItem = new TaskItem();
+               $clientRequest =  ClientRequest::find($request->request_id);
+               $task =  Task::find($request->task_id);
+               $taskItem->cart()->associate($task);
+                $taskItem->save();
+               $clientRequest->taskItem()->associate($taskItem);
+               $clientRequest->save();
+               return response()->json([
+                'status'    =>  'success',
+                'message'   =>  'Request added to Task!',
+                'taskItem'  =>  $taskItem
+            ]);
+        }
     }
 
     /**

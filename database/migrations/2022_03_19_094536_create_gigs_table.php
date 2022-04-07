@@ -22,6 +22,8 @@ return new class extends Migration
             $table->json('standard');
             $table->json('basic');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger("cart_item_id")->nullable();
+            $table->unsignedBigInteger("task_item_id")->nullable();
 
             $table->json('paymentMethod')->nullable();
             $table->timestamps();

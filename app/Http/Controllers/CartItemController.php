@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\CartItem;
+use App\Models\Cart;
+
 use Illuminate\Http\Request;
 use App\Models\Gig;
+use App\Models\ClientRequest;
+
 
 class CartItemController extends Controller
 {
@@ -42,21 +46,32 @@ class CartItemController extends Controller
                 $cartItem = new CartItem();
                $gig =  Gig::find($request->gig_id);
                $cart =  Cart::find($request->cart_id);
-
+               $cartItem->cart()->associate($cart);
                 $cartItem->save();
-                $cartItem->cart()->associate($cart);
-                $gig->user()->cartItem($cartItem);
+                $gig->cartItem()->associate($cartItem);
+                $gig->save();
 
+                return response()->json([
+                    'status'    =>  'success',
+                    'message'   =>  'Gig added to cart!',
+                    'cartItem'  =>  $cartItem
+                ]);
         }else if($type == "request"){
 
 
                 $cartItem = new CartItem();
                $clientRequest =  ClientRequest::find($request->request_id);
                $cart =  Cart::find($request->cart_id);
+               $cartItem->cart()->associate($cart);
+               $cartItem->save();
+               $clientRequest->cartItem()->associate($cartItem);
+                $clientRequest->save();
 
-                $cartItem->save();
-                $cartItem->cart()->associate($cart);
-                $clientRequest->user()->cartItem($cartItem);
+                return response()->json([
+                    'status'    =>  'success',
+                    'message'   =>  'Request added to cart!',
+                    'cartItem'  =>  $cartItem
+                ]);
         }
     }
 
@@ -66,9 +81,12 @@ class CartItemController extends Controller
      * @param  \App\Models\CartItem  $cartItem
      * @return \Illuminate\Http\Response
      */
-    public function show(CartItem $cartItem)
+    public function show()
     {
-        //
+        //get cart item gig
+        $CartItem = CartItem::find(3);
+
+        return $CartItem->gigs;
     }
 
     /**

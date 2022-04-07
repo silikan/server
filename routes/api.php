@@ -67,6 +67,8 @@ Route::post('/rooms/{room_id}', function (Request $room_id, $from, $to, $message
   return response()->json(['status' => 'Message Sent!']);
 
 }); */
+Route::get('cartitem', [CartItemController::class, 'show']);
+
 Route::get('gig/{id}', [GigController::class, 'show']);
 
 Route::post('/chat', [ChatController::class, 'store']);
@@ -92,6 +94,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('gig/image/{gigId}', [GigImagesController::class, 'store']);
   Route::post('request', [ClientRequestController::class, 'store']);
   Route::post('cart', [CartController::class, 'create']);
-  Route::get('add-to-cart', [CartItemController::class, 'store']);
+  Route::post('add-to-cart', [CartItemController::class, 'store']);
+  Route::post('task', [CartController::class, 'create']);
+  Route::post('add-to-task-list', [CartItemController::class, 'store']);
+
 
 });
