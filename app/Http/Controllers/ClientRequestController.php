@@ -43,7 +43,7 @@ class ClientRequestController extends Controller
                $clientRequest->price = $request->price;
                $clientRequest->priceDescription = $request->priceDescription;
                $clientRequest->payment_method = $request->paymentMethod;
-
+                $clientRequest->duration = $request->duration;
         $user =  Auth::user();
         $clientRequest->user()->associate($user);
 
