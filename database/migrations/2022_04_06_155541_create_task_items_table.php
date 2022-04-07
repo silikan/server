@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('type');
             $table->string('client_id');
             $table->string('handyman_id');
+            $table->boolean('is_completed')->default(false);
+
             $table->timestamps();
         });
     }

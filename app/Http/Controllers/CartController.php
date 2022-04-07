@@ -58,18 +58,27 @@ public function getUserCartItems($id){
     $cart = $user->cart;
     $cart_items = $cart->cartItems;
 
-/*     $gigsData = array();
+    $gigsData = array();
     foreach ($cart_items as $item) {
+       $gig = $item->gigs;
+       $handyman_id = $item->handyman_id;
+         $cart_id = $item->cart_id;
+         $handyman = User::find($handyman_id);
+         $client = User::find($cart_id);
           array_push($gigsData,array(
+            'item' => array(
+                'cart' => $cart,
+               'gig' => $gig,
+                'handyman' => $handyman,
+                'client' => $client,
+                'cart_item' => $item
 
-               $item->gigs,
-
-             )
+            ), )
           );
 
-    } */
+    }
 
-    return $cart_items[0]->gigs;
+    return $gigsData;
 }
 
     /**
