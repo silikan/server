@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('task_items', function (Blueprint $table) {
+        Schema::create('cart_item_gig', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('task_id');
-            $table->string('type');
-            $table->string('client_id');
-            $table->string('handyman_id');
+            $table->unsignedBigInteger('cart_item_id')->nullable();
+
+            $table->unsignedBigInteger('gig_id')->nullable();
+
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('task_items');
+        Schema::dropIfExists('cart_item_gig');
     }
 };

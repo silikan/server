@@ -8,14 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class ClientRequest extends Model
 {
     use HasFactory;
-    public function cartItem()
+    public function cartItems()
     {
-        return $this->belongsTo(CartItem::class);
+        return $this->belongsToMany(CartItem::class , 'cart_item_client_request' );
     }
 
-    public function taskItem()
+    public function taskItems()
     {
-        return $this->belongsTo(TaskItem::class);
+        return $this->belongsToMany(TaskItem::class , 'task_item_client_request' );
     }
 
     public function user()

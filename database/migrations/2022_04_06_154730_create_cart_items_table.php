@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('cart_id');
             $table->string('type');
+            $table->string('client_id');
+            $table->string('handyman_id');
             $table->timestamps();
         });
     }

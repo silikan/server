@@ -42,13 +42,16 @@ class TaskItemController extends Controller
         if($type == "gig"){
 
                 $taskItem = new TaskItem();
-               $gig =  Gig::find($request->gig_id);
-               $taskItem->type =  $request->type;
-               $task =  Task::find($request->task_id);
-               $taskItem->task()->associate($task);
+                $gig =  Gig::find($request->gig_id);
+                $task =  Task::find($request->task_id);
+                $taskItem->type =  $request->type;
+                $taskItem->client_id = $request->client_id;
+                $taskItem->handyman_id = $request->handyman_id;
+                $taskItem->task()->associate($task);
                 $taskItem->save();
-                $gig->taskItem()->associate($taskItem);
-                $gig->save();
+                $taskItem->gigs()->attach($gig);
+
+
 
                 return response()->json([
                     'status'    =>  'success',
@@ -57,16 +60,18 @@ class TaskItemController extends Controller
                 ]);
         }else if($type == "request"){
 
-
-            $taskItem = new TaskItem();
-               $clientRequest =  ClientRequest::find($request->request_id);
-               $task =  Task::find($request->task_id);
-               $taskItem->type =  $request->type;
-
-               $taskItem->task()->associate($task);
+                $taskItem = new TaskItem();
+                $clientRequest =  ClientRequest::find($request->client_request_id);
+                $task =  Task::find($request->task_id);
+                $taskItem->type =  $request->type;
+                $taskItem->client_id = $request->client_id;
+                $taskItem->handyman_id = $request->handyman_id;
+                $taskItem->tasks()->associate($task);
                 $taskItem->save();
-               $clientRequest->taskItem()->associate($taskItem);
-               $clientRequest->save();
+                $taskItem->clientRequests()->attach($clientRequest);
+
+
+
                return response()->json([
                 'status'    =>  'success',
                 'message'   =>  'Request added to Task!',

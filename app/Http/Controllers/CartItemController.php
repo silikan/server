@@ -47,10 +47,13 @@ class CartItemController extends Controller
                $gig =  Gig::find($request->gig_id);
                $cart =  Cart::find($request->cart_id);
                $cartItem->type =  $request->type;
+               $cartItem->client_id = $request->client_id;
+               $cartItem->handyman_id = $request->handyman_id;
                $cartItem->cart()->associate($cart);
                 $cartItem->save();
-                $gig->cartItem()->associate($cartItem);
-                $gig->save();
+                $cartItem->gigs()->attach($gig);
+
+
 
                 return response()->json([
                     'status'    =>  'success',
@@ -61,13 +64,17 @@ class CartItemController extends Controller
 
 
                 $cartItem = new CartItem();
-               $clientRequest =  ClientRequest::find($request->request_id);
-               $cart =  Cart::find($request->cart_id);
-               $cartItem->type =  $request->type;
-               $cartItem->cart()->associate($cart);
-               $cartItem->save();
-               $clientRequest->cartItem()->associate($cartItem);
-                $clientRequest->save();
+                $request =  ClientRequest::find($request->request_id);
+                $cart =  Cart::find($request->cart_id);
+                $cartItem->type =  $request->type;
+                $cartItem->client_id = $request->client_id;
+                $cartItem->handyman_id = $request->handyman_id;
+                $cartItem->cart()->associate($cart);
+                $cartItem->save();
+                $cartItem->requests()->attach($request);
+
+
+
 
                 return response()->json([
                     'status'    =>  'success',

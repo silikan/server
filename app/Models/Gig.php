@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Gig extends Model
 {
     use HasFactory;
-    public function cartItem()
+    public function cartItems()
     {
-        return $this->belongsTo(CartItem::class);
+        return $this->belongsToMany(CartItem::class , 'cart_item_gig' );
     }
-    public function taskItem()
+    public function taskItems()
     {
-        return $this->belongsTo(TaskItem::class);
+        return $this->belongsToMany(TaskItem::class , 'task_item_gig');
     }
 
     public function ratings()

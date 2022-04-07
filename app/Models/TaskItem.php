@@ -11,11 +11,11 @@ class TaskItem extends Model
 
     public function gigs()
     {
-        return $this->hasMany(Gig::class);
+        return $this->belongsToMany(Gig::class);
     }
     public function requests()
     {
-        return $this->hasMany(ClientRequest::class);
+        return $this->belongsToMany(ClientRequest::class);
     }
 
     public function task()
@@ -23,3 +23,6 @@ class TaskItem extends Model
         return $this->belongsTo(Task::class);
     }
 }
+
+
+

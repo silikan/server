@@ -37,6 +37,7 @@ Route::get('request/{id}', [ClientRequestController::class, 'show']);
 Route::get('user/{id}/request', [ClientRequestController::class, 'getUserRequests']);
 Route::get('request/{id}/user', [ClientRequestController::class, 'getRequestUser']);
 
+  Route::get('user/{id}/cart', [CartController::class, 'getUserCartItems']);
 
 
 Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);

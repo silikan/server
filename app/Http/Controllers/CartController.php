@@ -53,6 +53,25 @@ class CartController extends Controller
         //
     }
 
+public function getUserCartItems($id){
+    $user =  User::find($id);
+    $cart = $user->cart;
+    $cart_items = $cart->cartItems;
+
+/*     $gigsData = array();
+    foreach ($cart_items as $item) {
+          array_push($gigsData,array(
+
+               $item->gigs,
+
+             )
+          );
+
+    } */
+
+    return $cart_items[0]->gigs;
+}
+
     /**
      * Display the specified resource.
      *

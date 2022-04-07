@@ -15,11 +15,11 @@ class CartItem extends Model
     }
     public function gigs()
     {
-        return $this->hasMany(Gig::class);
+        return $this->belongsToMany(Gig::class);
     }
     public function requests()
     {
-        return $this->hasMany(ClientRequest::class);
+        return $this->belongsToMany(ClientRequest::class);
     }
 
 }
