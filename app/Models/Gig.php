@@ -14,7 +14,7 @@ class Gig extends Model
     }
     public function taskItems()
     {
-        return $this->belongsToMany(TaskItem::class , 'task_item_gig');
+        return $this->belongsToMany(TaskItem::class , 'gig_task_item');
     }
 
     public function ratings()
