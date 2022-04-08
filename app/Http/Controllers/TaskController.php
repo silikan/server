@@ -38,6 +38,38 @@ class TaskController extends Controller
         }
     }
 
+
+    public function getUserTaskItems($id){
+        $user =  User::find($id);
+        $task = $user->task;
+        $task_items = $task->taskItems;
+
+        $clientRequestData = array();
+        foreach ($task_items as $item) {
+           $clientRequest = $item->clientRequests;
+           $handyman_id = $item->handyman_id;
+              $client_id = $item->client_id;
+             $task_id = $item->task_id;
+             $handyman = User::find($handyman_id);
+             $client = User::find($client_id);
+             $task = Task::find($task_id);
+              array_push($clientRequestData,array(
+                'item' => array(
+                    'task' => $task,
+                   'clientRequest' => $clientRequest,
+                    'handyman' => $handyman,
+                    'client' => $client,
+                    'task_item' => $item
+
+                ), )
+              );
+
+        }
+
+        return $clientRequestData;
+    }
+
+
     /**
      * Store a newly created resource in storage.
      *

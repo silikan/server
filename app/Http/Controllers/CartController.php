@@ -63,8 +63,10 @@ public function getUserCartItems($id){
        $gig = $item->gigs;
        $handyman_id = $item->handyman_id;
          $cart_id = $item->cart_id;
+         $client_id = $item->client_id;
          $handyman = User::find($handyman_id);
-         $client = User::find($cart_id);
+         $client = User::find($client_id);
+         $cart = Cart::find($cart_id);
           array_push($gigsData,array(
             'item' => array(
                 'cart' => $cart,

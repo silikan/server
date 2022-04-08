@@ -38,6 +38,7 @@ Route::get('user/{id}/request', [ClientRequestController::class, 'getUserRequest
 Route::get('request/{id}/user', [ClientRequestController::class, 'getRequestUser']);
 
   Route::get('user/{id}/cart', [CartController::class, 'getUserCartItems']);
+  Route::get('user/{id}/task', [TaskController::class, 'getUserTaskItems']);
 
 
 Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);
