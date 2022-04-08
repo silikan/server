@@ -64,14 +64,14 @@ class CartItemController extends Controller
 
 
                 $cartItem = new CartItem();
-                $request =  ClientRequest::find($request->request_id);
+                $clientRequest =  ClientRequest::find($request->request_id);
                 $cart =  Cart::find($request->cart_id);
                 $cartItem->type =  $request->type;
                 $cartItem->client_id = $request->client_id;
                 $cartItem->handyman_id = $request->handyman_id;
                 $cartItem->cart()->associate($cart);
                 $cartItem->save();
-                $cartItem->requests()->attach($request);
+                $cartItem->clientRequests()->attach($clientRequest);
 
 
 

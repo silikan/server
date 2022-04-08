@@ -61,14 +61,17 @@ class TaskItemController extends Controller
         }else if($type == "request"){
 
                 $taskItem = new TaskItem();
-                $clientRequest =  ClientRequest::find($request->client_request_id);
+                $clientRequest =  ClientRequest::find($request->request_id);
                 $task =  Task::find($request->task_id);
                 $taskItem->type =  $request->type;
                 $taskItem->client_id = $request->client_id;
                 $taskItem->handyman_id = $request->handyman_id;
-                $taskItem->tasks()->associate($task);
+                $taskItem->task()->associate($task);
+
                 $taskItem->save();
+
                 $taskItem->clientRequests()->attach($clientRequest);
+
 
 
 

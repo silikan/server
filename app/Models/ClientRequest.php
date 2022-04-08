@@ -15,7 +15,7 @@ class ClientRequest extends Model
 
     public function taskItems()
     {
-        return $this->belongsToMany(TaskItem::class , 'task_item_client_request' );
+        return $this->belongsToMany(TaskItem::class , 'client_request_task_item' , 'client_request_id' , 'task_item_id');
     }
 
     public function user()

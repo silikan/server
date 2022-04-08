@@ -21,7 +21,7 @@ class CartItem extends Model
     {
         return $this->belongsToMany(Gig::class);
     }
-    public function requests()
+    public function clientRequests()
     {
         return $this->belongsToMany(ClientRequest::class);
     }
