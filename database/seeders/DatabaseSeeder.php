@@ -25,5 +25,30 @@ class DatabaseSeeder extends Seeder
         );
         \App\Models\User::factory(500)->create();
 
+        $categories = [
+            'Cleaning',
+            'Cooking',
+            'Plumbing',
+            'Electrical',
+            'Painting',
+            'Moving',
+            'Carpentry',
+            'Building',
+            'Massage',
+            'Tutoring',
+            'Woodwork',
+            'Cooking',
+            'Other',
+        ];
+        //seed the database using this data
+        foreach ($categories as $category) {
+            \App\Models\Category::create([
+
+                'title' => $category,
+            ]);
+        }
+
+
+
     }
 }

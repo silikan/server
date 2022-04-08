@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ClientRequest;
+use App\Models\Category;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -49,6 +51,11 @@ class ClientRequestController extends Controller
 
 /*         $clientRequest->user_id = $user->id;
  */        $clientRequest->save();
+
+
+ $category = Category::where('title', $request->category)->first();
+
+         $clientRequest->categories()->attach($category);
                //associate to a category
        /*         $request->categories()->attach($request->category);
         */

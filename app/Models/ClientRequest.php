@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class ClientRequest extends Model
 {
-    use HasFactory;
+    use HasFactory , Searchable;
     public function cartItems()
     {
         return $this->belongsToMany(CartItem::class , 'cart_item_client_request' );
@@ -26,11 +27,24 @@ class ClientRequest extends Model
 
     public function categories()
     {
-        return $this->belongsToMany(Category::class, 'category_request');
+        return $this->belongsToMany(Category::class, 'category_client_request');
     }
 
     public function images()
     {
         return $this->hasMany(RequestImages::class);
+    }
+
+
+    public function toSearchableArray()
+    {
+
+        // Customize array...
+
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+        ];
     }
 }

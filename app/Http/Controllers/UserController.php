@@ -62,7 +62,6 @@ class UserController extends Controller
 
         return $users;
 
-        // return  response()->json(["message" => "Forbidden"], 403);
     }
     public function searchHandymenPaginate(Request $request)
     {

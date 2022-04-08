@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Gig;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
@@ -57,8 +58,12 @@ class GigController extends Controller
 
 /*         $gig->user_id = $user->id;
  */        $gig->save();
-/*         $gig->categories()->attach($request->category);
- */
+
+        //find category with request category by title
+        $category = Category::where('title', $request->category)->first();
+
+         $gig->categories()->attach($category);
+
 
 return $gig;
       }
