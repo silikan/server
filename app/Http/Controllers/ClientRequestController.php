@@ -101,6 +101,10 @@ public function getUserRequests($id)
 
         return $requestData;
     }
+public function getClientRequestsPaginate(){
+    $clientRequest = ClientRequest::paginate(5);
+    return $clientRequest;
+}
 
 
     /**

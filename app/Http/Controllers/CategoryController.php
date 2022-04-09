@@ -17,6 +17,22 @@ class CategoryController extends Controller
         //
     }
 
+//caregory and gigs has a many to many relationship
+//get gigs from category title
+    public function getGigsByCategory($title)
+    {
+        $category = Category::where('title', $title)->first();
+        $gigs = $category->gigs;
+        return $gigs;
+    }
+//do the same with client request and category
+    public function getclientRequestsByCategory($title)
+    {
+        $category = Category::where('title', $title)->first();
+        $requests = $category->requests;
+        return $requests;
+    }
+
     /**
      * Show the form for creating a new resource.
      *

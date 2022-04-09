@@ -113,6 +113,10 @@ return $gig;
         return $gigsData;
     }
 
+    public function getGigsPaginate (){
+        $gigs = Gig::paginate(5);
+        return $gigs;
+    }
     /**
      * Show the form for editing the specified resource.
      *

@@ -15,7 +15,7 @@ class Category extends Model
         return $this->belongsToMany(Gig::class, 'category_gig');
     }
 
-    public function requests()
+    public function clientRequests()
     {
         return $this->belongsToMany(ClientRequest::class, 'category_request');
     }

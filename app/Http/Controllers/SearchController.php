@@ -37,14 +37,6 @@ class SearchController extends Controller
         // return  response()->json(["message" => "Forbidden"], 403);
     }
 
-    public function searchGigs(Request $request)
-    {
-        $gigs = Gig::search($request->get('search'))->get();
-
-        return $gigs;
-
-        // return  response()->json(["message" => "Forbidden"], 403);
-    }
 
     public function searchFunction (Request $request)
     {
@@ -79,5 +71,39 @@ class SearchController extends Controller
 
     }
 
+    public function  searchGigs (Request $request)
+    {
+        $gigs = Gig::search($request->get('search'))->get();
+
+        return $gigs;
+
+        // return  response()->json(["message" => "Forbidden"], 403);
+    }
+    public function    searchGigsPaginate (Request $request)
+    {
+        $gigs = Gig::search($request->get('search'))->paginate(5);
+
+        return $gigs;
+
+        // return  response()->json(["message" => "Forbidden"], 403);
+    }
+     public function searchClientRequest (Request $request)
+    {
+        $clientRequests = ClientRequest::search($request->get('search'))->get();
+
+        return $clientRequests;
+
+        // return  response()->json(["message" => "Forbidden"], 403);
+
+    }
+    public function searchClientRequestPaginate (Request $request)
+    {
+        $clientRequests = ClientRequest::search($request->get('search'))->paginate(5);
+
+        return $clientRequests;
+
+        // return  response()->json(["message" => "Forbidden"], 403);
+
+    }
 
 }
