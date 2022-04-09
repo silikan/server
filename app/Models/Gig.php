@@ -49,8 +49,8 @@ class Gig extends Model
 
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
+            'title' => $this->title,
+
         ];
     }
 }

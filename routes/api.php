@@ -19,6 +19,7 @@ use App\Http\Controllers\CartItemController;
 use App\Http\Controllers\TaskController;
 
 use App\Http\Controllers\TaskItemController;
+use App\Http\Controllers\SearchController;
 
 
 /*
@@ -31,6 +32,7 @@ use App\Http\Controllers\TaskItemController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('search', [SearchController::class, 'searchFunction']);
 
 //getUserGigs
 Route::get('request/{id}', [ClientRequestController::class, 'show']);
