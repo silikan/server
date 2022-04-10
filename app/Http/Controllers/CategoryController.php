@@ -14,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        //get all categories
+        $categories = Category::all();
+        return $categories;
     }
 
 //caregory and gigs has a many to many relationship

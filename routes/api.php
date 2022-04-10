@@ -59,6 +59,7 @@ Route::get('request/paginate', [ClientRequestController::class, 'getClientReques
 Route::get('category/{title}/gigs', [CategoryController::class, 'getGigsByCategory']);
 Route::get('category/{title}/requests', [CategoryController::class, 'getclientRequestsByCategory']);
 
+Route::get('category', [CategoryController::class, 'index']);
 
 
 Route::get('guest-users/handymen/search', [UserController::class, 'searchHandymen']);
