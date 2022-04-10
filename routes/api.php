@@ -22,6 +22,9 @@ use App\Http\Controllers\TaskItemController;
 use App\Http\Controllers\SearchController;
 
 
+use App\Http\Controllers\CategoryController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
