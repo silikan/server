@@ -100,7 +100,7 @@ class SearchController extends Controller
 
     public function searchHandymen(Request $request)
     {
-        $users = User::search($request->get('search'))->where('is_handyman', true)->get();
+        $users = UserResource::collection( User::search($request->get('search'))->where('is_handyman', true)->get());
 
         return $users;
 
