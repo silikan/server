@@ -25,10 +25,10 @@ class SearchController extends Controller
 
     public function searchFunction (Request $request)
     {
-        $gigs = Gig::search($request->get('search'))->take(2)->get();
-        $clientRequests = ClientRequest::search($request->get('search'))->take(2)->get();
-        $users = User::search($request->get('search'))->where('is_handyman', true)->take(2)->get();
-        $categories = Category::search($request->get('search'))->take(2)->get();
+        $gigs = Gig::search($request->get('search'))->take(1)->get();
+        $clientRequests = ClientRequest::search($request->get('search'))->take(1)->get();
+        $users = User::search($request->get('search'))->where('is_handyman', true)->take(1)->get();
+        $categories = Category::search($request->get('search'))->take(1)->get();
         $searchResult = array();
         $searchResult["requests"] = $clientRequests;
         $searchResult["handymen"] = $users;

@@ -52,8 +52,8 @@ Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
 Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
 Route::get('gig/{id}', [GigController::class, 'show']);
 
-Route::get('gig/paginate', [GigController::class, 'getGigsPaginate']);
-Route::get('request/paginate', [ClientRequestController::class, 'getClientRequestsPaginate']);
+Route::get('paginate/gig', [GigController::class, 'getGigsPaginate']);
+Route::get('paginate/request', [ClientRequestController::class, 'getClientRequestsPaginate']);
 
 
 Route::get('category/{title}/gigs', [CategoryController::class, 'getGigsByCategory']);

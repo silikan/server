@@ -8,6 +8,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Resources\ClientRequestResource;
+
 class ClientRequestController extends Controller
 {
     /**
@@ -102,7 +104,7 @@ public function getUserRequests($id)
         return $requestData;
     }
 public function getClientRequestsPaginate(){
-    $clientRequest = ClientRequest::paginate(5);
+    $clientRequest = ClientRequestResource::collection(ClientRequest::paginate(5));
     return $clientRequest;
 }
 

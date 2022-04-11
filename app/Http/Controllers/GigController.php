@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Http\Resources\GigResource;
 
 class GigController extends Controller
 {
@@ -114,7 +115,25 @@ return $gig;
     }
 
     public function getGigsPaginate (){
-        $gigs = Gig::paginate(5);
+        $gigs =  GigResource::collection(Gig::paginate(5));
+
+        $gigsData = array();
+
+
+        foreach ($gigs as $gig) {
+           $img =  $gig->images;
+           $user = $gig->user;
+            //put the data in an object
+               array_push(    $gigsData ,  array(
+
+                   'data' => $gig,
+                   'images' => $img ,
+                     "user"=>$user
+
+                )
+              );
+
+        }
         return $gigs;
     }
     /**
