@@ -17,7 +17,7 @@ class Category extends Model
 
     public function clientRequests()
     {
-        return $this->belongsToMany(ClientRequest::class, 'category_request');
+        return $this->belongsToMany(ClientRequest::class);
     }
 
 

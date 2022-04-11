@@ -48,7 +48,7 @@ class CategoryController extends Controller
     public function getclientRequestsByCategoryPaginate($title)
     {
         $category = Category::where('title', $title)->first();
-        $clientRequests = ClientRequestResource::collection( $category()->paginate(5));
+        $clientRequests = ClientRequestResource::collection( $category->clientRequests()->paginate(5));
         return $clientRequests;
     }
 
