@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-
+use App\Http\Resources\ClientRequestResource;
+use App\Http\Resources\GigResource;
 class CategoryController extends Controller
 {
     /**
@@ -21,18 +22,34 @@ class CategoryController extends Controller
 
 //caregory and gigs has a many to many relationship
 //get gigs from category title
-    public function getGigsByCategory($title)
+    public function getGigsByCategoryPaginate($title)
     {
         $category = Category::where('title', $title)->first();
-        $gigs = $category->gigs;
+        $gigs = GigResource::collection(  $category->gigs()->paginate(5));
+        $gigsData = array();
+
+
+        foreach ($gigs as $gig) {
+           $img =  $gig->images;
+            //put the data in an object
+               array_push(    $gigsData ,  array(
+
+                   'data' => $gig,
+                   'images' => $img ,
+
+                )
+              );
+
+        }
+
         return $gigs;
     }
 //do the same with client request and category
-    public function getclientRequestsByCategory($title)
+    public function getclientRequestsByCategoryPaginate($title)
     {
         $category = Category::where('title', $title)->first();
-        $requests = $category->requests;
-        return $requests;
+        $clientRequests = ClientRequestResource::collection( $category()->paginate(5));
+        return $clientRequests;
     }
 
     /**

@@ -56,8 +56,8 @@ Route::get('paginate/gig', [GigController::class, 'getGigsPaginate']);
 Route::get('paginate/request', [ClientRequestController::class, 'getClientRequestsPaginate']);
 
 
-Route::get('category/{title}/gigs', [CategoryController::class, 'getGigsByCategory']);
-Route::get('category/{title}/requests', [CategoryController::class, 'getclientRequestsByCategory']);
+Route::get('category/{title}/gigs/paginate', [CategoryController::class, 'getGigsByCategoryPaginate']);
+Route::get('category/{title}/requests/paginate', [CategoryController::class, 'getclientRequestsByCategoryPaginate']);
 
 Route::get('category', [CategoryController::class, 'index']);
 
