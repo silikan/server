@@ -24,7 +24,8 @@ use App\Http\Controllers\SearchController;
 
 use App\Http\Controllers\CategoryController;
 
-
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\TransactionController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -35,6 +36,17 @@ use App\Http\Controllers\CategoryController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('/profile', [AccountController::class, 'index']);
+
+/* Route::post('/send-money', [TransactionController::class, 'store']);
+ */
+
+
+ Route::get('/gig/{id}/views', [GigController::class, 'views']);
+ Route::get('/request/{id}/views', [ClientRequestController::class, 'views']);
+
+
+
 Route::get('search', [SearchController::class, 'searchFunction']);
 Route::get('search/gigs', [SearchController::class, 'searchGigs']);
 Route::get('search/gigs/paginate', [SearchController::class, 'searchGigsPaginate']);

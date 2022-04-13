@@ -147,6 +147,12 @@ return $gig;
         //
     }
 
+    public function views($id){
+        Gig::find($id)->increment('total_views');
+        return response()->json(['success'=>'Views incremented.']);
+
+    }
+
     /**
      * Update the specified resource in storage.
      *

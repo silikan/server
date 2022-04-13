@@ -108,6 +108,10 @@ public function getClientRequestsPaginate(){
     return $clientRequest;
 }
 
+public function views($id){
+    ClientRequest::find($id)->increment('total_views');
+    return response()->json(['success'=>'Views incremented.']);
+}
 
     /**
      * Show the form for editing the specified resource.

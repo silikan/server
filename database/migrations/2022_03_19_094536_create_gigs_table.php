@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger("cart_item_id")->nullable();
             $table->unsignedBigInteger("task_item_id")->nullable();
+            $table->integer('total_views')->default(0);
 
             $table->json('paymentMethod')->nullable();
             $table->timestamps();

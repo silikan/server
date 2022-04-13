@@ -67,24 +67,9 @@ class SearchController extends Controller
     public function    searchGigsPaginate (Request $request)
     {
         $gigs = GigResource::collection(Gig::search($request->get('query'))->paginate(5));
-        $gigsData = array();
 
-
-        foreach ($gigs as $gig) {
-           $img =  $gig->images;
-            //put the data in an object
-               array_push(    $gigsData ,  array(
-
-                   'data' => $gig,
-                   'images' => $img ,
-
-                )
-              );
-
-        }
         return $gigs;
 
-        // return  response()->json(["message" => "Forbidden"], 403);
     }
 
 

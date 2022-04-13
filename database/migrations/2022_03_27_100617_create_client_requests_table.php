@@ -24,6 +24,7 @@ return new class extends Migration
 
             $table->text('priceDescription');
             $table->json('payment_method');
+            $table->integer('total_views')->default(0);
 
             $table->unsignedBigInteger('user_id');
 
