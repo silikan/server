@@ -107,7 +107,7 @@ public function getClientRequestsPaginate(){
     $clientRequest = ClientRequestResource::collection(ClientRequest::paginate(5));
     return $clientRequest;
 }
-
+//views count
 public function views($id){
     ClientRequest::find($id)->increment('total_views');
     return response()->json(['success'=>'Views incremented.']);
