@@ -42,8 +42,6 @@ Route::get('/profile', [AccountController::class, 'index']);
  */
 
 
- Route::get('/gig/{id}/views', [GigController::class, 'views']);
- Route::get('/request/{id}/views', [ClientRequestController::class, 'views']);
 
 
 
@@ -63,6 +61,15 @@ Route::get('user/{id}/gig', [GigController::class, 'getUserGigs']);
 Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
 Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
 Route::get('gig/{id}', [GigController::class, 'show']);
+
+Route::get('/gig/{id}/views', [GigController::class, 'views']);
+Route::get('/request/{id}/views', [ClientRequestController::class, 'views']);
+
+
+
+Route::get('/feed/gigs/{id}', [GigController::class, 'getMostViewed']);
+Route::get('/feed/requests/{id}', [ClientRequestController::class, 'getMostViewed']);
+
 
 Route::get('paginate/gig', [GigController::class, 'getGigsPaginate']);
 Route::get('paginate/request', [ClientRequestController::class, 'getClientRequestsPaginate']);

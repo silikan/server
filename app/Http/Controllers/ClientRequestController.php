@@ -112,6 +112,10 @@ public function views($id){
     ClientRequest::find($id)->increment('total_views');
     return response()->json(['success'=>'Views incremented.']);
 }
+public function getMostViewed(){
+    $clientRequest = ClientRequest::orderBy('total_views', 'desc')->take(9)->get();
+    return $clientRequest;
+}
 
     /**
      * Show the form for editing the specified resource.

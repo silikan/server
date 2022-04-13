@@ -153,6 +153,11 @@ return $gig;
 
     }
 
+    public function getMostViewed(){
+        $gigs = Gig::orderBy('total_views', 'desc')->take(9)->get();
+        return $gigs;
+    }
+
     /**
      * Update the specified resource in storage.
      *
