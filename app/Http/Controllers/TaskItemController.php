@@ -101,7 +101,8 @@ class TaskItemController extends Controller
 
         $cartItem->is_in_progress = true;
         $taskItem->is_in_progress = true;
-
+        $cartItem->status = "in progress";
+        $taskItem->status = "in progress";
 
         $cartItem->save();
         $taskItem->save();
@@ -117,9 +118,9 @@ class TaskItemController extends Controller
 
         $cartItem->is_cancelled = true;
         $taskItem->is_cancelled = true;
-        $cartItem->is_in_progress = false;
-        $taskItem->is_in_progress = false;
 
+        $cartItem->status = "cancelled";
+        $taskItem->status = "cancelled";
 
         $cartItem->save();
         $taskItem->save();
@@ -132,19 +133,78 @@ class TaskItemController extends Controller
         $cartItemFromCart = $taskItem->cartItems;
         $cartItemFromCartId = $cartItemFromCart[0]->id;
         $cartItem = CartItem::find($cartItemFromCartId);
-        $cartItem->is_in_progress = false;
-        $taskItem->is_in_progress = false;
+
 
         $cartItem->is_completed = true;
         $taskItem->is_completed = true;
 
         $cartItem->is_on_checkout = true;
         $taskItem->is_on_checkout = true;
+
+        $cartItem->status = "checkout";
+        $taskItem->status = "checkout";
+
+
         $cartItem->save();
         $taskItem->save();
         return $cartItem;
     }
 
+
+    public function     setTaskItemsStatusToDeclined (Request $request)
+    {
+        $taskItem = TaskItem::find($request->task_item_id);
+        $cartItemFromCart = $taskItem->cartItems;
+        $cartItemFromCartId = $cartItemFromCart[0]->id;
+        $cartItem = CartItem::find($cartItemFromCartId);
+
+        $cartItem->is_declined = true;
+        $taskItem->is_declined = true;
+
+        $cartItem->status = "declined";
+        $taskItem->status = "declined";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+
+
+    public function setTaskItemsStatusToPaid (Request $request)
+    {
+        $taskItem = TaskItem::find($request->task_item_id);
+        $cartItemFromCart = $taskItem->cartItems;
+        $cartItemFromCartId = $cartItemFromCart[0]->id;
+        $cartItem = CartItem::find($cartItemFromCartId);
+
+        $cartItem->is_paid = true;
+        $taskItem->is_paid = true;
+
+        $cartItem->status = "paid";
+        $taskItem->status = "paid";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+
+    public function setTaskItemsStatusToPending (Request $request)
+    {
+        $taskItem = TaskItem::find($request->task_item_id);
+        $cartItemFromCart = $taskItem->cartItems;
+        $cartItemFromCartId = $cartItemFromCart[0]->id;
+        $cartItem = CartItem::find($cartItemFromCartId);
+
+        $cartItem->is_pending = true;
+        $taskItem->is_pending = true;
+
+        $cartItem->status = "pending";
+        $taskItem->status = "pending";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
 
 
     /**

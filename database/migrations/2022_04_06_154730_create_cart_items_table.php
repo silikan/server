@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('is_declined')->default(false);
             $table->boolean('is_on_checkout')->default(false);
             $table->boolean('is_paid')->default(false);
+            $table->string('status')->default('pending');
             $table->string('type');
             $table->string('client_id');
             $table->string('handyman_id');

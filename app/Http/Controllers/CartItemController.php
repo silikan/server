@@ -85,15 +85,17 @@ class CartItemController extends Controller
         $taskItemFromCart = $cartItem->taskItems;
         $taskItemFromCartId = $taskItemFromCart[0]->id;
         $taskItem = TaskItem::find($taskItemFromCartId);
-        $cartItem->is_pending = false;
 
 
         $cartItem->is_accepted = true;
 
-        $taskItem->is_pending = false;
+
 
 
         $taskItem->is_accepted = true;
+
+        $cartItem->status = "accepted";
+        $taskItem->status = "accepted";
 
         $cartItem->save();
         $taskItem->save();
@@ -107,7 +109,7 @@ class CartItemController extends Controller
         $taskItemFromCart = $cartItem->taskItems;
         $taskItemFromCartId = $taskItemFromCart[0]->id;
         $taskItem = TaskItem::find($taskItemFromCartId);
-        $cartItem->is_pending = false;
+
 
 
         $cartItem->is_declined = true;
@@ -116,6 +118,8 @@ class CartItemController extends Controller
 
         $taskItem->is_declined = true;
 
+$cartItem->status = "declined";
+        $taskItem->status = "declined";
         $taskItem->save();
         $cartItem->save();
         return $taskItem;
@@ -130,17 +134,81 @@ class CartItemController extends Controller
         $taskItem = TaskItem::find($taskItemFromCartId);
 
 
-        $taskItem->is_on_checkout = false;
-        $cartItem->is_on_checkout = false;
+
 
 
         $taskItem->is_paid = true;
         $cartItem->is_paid = true;
-
+        $cartItem->status = "paid";
+        $taskItem->status = "paid";
         $taskItem->save();
         $cartItem->save();
         return $taskItem;
     }
+
+    public function setCartItemStatusToCompleted(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+
+        $cartItem->is_completed = true;
+        $taskItem->is_completed = true;
+
+        $cartItem->is_on_checkout = true;
+        $taskItem->is_on_checkout = true;
+
+        $cartItem->status = "checkout";
+        $taskItem->status = "checkout";
+
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+
+    }
+     public function setCartItemStatusToCancelled(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+
+        $cartItem->is_cancelled = true;
+        $taskItem->is_cancelled = true;
+
+        $cartItem->status = "cancelled";
+        $taskItem->status = "cancelled";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+     public function setCartItemStatusToInProgress(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+
+
+        $cartItem->is_in_progress = true;
+        $taskItem->is_in_progress = true;
+        $cartItem->status = "in progress";
+        $taskItem->status = "in progress";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+
+    }
+
+
+
 
     /**
      * Display the specified resource.
