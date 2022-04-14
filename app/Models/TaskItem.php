@@ -8,7 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class TaskItem extends Model
 {
     use HasFactory;
+    protected $casts = [
+        'is_completed' => 'boolean',
+        'is_pending' => 'boolean',
+        'is_accepted' => 'boolean',
+        'is_cancelled' => 'boolean',
+        'is_in_progress' => 'boolean',
+        'is_declined' => 'boolean',
+        'is_paid' => 'boolean',
+        'is_on_checkout' => 'boolean',
 
+
+    ];
     public function gigs()
     {
         return $this->belongsToMany(Gig::class);
@@ -22,7 +33,13 @@ class TaskItem extends Model
     {
         return $this->belongsTo(Task::class);
     }
+
+    public function cartItems()
+    {
+        return $this->belongsToMany(CartItem::class );
+    }
 }
+
 
 
 

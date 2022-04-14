@@ -10,7 +10,13 @@ class CartItem extends Model
     use HasFactory;
     protected $casts = [
         'is_completed' => 'boolean',
-
+        'is_pending' => 'boolean',
+        'is_accepted' => 'boolean',
+        'is_cancelled' => 'boolean',
+        'is_in_progress' => 'boolean',
+        'is_declined' => 'boolean',
+        'is_paid' => 'boolean',
+        'is_on_checkout' => 'boolean',
 
     ];
     public function cart()
@@ -24,6 +30,11 @@ class CartItem extends Model
     public function clientRequests()
     {
         return $this->belongsToMany(ClientRequest::class);
+    }
+
+    public function taskItems()
+    {
+        return $this->belongsToMany(TaskItem::class );
     }
 
 }

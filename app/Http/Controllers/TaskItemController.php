@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\TaskItem;
+use App\Models\CartItem;
 use Illuminate\Http\Request;
 use App\Models\Gig;
 use App\Models\ClientRequest;
@@ -50,14 +51,12 @@ class TaskItemController extends Controller
                 $taskItem->task()->associate($task);
                 $taskItem->save();
                 $taskItem->gigs()->attach($gig);
+                $cartItems = CartItem::find($request->cart_item_id);
+                $taskItem->cartItems()->attach($cartItems);
 
+                //return the id of the task item
+                return  $cartItems;
 
-
-                return response()->json([
-                    'status'    =>  'success',
-                    'message'   =>  'Gig added to Task!',
-                    'taskItem'  =>  $taskItem
-                ]);
         }else if($type == "request"){
 
                 $taskItem = new TaskItem();
@@ -72,14 +71,13 @@ class TaskItemController extends Controller
 
                 $taskItem->clientRequests()->attach($clientRequest);
 
+                $cartItems = CartItem::find($request->cart_item_id);
+                $taskItem->cartItems()->attach($cartItems);
 
 
 
-               return response()->json([
-                'status'    =>  'success',
-                'message'   =>  'Request added to Task!',
-                'taskItem'  =>  $taskItem
-            ]);
+                //return the id of the task item
+                return  $taskItem;
         }
     }
 
