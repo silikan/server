@@ -188,24 +188,23 @@ class TaskItemController extends Controller
         return $cartItem;
     }
 
-    public function setTaskItemsStatusToPending (Request $request)
+    public function setTaskItemStatusToAccepted  (Request $request)
     {
         $taskItem = TaskItem::find($request->task_item_id);
         $cartItemFromCart = $taskItem->cartItems;
         $cartItemFromCartId = $cartItemFromCart[0]->id;
         $cartItem = CartItem::find($cartItemFromCartId);
 
-        $cartItem->is_pending = true;
-        $taskItem->is_pending = true;
+        $cartItem->is_accepted = true;
+        $taskItem->is_accepted = true;
 
-        $cartItem->status = "pending";
-        $taskItem->status = "pending";
+        $cartItem->status = "accepted";
+        $taskItem->status = "accepted";
 
         $cartItem->save();
         $taskItem->save();
         return $cartItem;
     }
-
 
     /**
      * Display the specified resource.
