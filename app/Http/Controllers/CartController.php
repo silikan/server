@@ -61,6 +61,8 @@ public function getUserCartItems($id){
     $gigsData = array();
     foreach ($cart_items as $item) {
        $gig = $item->gigs;
+       $clientRequest = $item->clientRequests;
+
        $handyman_id = $item->handyman_id;
          $cart_id = $item->cart_id;
          $client_id = $item->client_id;
@@ -71,6 +73,7 @@ public function getUserCartItems($id){
             'item' => array(
                 'cart' => $cart,
                'gig' => $gig,
+                'request' => $clientRequest,
                 'handyman' => $handyman,
                 'client' => $client,
                 'cart_item' => $item

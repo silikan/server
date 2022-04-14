@@ -47,6 +47,7 @@ class TaskController extends Controller
         $clientRequestData = array();
         foreach ($task_items as $item) {
            $clientRequest = $item->clientRequests;
+           $gig = $item->gigs;
            $handyman_id = $item->handyman_id;
               $client_id = $item->client_id;
              $task_id = $item->task_id;
@@ -56,7 +57,8 @@ class TaskController extends Controller
               array_push($clientRequestData,array(
                 'item' => array(
                     'task' => $task,
-                   'clientRequest' => $clientRequest,
+                   'request' => $clientRequest,
+                   'gig' => $gig,
                     'handyman' => $handyman,
                     'client' => $client,
                     'task_item' => $item
