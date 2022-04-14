@@ -92,6 +92,68 @@ class CartItemController extends Controller
         return $CartItem->gigs;
     }
 
+
+
+    /* 'is_completed' => 'boolean',
+    'is_pending' => 'boolean',
+    'is_accepted' => 'boolean',
+    'is_cancelled' => 'boolean',
+    'is_in_progress' => 'boolean',
+    'is_declined' => 'boolean',
+    'is_paid' => 'boolean',
+    'is_on_checkout' => 'boolean', */
+
+    public function setCartItemsStatusToInProgress (Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+        $cartItem->is_in_progress = true;
+        $taskItem->is_in_progress = true;
+
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+
+    public function setCartItemsStatusToCancelled (Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+        $cartItem->is_cancelled = true;
+        $taskItem->is_cancelled = true;
+
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+
+    public function setCartItemsStatusToCompleted (Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+        $cartItem->is_completed = true;
+        $taskItem->is_completed = true;
+
+        $cartItem->is_on_checkout = true;
+        $taskItem->is_on_checkout = true;
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
+
+
+
     /**
      * Show the form for editing the specified resource.
      *

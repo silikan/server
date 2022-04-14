@@ -62,6 +62,8 @@ Route::get('gig/{id}/user', [GigController::class, 'getGigUser']);
 Route::get('gig/{id}/image', [GigImagesController::class, 'show']);
 Route::get('gig/{id}', [GigController::class, 'show']);
 
+Route::get('cartitem/taskitem', [CartItemController::class, 'showTaskItem']);
+
 Route::get('/gig/{id}/views', [GigController::class, 'views']);
 Route::get('/request/{id}/views', [ClientRequestController::class, 'views']);
 
@@ -116,4 +118,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('cartitem', [CartItemController::class, 'show']);
   Route::get('user/{id}/cart', [CartController::class, 'getUserCartItems']);
   Route::get('user/{id}/task', [TaskController::class, 'getUserTaskItems']);
+
+  Route::post('set-task-item-status-to-accepted', [TaskItemController::class, 'setTaskItemStatusToAccepted']);
+  Route::post('set-task-item-status-to-declined', [TaskItemController::class, 'setTaskItemStatusToDeclined']);
+  Route::post('set-task-item-status-to-paid', [TaskItemController::class, ' setTaskItemStatusToPaid']);
+
+  Route::post('set-task-status-to-in-progress', [CartItemController::class, 'setCartItemsStatusToInProgress']);
+  Route::post('set-task-status-to-cancelled', [CartItemController::class, 'setCartItemsStatusToCancelled']);
+  Route::post('set-task-status-to-completed', [CartItemController::class, 'setCartItemsStatusToCompleted']);
+
 });
