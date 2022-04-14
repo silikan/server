@@ -132,6 +132,8 @@ class TaskItemController extends Controller
         $cartItemFromCart = $taskItem->cartItems;
         $cartItemFromCartId = $cartItemFromCart[0]->id;
         $cartItem = CartItem::find($cartItemFromCartId);
+        $cartItem->is_in_progress = false;
+        $taskItem->is_in_progress = false;
 
         $cartItem->is_completed = true;
         $taskItem->is_completed = true;

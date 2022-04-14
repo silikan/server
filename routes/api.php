@@ -119,12 +119,12 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('user/{id}/cart', [CartController::class, 'getUserCartItems']);
   Route::get('user/{id}/task', [TaskController::class, 'getUserTaskItems']);
 
-  Route::post('set-cart-item-status-to-accepted', [CartItemController::class, 'setCartItemStatusToAccepted']);
-  Route::post('set-cart-item-status-to-declined', [CartItemController::class, 'setCartItemStatusToDeclined']);
-  Route::post('set-cart-item-status-to-paid', [CartItemController::class, ' setCartItemStatusToPaid']);
+  Route::post('set-cart-items-status-accepted', [CartItemController::class, 'setCartItemStatusToAccepted']);
+  Route::post('set-cart-items-status-to-declined', [CartItemController::class, 'setCartItemStatusToDeclined']);
+  Route::post('set-cart-items-status-to-paid', [CartItemController::class, ' setCartItemStatusToPaid']);
 
-  Route::post('set-task-status-to-in-progress', [TaskItemController::class, 'setTaskItemsStatusToInProgress']);
-  Route::post('set-task-status-to-cancelled', [TaskItemController::class, 'setTaskItemsStatusToCancelled']);
-  Route::post('set-task-status-to-completed', [TaskItemController::class, 'setTaskItemsStatusToCompleted']);
+  Route::post('set-task-items-status-to-in-progress', [TaskItemController::class, 'setTaskItemsStatusToInProgress']);
+  Route::post('set-task-items-status-to-cancelled', [TaskItemController::class, 'setTaskItemsStatusToCancelled']);
+  Route::post('set-task-items-status-to-completed', [TaskItemController::class, 'setTaskItemsStatusToCompleted']);
 
 });
