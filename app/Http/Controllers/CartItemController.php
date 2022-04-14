@@ -43,39 +43,103 @@ class CartItemController extends Controller
     public function store(Request $request)
     {
         $type = $request->type;
-        if($type == "gig"){
+        if ($type == "gig") {
 
-                $cartItem = new CartItem();
-               $gig =  Gig::find($request->gig_id);
-               $cart =  Cart::find($request->cart_id);
-               $cartItem->type =  $request->type;
-               $cartItem->client_id = $request->client_id;
-               $cartItem->handyman_id = $request->handyman_id;
-               $cartItem->cart()->associate($cart);
-                $cartItem->save();
-                $cartItem->gigs()->attach($gig);
-                $taskItems = TaskItem::find($request->task_item_id);
-                $cartItem->taskItems()->attach($taskItems);
-                //return the id of the task item
-                return  $cartItem;
-        }else if($type == "request"){
+            $cartItem = new CartItem();
+            $gig =  Gig::find($request->gig_id);
+            $cart =  Cart::find($request->cart_id);
+            $cartItem->type =  $request->type;
+            $cartItem->client_id = $request->client_id;
+            $cartItem->handyman_id = $request->handyman_id;
+            $cartItem->cart()->associate($cart);
+            $cartItem->save();
+            $cartItem->gigs()->attach($gig);
+            $taskItems = TaskItem::find($request->task_item_id);
+            $cartItem->taskItems()->attach($taskItems);
+            //return the id of the task item
+            return  $cartItem;
+        } else if ($type == "request") {
 
 
-                $cartItem = new CartItem();
-                $clientRequest =  ClientRequest::find($request->request_id);
-                $cart =  Cart::find($request->cart_id);
-                $cartItem->type =  $request->type;
-                $cartItem->client_id = $request->client_id;
-                $cartItem->handyman_id = $request->handyman_id;
-                $cartItem->cart()->associate($cart);
-                $cartItem->save();
-                $cartItem->clientRequests()->attach($clientRequest);
-                $taskItems = TaskItem::find($request->task_item_id);
-                $cartItem->taskItems()->attach($taskItems);
+            $cartItem = new CartItem();
+            $clientRequest =  ClientRequest::find($request->request_id);
+            $cart =  Cart::find($request->cart_id);
+            $cartItem->type =  $request->type;
+            $cartItem->client_id = $request->client_id;
+            $cartItem->handyman_id = $request->handyman_id;
+            $cartItem->cart()->associate($cart);
+            $cartItem->save();
+            $cartItem->clientRequests()->attach($clientRequest);
+            $taskItems = TaskItem::find($request->task_item_id);
+            $cartItem->taskItems()->attach($taskItems);
 
-                return  $cartItem;
-
+            return  $cartItem;
         }
+    }
+
+
+
+    public function setCartItemStatusToAccepted(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+        $cartItem->is_pending = false;
+
+
+        $cartItem->is_accepted = true;
+
+        $taskItem->is_pending = false;
+
+
+        $taskItem->is_accepted = true;
+
+        $cartItem->save();
+        $taskItem->save();
+
+        return $cartItem;
+    }
+
+    public function setCartItemStatusToDeclined(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+        $cartItem->is_pending = false;
+
+
+        $cartItem->is_declined = true;
+
+
+
+        $taskItem->is_declined = true;
+
+        $taskItem->save();
+        $cartItem->save();
+        return $taskItem;
+    }
+
+
+    public function setCartItemStatusToPaid(Request $request)
+    {
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
+
+
+        $taskItem->is_on_checkout = false;
+        $cartItem->is_on_checkout = false;
+
+
+        $taskItem->is_paid = true;
+        $cartItem->is_paid = true;
+
+        $taskItem->save();
+        $cartItem->save();
+        return $taskItem;
     }
 
     /**
@@ -102,55 +166,6 @@ class CartItemController extends Controller
     'is_declined' => 'boolean',
     'is_paid' => 'boolean',
     'is_on_checkout' => 'boolean', */
-
-    public function setCartItemsStatusToInProgress (Request $request)
-    {
-        $cartItem = CartItem::find($request->cart_item_id);
-        $taskItemFromCart = $cartItem->taskItems;
-        $taskItemFromCartId = $taskItemFromCart[0]->id;
-        $taskItem = TaskItem::find($taskItemFromCartId);
-
-        $cartItem->is_in_progress = true;
-        $taskItem->is_in_progress = true;
-
-
-        $cartItem->save();
-        $taskItem->save();
-        return $cartItem;
-    }
-
-    public function setCartItemsStatusToCancelled (Request $request)
-    {
-        $cartItem = CartItem::find($request->cart_item_id);
-        $taskItemFromCart = $cartItem->taskItems;
-        $taskItemFromCartId = $taskItemFromCart[0]->id;
-        $taskItem = TaskItem::find($taskItemFromCartId);
-
-        $cartItem->is_cancelled = true;
-        $taskItem->is_cancelled = true;
-
-
-        $cartItem->save();
-        $taskItem->save();
-        return $cartItem;
-    }
-
-    public function setCartItemsStatusToCompleted (Request $request)
-    {
-        $cartItem = CartItem::find($request->cart_item_id);
-        $taskItemFromCart = $cartItem->taskItems;
-        $taskItemFromCartId = $taskItemFromCart[0]->id;
-        $taskItem = TaskItem::find($taskItemFromCartId);
-
-        $cartItem->is_completed = true;
-        $taskItem->is_completed = true;
-
-        $cartItem->is_on_checkout = true;
-        $taskItem->is_on_checkout = true;
-        $cartItem->save();
-        $taskItem->save();
-        return $cartItem;
-    }
 
 
 
