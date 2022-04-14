@@ -86,6 +86,26 @@ public function getUserCartItems($id){
     return $gigsData;
 }
 
+
+public function getCartItemById ($id){
+
+    $cartItem = CartItem::find($id);
+    $taskItem = $cartItem->taskItems;
+    $cart   = $cartItem->cart;
+    $task = $cartItem->task;
+    $handyman = User::find($cartItem->handyman_id);
+    $client = User::find($cartItem->client_id);
+    return [
+        'cart_item' => $cartItem,
+        'task_item' => $taskItem,
+        'cart' => $cart,
+        'task' => $task,
+        'handyman' => $handyman,
+        'client' => $client
+
+    ];
+}
+
     /**
      * Display the specified resource.
      *

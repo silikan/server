@@ -83,15 +83,6 @@ class TaskItemController extends Controller
 
 
 
-    /* 'is_completed' => 'boolean',
-    'is_pending' => 'boolean',
-    'is_accepted' => 'boolean',
-    'is_cancelled' => 'boolean',
-    'is_in_progress' => 'boolean',
-    'is_declined' => 'boolean',
-    'is_paid' => 'boolean',
-    'is_on_checkout' => 'boolean', */
-
     public function setTaskItemsStatusToInProgress (Request $request)
     {
         $taskItem = TaskItem::find($request->task_item_id);

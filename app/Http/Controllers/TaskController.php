@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\TaskItem;
+
 
 class TaskController extends Controller
 {
@@ -72,6 +75,27 @@ class TaskController extends Controller
     }
 
 
+    public function getTaskItemById ($id){
+
+        $taskItem = TaskItem::find($id);
+
+        $cartItem = $taskItem->cartItems;
+
+        $handyman_id =  User::find($taskItem->handyman_id);
+        $client_id =  User::find($taskItem->client_id);
+
+        $task = Task::find($taskItem->task_id);
+        $cart = Cart::find($taskItem->cart_id);
+        return [
+            'task_item' => $taskItem,
+            'cart_item' => $cartItem,
+            'handyman' => $handyman_id,
+            'client' => $client_id,
+            'task' => $task,
+            'cart' => $cart
+];
+
+}
     /**
      * Store a newly created resource in storage.
      *

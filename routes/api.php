@@ -36,14 +36,13 @@ use App\Http\Controllers\TransactionController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/profile', [AccountController::class, 'index']);
 
 /* Route::post('/send-money', [TransactionController::class, 'store']);
  */
 
 
 
-
+Route::get('/profile', [AccountController::class, 'index']);
 
 Route::get('search', [SearchController::class, 'searchFunction']);
 Route::get('search/gigs', [SearchController::class, 'searchGigs']);
@@ -52,7 +51,6 @@ Route::get('search/requests', [SearchController::class, 'searchClientRequest']);
 Route::get('search/requests/paginate', [SearchController::class, 'searchClientRequestPaginate']);
 Route::get('search/handymen', [SearchController::class, 'searchHandymen']);
 Route::get('search/handymen/paginate', [SearchController::class, 'searchHandymenPaginate']);
-
 
 Route::get('request/{id}', [ClientRequestController::class, 'show']);
 Route::get('user/{id}/request', [ClientRequestController::class, 'getUserRequests']);
@@ -67,33 +65,23 @@ Route::get('cartitem/taskitem', [CartItemController::class, 'showTaskItem']);
 Route::get('/gig/{id}/views', [GigController::class, 'views']);
 Route::get('/request/{id}/views', [ClientRequestController::class, 'views']);
 
-
-
 Route::get('/feed/gigs/{id}', [GigController::class, 'getMostViewed']);
 Route::get('/feed/requests/{id}', [ClientRequestController::class, 'getMostViewed']);
 
-
 Route::get('paginate/gig', [GigController::class, 'getGigsPaginate']);
 Route::get('paginate/request', [ClientRequestController::class, 'getClientRequestsPaginate']);
-
 
 Route::get('category/{title}/gigs/paginate', [CategoryController::class, 'getGigsByCategoryPaginate']);
 Route::get('category/{title}/requests/paginate', [CategoryController::class, 'getclientRequestsByCategoryPaginate']);
 
 Route::get('category', [CategoryController::class, 'index']);
 
-
 Route::get('guest-users/handymen/search', [UserController::class, 'searchHandymen']);
 Route::get('guest-users/handymen/search/paginate', [UserController::class, 'searchHandymenPaginate']);
 Route::get('guest-users/handymen', [UserController::class, 'handymen']);
 Route::get('guest-users/{id}', [UserController::class, 'getUser']);
 
-
-
 Route::post('/sanctum/token', TokenController::class);
-
-
-
 
 Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/users/auth', AuthController::class);
@@ -126,8 +114,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('set-cart-items-status-to-cancelled', [CartItemController::class, 'setCartItemStatusToCancelled']);
   Route::post('set-cart-items-status-to-completed', [CartItemController::class, 'setCartItemStatusToCompleted']);
 
-
-
   Route::post('set-task-items-status-to-in-progress', [TaskItemController::class, 'setTaskItemsStatusToInProgress']);
   Route::post('set-task-items-status-to-cancelled', [TaskItemController::class, 'setTaskItemsStatusToCancelled']);
   Route::post('set-task-items-status-to-completed', [TaskItemController::class, 'setTaskItemsStatusToCompleted']);
@@ -135,4 +121,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('set-task-items-status-to-declined', [TaskItemController::class, 'setTaskItemsStatusToDeclined']);
   Route::post('set-task-items-status-to-paid', [TaskItemController::class, 'setTaskItemsStatusToPaid']);
 
+  Route::get('/task/{id}', [TaskController::class, 'getTaskItemById']);
+  Route::get('/cart/{id}', [CartController::class, 'getCartItemById']);
+
 });
+
