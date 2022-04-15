@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Rating;
-use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Gig;
+use App\Models\ClientReq;
+use Illuminate\Http\ClientRequest;
 
 class RatingController extends Controller
 {
@@ -81,6 +84,24 @@ class RatingController extends Controller
             return response()->json(['success' => true, 'message' => 'Rating added successfully']);
 
         }
+    }
+
+    public function getUserRatings($id)
+    {
+        $ratings = User::find($id)->ratings;
+        return  $ratings;
+    }
+
+    public function getGigRatings($id)
+    {
+        $ratings = Gig::find($id)->ratings;
+        return  $ratings;
+    }
+
+    public function getClientRequestRatings($id)
+    {
+        $ratings = ClientRequest::find($id)->ratings;
+        return  $ratings;
     }
 
     /**

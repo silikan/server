@@ -26,6 +26,7 @@ use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\RatingController;
 
 
 /*
@@ -143,5 +144,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/set-transaction-to-confirmed ', [TransactionController::class, 'setTransactionToConfirmed']);
   Route::post('/set-transaction-to-completed ', [TransactionController::class, 'setTransactionToCompleted']);
 
+
+  Route::post('/rating ', [RatingController::class, 'store']);
+  Route::get('/user/{id}/rating', [RatingController::class, 'getUserRatings']);
+  Route::get('/gig/{id}/rating', [RatingController::class, 'getGigRatings']);
+  Route::get('/request/{id}/rating', [RatingController::class, 'getClientRequestRatings']);
 });
 
