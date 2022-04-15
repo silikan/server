@@ -38,6 +38,10 @@ class TaskItem extends Model
     {
         return $this->belongsToMany(CartItem::class );
     }
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }
 
 

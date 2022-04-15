@@ -26,6 +26,8 @@ use App\Http\Controllers\CategoryController;
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionController;
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -123,6 +125,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
   Route::get('/task/{id}', [TaskController::class, 'getTaskItemById']);
   Route::get('/cart/{id}', [CartController::class, 'getCartItemById']);
+
+
+  Route::post('/transaction ', [TransactionController::class, 'create']);
+  Route::get('/taskitem/{id}/transactios', [TransactionController::class, 'getTaskItemTransactions']);
+  Route::get('/cartitem/{id}/transactios', [TransactionController::class, 'getCartItemTransactions']);
+  Route::post('/set-transaction-to-paid ', [TransactionController::class, 'setTransactionToPaid']);
+  Route::post('/set-transaction-to-confirmed ', [TransactionController::class, 'setTransactionToConfirmed']);
+  Route::post('/set-transaction-to-completed ', [TransactionController::class, 'setTransactionToCompleted']);
 
 });
 

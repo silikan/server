@@ -37,4 +37,9 @@ class CartItem extends Model
         return $this->belongsToMany(TaskItem::class );
     }
 
+
+    public function transaction()
+    {
+        return $this->hasOne(Transaction::class);
+    }
 }
