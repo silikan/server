@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('cart_items', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('cart_id');
+            $table->json('plan');
             $table->boolean('is_pending')->default(true);
             $table->boolean('is_accepted')->default(false);
             $table->boolean('is_completed')->default(false);

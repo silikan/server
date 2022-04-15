@@ -48,6 +48,7 @@ class TaskItemController extends Controller
                 $taskItem->type =  $request->type;
                 $taskItem->client_id = $request->client_id;
                 $taskItem->handyman_id = $request->handyman_id;
+                $taskItem->plan = $request->plan;
                 $taskItem->task()->associate($task);
                 $taskItem->save();
                 $taskItem->gigs()->attach($gig);
@@ -65,6 +66,7 @@ class TaskItemController extends Controller
                 $taskItem->type =  $request->type;
                 $taskItem->client_id = $request->client_id;
                 $taskItem->handyman_id = $request->handyman_id;
+                $taskItem->plan = $request->plan;
                 $taskItem->task()->associate($task);
 
                 $taskItem->save();

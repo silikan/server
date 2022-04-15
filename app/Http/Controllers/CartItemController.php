@@ -52,6 +52,7 @@ class CartItemController extends Controller
             $cartItem->type =  $request->type;
             $cartItem->client_id = $request->client_id;
             $cartItem->handyman_id = $request->handyman_id;
+            $cartItem->plan = $request->plan;
             $cartItem->cart()->associate($cart);
             $cartItem->save();
             $cartItem->gigs()->attach($gig);
@@ -68,6 +69,7 @@ class CartItemController extends Controller
             $cartItem->type =  $request->type;
             $cartItem->client_id = $request->client_id;
             $cartItem->handyman_id = $request->handyman_id;
+            $cartItem->plan = $request->plan;
             $cartItem->cart()->associate($cart);
             $cartItem->save();
             $cartItem->clientRequests()->attach($clientRequest);

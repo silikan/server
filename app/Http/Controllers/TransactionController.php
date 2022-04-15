@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 use App\Models\CartItem;
 class TransactionController extends Controller
@@ -24,18 +26,27 @@ class TransactionController extends Controller
      */
     public function create(Request $request)
     {
-        $transaction = new Transaction();
 
-
-        $transaction->client_id = $request->client_id;
-        $transaction->handyman_id = $request->handyman_id;
-
+        //id taskitem has one transaction
         $cartItem =  CartItem::find($request->cart_item_id);
-            $taskItems = $cartItem->taskItems() ;
-            $taskItem = $taskItems->first();
-            $transaction->taskItem()->associate($taskItem);
-            $transaction->cartItem()->associate($taskItem);
-        $transaction->save();
+
+        if( $cartItem->transaction == null){
+            $transaction = new Transaction();
+            $transaction->client_id = $request->client_id;
+            $transaction->handyman_id = $request->handyman_id;
+
+            $cartItem =  CartItem::find($request->cart_item_id);
+                $taskItems = $cartItem->taskItems() ;
+                $taskItem = $taskItems->first();
+                $transaction->taskItem()->associate($taskItem);
+                $transaction->cartItem()->associate($taskItem);
+            $transaction->save();
+            return $transaction;
+        }else {
+            $transaction = $cartItem->transaction;
+              return $transaction;
+        }
+
 
     }
 
@@ -56,6 +67,29 @@ public function setTransactionToCompleted(Request $request){
     $transaction->save();
 }
 
+
+
+
+public function getTransactionById($id){
+    $transaction = Transaction::find($id);
+
+    $transactionsData = array();
+    $handyman = User::find($transaction->handyman_id);
+    $client = User::find($transaction->client_id);
+    $taskItem = $transaction->taskItem;
+    $cartItem = $transaction->cartItem;
+    $transactionsData["transaction"] = $transaction;
+    $transactionsData["handyman"] = $handyman;
+    $transactionsData["client"] = $client;
+    $transactionsData["taskItem"] = $taskItem;
+    $transactionsData["cartItem"] = $cartItem;
+
+    return $transactionsData;
+}
+
+
+
+
 public function getTaskItemTransactions($id){
     $taskItem = TaskItem::find($id);
     $transactions = $taskItem->transactions()->get();
@@ -64,6 +98,9 @@ public function getTaskItemTransactions($id){
  public function getCartItemTransactions($id){
     $cartItem = CartItem::find($id);
     $transactions = $cartItem->transactions()->get();
+
+
+
     return $transactions;
 }
     /**

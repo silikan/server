@@ -128,9 +128,13 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
   Route::post('/transaction ', [TransactionController::class, 'create']);
-  Route::get('/taskitem/{id}/transactios', [TransactionController::class, 'getTaskItemTransactions']);
-  Route::get('/cartitem/{id}/transactios', [TransactionController::class, 'getCartItemTransactions']);
+  Route::get('/taskitem/{id}/transaction', [TransactionController::class, 'getTaskItemTransactions']);
+  Route::get('/cartitem/{id}/transaction', [TransactionController::class, 'getCartItemTransactions']);
   Route::post('/set-transaction-to-paid ', [TransactionController::class, 'setTransactionToPaid']);
+
+  Route::get('/transaction/{id}', [TransactionController::class, 'getTransactionById']);
+
+
   Route::post('/set-transaction-to-confirmed ', [TransactionController::class, 'setTransactionToConfirmed']);
   Route::post('/set-transaction-to-completed ', [TransactionController::class, 'setTransactionToCompleted']);
 
