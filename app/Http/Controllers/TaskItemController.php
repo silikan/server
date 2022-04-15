@@ -198,6 +198,23 @@ class TaskItemController extends Controller
         $taskItem->save();
         return $cartItem;
     }
+    public function setTaskItemStatusToConfirmed (Request $request){
+        $taskItem = TaskItem::find($request->task_item_id);
+        $taskItem = TaskItem::find($request->task_item_id);
+        $cartItemFromCart = $taskItem->cartItems;
+        $cartItemFromCartId = $cartItemFromCart[0]->id;
+        $cartItem = CartItem::find($cartItemFromCartId);
+
+        $cartItem->is_confirmed = true;
+        $taskItem->is_confirmed = true;
+
+        $cartItem->status = "confirmed";
+        $taskItem->status = "confirmed";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
 
     /**
      * Display the specified resource.

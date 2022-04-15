@@ -30,7 +30,7 @@ class TransactionController extends Controller
         //id taskitem has one transaction
         $cartItem =  CartItem::find($request->cart_item_id);
 
-        if( $cartItem->transaction == null){
+        if( $cartItem->transaction == []    ) {
             $transaction = new Transaction();
             $transaction->client_id = $request->client_id;
             $transaction->handyman_id = $request->handyman_id;
@@ -103,6 +103,8 @@ public function getTaskItemTransactions($id){
 
     return $transactions;
 }
+
+
     /**
      * Store a newly created resource in storage.
      *

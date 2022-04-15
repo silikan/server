@@ -210,7 +210,22 @@ $cartItem->status = "declined";
 
     }
 
+    public function setCartItemStatusToConfirmed (Request $request){
+        $cartItem = CartItem::find($request->cart_item_id);
+        $taskItemFromCart = $cartItem->taskItems;
+        $taskItemFromCartId = $taskItemFromCart[0]->id;
+        $taskItem = TaskItem::find($taskItemFromCartId);
 
+        $cartItem->is_confirmed = true;
+        $taskItem->is_confirmed = true;
+
+        $cartItem->status = "confirmed";
+        $taskItem->status = "confirmed";
+
+        $cartItem->save();
+        $taskItem->save();
+        return $cartItem;
+    }
 
 
     /**
