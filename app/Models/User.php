@@ -144,7 +144,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
     public function ratings()
     {
-        return $this->hasMany('App\Models\Rating');
+        return $this->hasMany(Rating::class);
     }
     public function toSearchableArray()
     {

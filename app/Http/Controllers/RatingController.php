@@ -35,7 +35,52 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $type = $request->type;
+        if($type == 'gig'){
+
+        $rating = new Rating();
+
+        $rating->gig_id = $request->gig_id;
+        $user = User::find($request->handyman_id);
+        $gig = Gig::find($request->gig_id);
+        $clientRequest = ClientRequest::find($request->request_id);
+
+        $rating->client_id = $request->client_id;
+        $rating->handyman_id = $request->handyman_id;
+
+        $rating->rating = $request->rating;
+        $rating->comment = $request->comment;
+
+        $rating->user()->associate($user);
+        $rating->gig()->associate($gig);
+
+        $rating->save();
+        return response()->json(['success' => true, 'message' => 'Rating added successfully']);
+
+        }elseif($type == 'request'){
+
+
+            $rating = new Rating();
+
+            $rating->gig_id = $request->gig_id;
+            $user = User::find($request->handyman_id);
+            $gig = Gig::find($request->gig_id);
+            $clientRequest = ClientRequest::find($request->request_id);
+
+            $rating->client_id = $request->client_id;
+            $rating->handyman_id = $request->handyman_id;
+
+            $rating->rating = $request->rating;
+            $rating->comment = $request->comment;
+
+            $rating->user()->associate($user);
+            $rating->clientRequest()->associate($clientRequest);
+
+            $rating->save();
+            return response()->json(['success' => true, 'message' => 'Rating added successfully']);
+
+        }
     }
 
     /**

@@ -17,11 +17,16 @@ class Rating extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->belongsTo(User::class);
     }
 
     public function gig()
     {
-        return $this->belongsTo('App\Models\Product');
+        return $this->belongsTo(Gig::class);
+    }
+
+    public function clientRequest()
+    {
+        return $this->belongsTo(ClientRequest::class);
     }
 }
