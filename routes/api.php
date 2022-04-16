@@ -152,9 +152,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 //admin
-  Route::delete('/admin/delete-user', [AdminController::class, 'deleteUser']);
-  Route::delete('/admin/delete-gig', [AdminController::class, 'deleteGig']);
-  Route::delete('/admin/delete-request', [AdminController::class, 'deleteClientRequest']);
+  Route::delete('/admin/delete-user/{id}', [AdminController::class, 'deleteUser']);
+  Route::delete('/admin/delete-gig/{id}', [AdminController::class, 'deleteGig']);
+  Route::delete('/admin/delete-request/{id}', [AdminController::class, 'deleteClientRequest']);
   Route::delete('/admin/delete-all-users', [AdminController::class, 'deleteAllUsers']);
   Route::delete('/admin/delete-all-gigs', [AdminController::class, 'deleteAllGigs']);
   Route::delete('/admin/delete-all-requests', [AdminController::class, 'deleteAllClientRequests']);
@@ -166,9 +166,9 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-clients', [AdminController::class, 'getAllClients']);
   Route::get('/admin/get-all-admins', [AdminController::class, 'getAllAdmins']);
   Route::get('/admin/get-all-moderators', [AdminController::class, 'getAllModerators']);
-  Route::post('/admin/make-user-admin', [AdminController::class, 'makeUserAdmin']);
-  Route::post('/admin/make-user-moderator', [AdminController::class, 'makeUserModerator']);
-  Route::post('/admin/make-user-handyman', [AdminController::class, 'makeUserHandyman']);
+  Route::post('/admin/make-user-admin/{id}', [AdminController::class, 'makeUserAdmin']);
+  Route::post('/admin/make-user-moderator/{id}', [AdminController::class, 'makeUserModerator']);
+  Route::post('/admin/make-user-handyman/{id}', [AdminController::class, 'makeUserHandyman']);
   Route::get('/admin/get-all-users-paginate', [AdminController::class, 'getAllUsersPaginate']);
   Route::get('/admin/get-all-gigs-paginate', [AdminController::class, 'getAllGigsPaginate']);
   Route::get('/admin/get-all-requests-paginate', [AdminController::class, 'getAllClientRequestsPaginate']);
@@ -180,10 +180,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 
 //moderator
-  Route::delete('/moderator/delete-user', [AdminController::class, 'deleteUser']);
-  Route::delete('/moderator/delete-gig', [AdminController::class, 'deleteGig']);
-  Route::delete('/moderator/delete-request', [AdminController::class, 'deleteClientRequest']);
-  Route::post('/moderator/make-user-handyman', [AdminController::class, 'makeUserHandyman']);
+  Route::delete('/moderator/delete-user/{id}', [AdminController::class, 'deleteUser']);
+  Route::delete('/moderator/delete-gig/{id}', [AdminController::class, 'deleteGig']);
+  Route::delete('/moderator/delete-request/{id}', [AdminController::class, 'deleteClientRequest']);
+  Route::post('/moderator/make-user-handyman/{id}', [AdminController::class, 'makeUserHandyman']);
   Route::get('/moderator/get-all-users-paginate', [AdminController::class, 'getAllUsersPaginate']);
   Route::get('/moderator/get-all-gigs-paginate', [AdminController::class, 'getAllGigsPaginate']);
   Route::get('/moderator/get-all-requests-paginate', [AdminController::class, 'getAllClientRequestsPaginate']);
