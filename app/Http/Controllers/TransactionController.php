@@ -84,6 +84,13 @@ public function getTransactionById($id){
     $transactionsData["taskItem"] = $taskItem;
     $transactionsData["cartItem"] = $cartItem;
 
+    if($cartItem->type == "gig"){
+        $transactionsData["gig"] = $cartItem->gigs;
+
+    }else if($cartItem->type == "request"){
+        $transactionsData["request"] = $cartItem->clientRequests;
+    }
+
     return $transactionsData;
 }
 

@@ -22,7 +22,7 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('type');
+            $table->string('type');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('gig_id')->nullable();
             $table->unsignedBigInteger('client_request_id')->nullable();

@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Rating;
 use App\Models\User;
 use App\Models\Gig;
-use App\Models\ClientReq;
-use Illuminate\Http\ClientRequest;
+use App\Models\ClientRequest;
+use Illuminate\Http\Request;
 
 class RatingController extends Controller
 {
@@ -44,10 +44,11 @@ class RatingController extends Controller
 
         $rating = new Rating();
 
-        $rating->gig_id = $request->gig_id;
+
+
+        $rating->type = $request->type;
         $user = User::find($request->handyman_id);
         $gig = Gig::find($request->gig_id);
-        $clientRequest = ClientRequest::find($request->request_id);
 
         $rating->client_id = $request->client_id;
         $rating->handyman_id = $request->handyman_id;
@@ -65,10 +66,10 @@ class RatingController extends Controller
 
 
             $rating = new Rating();
+            $rating->type = $request->type;
 
-            $rating->gig_id = $request->gig_id;
+
             $user = User::find($request->handyman_id);
-            $gig = Gig::find($request->gig_id);
             $clientRequest = ClientRequest::find($request->request_id);
 
             $rating->client_id = $request->client_id;

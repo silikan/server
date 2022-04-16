@@ -39,6 +39,8 @@ class ClientRequest extends Model
     {
         return $this->hasMany(Rating::class);
     }
+
+
     public function toSearchableArray()
     {
 
