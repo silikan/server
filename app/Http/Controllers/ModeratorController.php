@@ -28,10 +28,6 @@ class ModeratorController extends Controller
         return $clientRequest;
     }
 
-
-
-
-
     public function  makeUserHandyman ($id){
         $user = User::find($id);
         $user->is_handyman = true;

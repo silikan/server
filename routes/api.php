@@ -127,7 +127,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('set-task-items-status-to-paid', [TaskItemController::class, 'setTaskItemsStatusToPaid']);
   Route::post('set-task-items-status-to-confirmed', [TaskItemController::class, 'setTaskItemStatusToConfirmed']);
 
-//setCartItemStatusToConfirmed
 
 
   Route::get('/task/{id}', [TaskController::class, 'getTaskItemById']);
@@ -152,7 +151,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/request/{id}/rating', [RatingController::class, 'getClientRequestRatings']);
 
 
-
+//admin
   Route::delete('/admin/delete-user', [AdminController::class, 'deleteUser']);
   Route::delete('/admin/delete-gig', [AdminController::class, 'deleteGig']);
   Route::delete('/admin/delete-request', [AdminController::class, 'deleteClientRequest']);
@@ -177,6 +176,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-clients-paginate', [AdminController::class, 'getAllClientsPaginate']);
   Route::get('/admin/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
   Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
+
+
+
+//moderator
+  Route::delete('/moderator/delete-user', [AdminController::class, 'deleteUser']);
+  Route::delete('/moderator/delete-gig', [AdminController::class, 'deleteGig']);
+  Route::delete('/moderator/delete-request', [AdminController::class, 'deleteClientRequest']);
+  Route::post('/moderator/make-user-handyman', [AdminController::class, 'makeUserHandyman']);
+  Route::get('/moderator/get-all-users-paginate', [AdminController::class, 'getAllUsersPaginate']);
+  Route::get('/moderator/get-all-gigs-paginate', [AdminController::class, 'getAllGigsPaginate']);
+  Route::get('/moderator/get-all-requests-paginate', [AdminController::class, 'getAllClientRequestsPaginate']);
+  Route::get('/moderator/get-all-handymen-paginate', [AdminController::class, 'getAllHandymenPaginate']);
+  Route::get('/moderator/get-all-clients-paginate', [AdminController::class, 'getAllClientsPaginate']);
+  Route::get('/moderator/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
+  Route::get('/moderator/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
+
 
 });
 
