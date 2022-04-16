@@ -27,6 +27,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\AdminController;
 
 
 /*
@@ -149,5 +150,33 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/user/{id}/rating', [RatingController::class, 'getUserRatings']);
   Route::get('/gig/{id}/rating', [RatingController::class, 'getGigRatings']);
   Route::get('/request/{id}/rating', [RatingController::class, 'getClientRequestRatings']);
+
+
+
+  Route::delete('/admin/delete-user', [AdminController::class, 'deleteUser']);
+  Route::delete('/admin/delete-gig', [AdminController::class, 'deleteGig']);
+  Route::delete('/admin/delete-request', [AdminController::class, 'deleteClientRequest']);
+  Route::delete('/admin/delete-all-users', [AdminController::class, 'deleteAllUsers']);
+  Route::delete('/admin/delete-all-gigs', [AdminController::class, 'deleteAllGigs']);
+  Route::delete('/admin/delete-all-requests', [AdminController::class, 'deleteAllClientRequests']);
+  Route::delete('/admin/delete-all', [AdminController::class, 'deleteAll']);
+  Route::get('/admin/get-all-users', [AdminController::class, 'getAllUsers']);
+  Route::get('/admin/get-all-gigs', [AdminController::class, 'getAllGigs']);
+  Route::get('/admin/get-all-requests', [AdminController::class, 'getAllClientRequests']);
+  Route::get('/admin/get-all-handymen', [AdminController::class, 'getAllHandymen']);
+  Route::get('/admin/get-all-clients', [AdminController::class, 'getAllClients']);
+  Route::get('/admin/get-all-admins', [AdminController::class, 'getAllAdmins']);
+  Route::get('/admin/get-all-moderators', [AdminController::class, 'getAllModerators']);
+  Route::post('/admin/make-user-admin', [AdminController::class, 'makeUserAdmin']);
+  Route::post('/admin/make-user-moderator', [AdminController::class, 'makeUserModerator']);
+  Route::post('/admin/make-user-handyman', [AdminController::class, 'makeUserHandyman']);
+  Route::get('/admin/get-all-users-paginate', [AdminController::class, 'getAllUsersPaginate']);
+  Route::get('/admin/get-all-gigs-paginate', [AdminController::class, 'getAllGigsPaginate']);
+  Route::get('/admin/get-all-requests-paginate', [AdminController::class, 'getAllClientRequestsPaginate']);
+  Route::get('/admin/get-all-handymen-paginate', [AdminController::class, 'getAllHandymenPaginate']);
+  Route::get('/admin/get-all-clients-paginate', [AdminController::class, 'getAllClientsPaginate']);
+  Route::get('/admin/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
+  Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
+
 });
 
