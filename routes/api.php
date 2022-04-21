@@ -177,6 +177,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-clients-paginate', [AdminController::class, 'getAllClientsPaginate']);
   Route::get('/admin/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
   Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
+  Route::get('/admin/get-all-transactions ', [AdminController::class, 'getAllTransactions']);
 
 
 //moderator
@@ -195,4 +196,3 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 });
 
-Route::get('/admin/get-all-transactions', [AdminController::class, 'getAllTransactions']);
