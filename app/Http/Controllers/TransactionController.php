@@ -16,7 +16,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::all();
+        return $transactions;
     }
 
     /**
@@ -110,6 +111,7 @@ public function getTaskItemTransactions($id){
 
     return $transactions;
 }
+
 
 
     /**

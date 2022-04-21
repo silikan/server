@@ -144,6 +144,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::post('/set-transaction-to-confirmed ', [TransactionController::class, 'setTransactionToConfirmed']);
   Route::post('/set-transaction-to-completed ', [TransactionController::class, 'setTransactionToCompleted']);
 
+  Route::get('/transaction ', [TransactionController::class, 'index']);
 
   Route::post('/rating ', [RatingController::class, 'store']);
   Route::get('/user/{id}/rating', [RatingController::class, 'getUserRatings']);
@@ -178,7 +179,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
 
 
-
 //moderator
   Route::delete('/moderator/delete-user/{id}', [AdminController::class, 'deleteUser']);
   Route::delete('/moderator/delete-gig/{id}', [AdminController::class, 'deleteGig']);
@@ -195,3 +195,4 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 });
 
+Route::get('/admin/get-all-transactions', [AdminController::class, 'getAllTransactions']);

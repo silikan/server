@@ -7,7 +7,9 @@ use App\Models\ClientRequest;
 use App\Http\Resources\GigResource;
 use App\Http\Resources\UserResource;
 use App\Http\Resources\ClientRequestResource;
+use App\Models\Transaction;
 
+use App\Http\Resources\TransactionResource;
 
 use Illuminate\Http\Request;
 
@@ -110,7 +112,7 @@ class AdminController extends Controller
     }
 
 public function getAllUsersPaginate (){
-    $users = User::paginate(5);
+    $users = UserResource::collection(User::paginate(5));
     return $users;
 
 }
@@ -137,11 +139,15 @@ public function getAllClientRequestsPaginate (){
         return $moderators;
     }
     public function        getAllClientAdminsPaginate (){
-        $admins = UserResource::collection(User::where('is_admin', true)->paginate(5));
+        $admins = UserResource::collection(Transaction::where('is_admin', true)->paginate(5));
         return $admins;
     }
 
 
+public function getAllTransactions (){
+    $transactions = TransactionResource::collection(Transaction::paginate(5));
 
+    return $transactions;
+}
 
 }
