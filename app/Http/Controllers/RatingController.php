@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Gig;
 use App\Models\ClientRequest;
 use Illuminate\Http\Request;
+use App\Http\Resources\RatingResource;
 
 class RatingController extends Controller
 {
@@ -87,11 +88,7 @@ class RatingController extends Controller
         }
     }
 
-    public function getUserRatings($id)
-    {
-        $ratings = User::find($id)->ratings;
-        return  $ratings;
-    }
+
 
     public function getGigRatings($id)
     {
@@ -105,6 +102,13 @@ class RatingController extends Controller
         return  $ratings;
     }
 
+
+
+    public function getUserRatings($id)
+    {
+        $ratings = RatingResource::collection(User::find($id)->ratings) ;
+        return  $ratings;
+    }
     /**
      * Display the specified resource.
      *

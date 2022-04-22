@@ -59,9 +59,8 @@ class SocialController extends Controller
             'provider' => $provider,
             'provider_id' => $user->getId(),
             'avatar' => $avatar,
-            'username' => $user->getNickname(),
+            'username' => Str::slug($user->getName() . '-' . $user->getId()),
             'slug' => Str::slug($user->getNickname()),
-
 
         ]);
 
