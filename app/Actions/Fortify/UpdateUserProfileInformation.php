@@ -28,6 +28,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'max:255',
                 Rule::unique('users')->ignore($user->id),
             ],
+            'username' => ['required',  'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+
         ])->validateWithBag('updateProfileInformation');
 
         if (
