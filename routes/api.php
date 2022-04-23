@@ -28,6 +28,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\RatingController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FeedController;
 
 
 /*
@@ -86,6 +87,7 @@ Route::get('guest-users/handymen', [UserController::class, 'handymen']);
 Route::get('guest-users/{id}', [UserController::class, 'getUser']);
 
 Route::post('/sanctum/token', TokenController::class);
+Route::get('/user/{id}/rating', [RatingController::class, 'getUserRatings']);
 
 Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/users/auth', AuthController::class);
@@ -147,7 +149,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/transaction ', [TransactionController::class, 'index']);
 
   Route::post('/rating ', [RatingController::class, 'store']);
-  Route::get('/user/{id}/rating', [RatingController::class, 'getUserRatings']);
   Route::get('/gig/{id}/rating', [RatingController::class, 'getGigRatings']);
   Route::get('/request/{id}/rating', [RatingController::class, 'getClientRequestRatings']);
 
@@ -193,6 +194,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/moderator/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
   Route::get('/moderator/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
 
+
+
+
+  Route::get('/feed/users', [FeedController::class, 'getThreeRandomUsers']);
+  Route::get('/feed/gigs', [FeedController::class, 'getThreeRandomGigs']);
+  Route::get('/feed/requests', [FeedController::class, 'getThreeRandomClientRequests']);
+  Route::get('/feed/handymen', [FeedController::class, 'getThreeRandomHandymen']);
+  Route::get('/feed/clients', [FeedController::class, 'getThreeRandomClients']);
 
 });
 

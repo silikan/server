@@ -37,7 +37,6 @@ class DatabaseSeeder extends Seeder
             'Massage',
             'Tutoring',
             'Woodwork',
-            'Cooking',
             'Other',
         ];
         //seed the database using this data
