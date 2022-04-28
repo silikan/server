@@ -15,7 +15,7 @@ io.on("connection", (socket) => {
 
     socket.on("room", function (room) {
         redis.subscribe(room, function (err, count) {});
-
+        console.log("subscribed to room: " + room);
         socket.join(room);
     });
 
@@ -24,7 +24,6 @@ io.on("connection", (socket) => {
     });
 
     socket.on("typing", function (data) {
-        console.log(data);
         socket.broadcast.emit("typing", data);
     });
 });

@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\Events\NotificationEvent;
 
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -17,9 +18,11 @@ class NotificationController extends Controller
 
         $notification->NotificationRoom()->associate($request->notification_room_id);
         $notification->user()->associate($request->to);
+//use App\Events\NotificationEvent;
 
 
         $notification->save();
+
         return $notification;
     }
 }

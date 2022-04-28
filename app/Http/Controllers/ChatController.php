@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use App\Events\MessageSent;
+use App\Events\NotificationEvent;
 use App\Http\Resources\ChatResource;
 
 class ChatController extends Controller
@@ -47,12 +48,13 @@ class ChatController extends Controller
         $chat->from = $decodeMessageEncode->from;
         $chat->room_id = $decodeMessageEncode->room_id;
         //associate chat with room and user
-
         $chat->save();
         $chat->room()->associate($decodeMessageEncode->room_id);
         $chat->user()->associate($decodeMessageEncode->from);
 
         return  $chat;
+
+
     }
 
     public function getChat($room_id)
@@ -101,6 +103,23 @@ class ChatController extends Controller
         event(new MessageSent($message));
 
         return $message;
+    }
+
+    public function sendNotification(Request $request)
+    {
+        //fire the messagesent event and get sent data and store it
+
+
+        /* $message    = $request->message; */
+
+        $notification = json_encode($request->all());
+
+
+
+
+        event(new NotificationEvent($notification));
+
+        return $notification;
     }
 
 

@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\NotificationRoom;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class NotificationRoomController extends Controller
@@ -47,7 +50,11 @@ class NotificationRoomController extends Controller
     }
 
 
-
+public function getUserNotificationRoom ($id) {
+    $user = User::find($id);
+    $notificationRoom = $user->NotificationRoom;
+    return $notificationRoom;
+}
 
     /**
      * Store a newly created resource in storage.

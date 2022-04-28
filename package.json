@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "mix --production",
         "chat": "nodemon chat.js",
-        "notifications": "nodemon notifications.js"
+        "notification": "nodemon notification.js"
     },
     "devDependencies": {
         "axios": "^0.25",
