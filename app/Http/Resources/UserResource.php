@@ -3,7 +3,8 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-
+use App\Http\Resources\NotificationRoomResource;
+use App\Models\NotificationRoom;
 class UserResource extends JsonResource
 {
     /**
@@ -65,6 +66,8 @@ class UserResource extends JsonResource
    'work_hours'  => $this->work_hours,
    'work_place'  => $this->work_place,
    'salary'  =>   $this->salary,
+
+   'NotificationRoom' => new NotificationRoomResource(NotificationRoom::where('user_id', $this->id)->first()),
 
         ];
     }
