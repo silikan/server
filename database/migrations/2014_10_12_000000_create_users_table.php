@@ -49,7 +49,7 @@ return new class extends Migration
             $table->string('work_time_length')->nullable();
             $table->string('work_hours')->nullable();
             $table->string('work_place')->nullable();
-            $table->string('salary')->nullable();
+            $table->float('salary')->default(0)->nullable();
 
 
             $table->json('skills')->nullable();
