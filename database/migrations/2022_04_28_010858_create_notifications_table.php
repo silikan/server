@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string("from");
             $table->string("to");
             $table->string("data");
+            $table->string("chat_room_id")->nullable();
             $table->boolean('read')->default(false);
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('notification_room_id');

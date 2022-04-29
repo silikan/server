@@ -17,7 +17,7 @@ class GigImagesController extends Controller
      */
     public function index()
     {
-        //
+    //
     }
 
     /**
@@ -27,7 +27,7 @@ class GigImagesController extends Controller
      */
     public function create()
     {
-        //
+    //
     }
 
     /**
@@ -36,38 +36,39 @@ class GigImagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request ,  $gigId)
+    public function store(Request $request, $gigId)
     {
 
 
 
-        if($files=$request->file('GigImages')){
-            foreach($files as $file){
+        if ($files = $request->file('GigImages')) {
+            foreach ($files as $file) {
 
 
 
-                  // processing the uploaded image
+                // processing the uploaded image
 
-          $image_name =    time() . $file->getClientOriginalName() ;
-          $image = $file;
-          $img = Image::make($image->path());
-
-
-          $img->resize(200, 500, function ($constraint) {
-            $constraint->aspectRatio();
-          });
-          $path = 'storage/gig-image/' . $image_name;
+                $image_name = time() . $file->getClientOriginalName();
+                $image = $file;
+                $img = Image::make($image->path());
 
 
-          $img->save($path);
+                $img->resize(200, 500, function ($constraint) {
+                    $constraint->aspectRatio();
+                });
+                $path = 'storage/gig-image/' . $image_name;
 
-          $gig_image =  $img->basePath();
-     $GigImages = new GigImages();
-        $GigImages->url = $gig_image;
-        $GigImages->gig_id = $gigId;
-          //find a gid with the gidid
-           $gig = Gig::find($gigId);
-           $GigImages->gig()->associate( $gig)->save();;
+
+                $img->save($path);
+
+                $gig_image = $img->basePath();
+                $GigImages = new GigImages();
+                $GigImages->url = $gig_image;
+                $GigImages->gig_id = $gigId;
+                //find a gid with the gidid
+                $gig = Gig::find($gigId);
+                $GigImages->gig()->associate($gig)->save();
+                ;
 
 
 
@@ -77,16 +78,16 @@ class GigImagesController extends Controller
 
 
 
-          // Update user's avatar column on 'users' table
-    /*       $profile =  Auth::user();
-          $profile->avatar = $avatar_path; */
+        // Update user's avatar column on 'users' table
+        /*       $profile =  Auth::user();
+         $profile->avatar = $avatar_path; */
 
 
 
         }
 
 
-      }
+    }
 
     /**
      * Display the specified resource.
@@ -111,7 +112,7 @@ class GigImagesController extends Controller
      */
     public function edit(GigImages $gigImages)
     {
-        //
+    //
     }
 
     /**
@@ -123,7 +124,7 @@ class GigImagesController extends Controller
      */
     public function update(Request $request, GigImages $gigImages)
     {
-        //
+    //
     }
 
     /**
@@ -134,6 +135,6 @@ class GigImagesController extends Controller
      */
     public function destroy(GigImages $gigImages)
     {
-        //
+    //
     }
 }

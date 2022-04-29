@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\NotificationRoom;
 use App\Models\User;
+use App\Models\Notification;
+
+use App\Http\Resources\NotificationResource;
 
 use Illuminate\Http\Request;
 
@@ -17,7 +20,7 @@ class NotificationRoomController extends Controller
      */
     public function index()
     {
-        //
+    //
     }
 
     /**
@@ -34,9 +37,11 @@ class NotificationRoomController extends Controller
         $notificationRoom = NotificationRoom::where('user_id', $user->id)->first();
         if ($notificationRoom) {
             return $notificationRoom;
-        } else {
+        }
+        else {
             $notificationRoom = new NotificationRoom();
             $notificationRoom->user()->associate($user);
+
             $notificationRoom->save();
             return $notificationRoom;
         }
@@ -44,17 +49,27 @@ class NotificationRoomController extends Controller
     }
 
 
-    public function getRoomNotifications ($id) {
-        $notificationRoom = NotificationRoom::find($id);
-        return $notificationRoom->Notification;
+    public function getAthUserRoomNotifications()
+    {
+        //get user room notifications
+        $user = Auth::user();
+        $notificationRoom = NotificationRoom::where('user_id', 1)->first();
+        if ($notificationRoom) {
+            return NotificationResource::collection(Notification::where('notification_room_id', $notificationRoom->id)->paginate(5));
+        }
+        else {
+            return null;
+        }
+
     }
 
+    public function getUserNotificationRoom($id)
+    {
+        $user = User::find($id);
+        $notificationRoom = $user->NotificationRoom;
 
-public function getUserNotificationRoom ($id) {
-    $user = User::find($id);
-    $notificationRoom = $user->NotificationRoom;
-    return $notificationRoom;
-}
+        return $notificationRoom;
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -64,7 +79,7 @@ public function getUserNotificationRoom ($id) {
      */
     public function store(Request $request)
     {
-        //
+    //
     }
 
     /**
@@ -75,7 +90,7 @@ public function getUserNotificationRoom ($id) {
      */
     public function show(NotificationRoom $notificationRoom)
     {
-        //
+    //
     }
 
     /**
@@ -86,7 +101,7 @@ public function getUserNotificationRoom ($id) {
      */
     public function edit(NotificationRoom $notificationRoom)
     {
-        //
+    //
     }
 
     /**
@@ -98,7 +113,7 @@ public function getUserNotificationRoom ($id) {
      */
     public function update(Request $request, NotificationRoom $notificationRoom)
     {
-        //
+    //
     }
 
     /**
@@ -109,6 +124,6 @@ public function getUserNotificationRoom ($id) {
      */
     public function destroy(NotificationRoom $notificationRoom)
     {
-        //
+    //
     }
 }

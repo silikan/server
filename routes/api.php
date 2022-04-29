@@ -205,11 +205,11 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/feed/clients', [FeedController::class, 'getThreeRandomClients']);
   Route::post('/notification', [NotificationController::class, 'store']);
   Route::post('/notification/room', [NotificationRoomController::class, 'create']);
-  Route::get('/notification/room/{id}', [NotificationRoomController::class, 'getRoomNotifications']);
 
 Route::get('/user/{id}/notification/room', [NotificationRoomController::class, 'getUserNotificationRoom']);
 Route::post('/chat/sendnotification', [ChatController::class, 'sendNotification']);
 
+Route::get('/notification/room', [NotificationRoomController::class, 'getAthUserRoomNotifications']);
 
 });
 

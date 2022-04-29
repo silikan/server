@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class NotificationRoom extends Model
 {
     use HasFactory;
-    public function Notification ()
+    public function notifications ()
     {
-        return $this->HanMany(Notification::class);
+        return $this->hasMany(Notification::class);
     }
     public function User ()
     {

@@ -15,7 +15,9 @@ class NotificationController extends Controller
         $notification->data = $request->data;
         $notification->from = $request->from;
         $notification->to = $request->to;
-
+        if($request->type == 'chat'){
+            $notification->chat_room_id = $request->chat_room_id;
+        }
         $notification->NotificationRoom()->associate($request->notification_room_id);
         $notification->user()->associate($request->to);
 //use App\Events\NotificationEvent;
