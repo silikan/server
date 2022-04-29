@@ -53,7 +53,7 @@ class NotificationRoomController extends Controller
     {
         //get user room notifications
         $user = Auth::user();
-        $notificationRoom = NotificationRoom::where('user_id', 1)->first();
+        $notificationRoom = NotificationRoom::where('user_id', $user->id)->first();
         if ($notificationRoom) {
             return NotificationResource::collection(Notification::where('notification_room_id', $notificationRoom->id)->paginate(5));
         }

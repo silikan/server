@@ -3,6 +3,10 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Models\User;
+use App\Models\NotificationRoom;
+use App\Http\Resources\NotificationResource;
+use App\Http\Resources\UserResource;
 
 class NotificationResource extends JsonResource
 {
@@ -14,6 +18,20 @@ class NotificationResource extends JsonResource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'type' => $this->type,
+            'data' => $this->data,
+            'from' => $this->from,
+            'to' => $this->to,
+            'chat_room_id' => $this->chat_room_id,
+            'notification_room_id' => $this->notification_room_id,
+            'read' => $this->read,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'fromData' => new UserResource(User::find($this->from)),
+            'toData' => new UserResource(User::find($this->to)),
+            'notificationRoom' => new NotificationRoomResource(NotificationRoom::find($this->notification_room_id)),
+        ];
     }
 }

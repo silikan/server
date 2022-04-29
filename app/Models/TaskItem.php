@@ -17,7 +17,7 @@ class TaskItem extends Model
         'is_declined' => 'boolean',
         'is_paid' => 'boolean',
         'is_on_checkout' => 'boolean',
-
+        'is_confirmed' => 'boolean',
 
     ];
     public function gigs()
