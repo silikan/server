@@ -55,7 +55,7 @@ class NotificationRoomController extends Controller
         $user = Auth::user();
         $notificationRoom = NotificationRoom::where('user_id', $user->id)->first();
         if ($notificationRoom) {
-            return NotificationResource::collection(Notification::where('notification_room_id', $notificationRoom->id)->paginate(5));
+            return NotificationResource::collection(Notification::where('notification_room_id', $notificationRoom->id)->orderBy('created_at','desc')->paginate(5));
         }
         else {
             return null;
