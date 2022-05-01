@@ -32,6 +32,7 @@ use App\Http\Controllers\FeedController;
 
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationRoomController;
+use App\Http\Controllers\FeedbackController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -47,7 +48,7 @@ use App\Http\Controllers\NotificationRoomController;
  */
 
 
-
+Route::post('/feedback', [FeedbackController::class, 'store']);
 Route::get('/profile', [AccountController::class, 'index']);
 
 Route::get('search', [SearchController::class, 'searchFunction']);
