@@ -66,6 +66,12 @@ return [
     'url' => env('APP_URL').'/storage/gig-image',
     'visibility' => 'public',
   ],
+  'post_images' => [
+    'driver' => 'local',
+    'root' => storage_path('app/public/post-images'),
+    'url' => env('APP_URL').'/storage/post-images',
+    'visibility' => 'public',
+  ],
 
 
 

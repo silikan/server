@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\PostResource;
 
 class PostController extends Controller
 {
@@ -35,8 +38,46 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //create a post
+        $post = new Post();
+        $post->title = $request->title;
+        $post->content = $request->content;
+
+        $user =  Auth::user();
+        $post->user()->associate($user);
+
+/*         $post->user_id = $user->id;
+ */        $post->save();
+
+        $category = Category::where('title', $request->category)->first();
+
+         $post->categories()->attach($category);
+
+
+return $post;
     }
+    public function getPostById ($id) {
+        $post = Post::find($id);
+        return $post;
+    }
+
+    public function getUserPosts($id) {
+        $posts = Post::where('user_id', $id)->get();
+        return $posts;
+
+    }
+
+
+public function getPostsByCategory($id) {
+    $posts = Post::whereHas('categories', function ($query) use ($id) {
+        $query->where('id', $id);
+    })->get();
+    return $posts;
+}
+public function PaginatePosts () {
+    $posts =  PostResource::collection(Post::orderBy('created_at', 'desc')->paginate(5));
+    return $posts;
+}
 
     /**
      * Display the specified resource.

@@ -87,6 +87,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'is_online' => 'boolean',
 
     ];
+        public function Posts () {
+            return $this->hasMany(Post::class);
+        }
     public function NotificationRoom()
     {
         return $this->hasOne(NotificationRoom::class);

@@ -20,6 +20,10 @@ class Category extends Model
         return $this->belongsToMany(ClientRequest::class);
     }
 
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class, 'category_post');
+    }
 
     public function toSearchableArray()
     {

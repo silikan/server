@@ -33,6 +33,10 @@ use App\Http\Controllers\FeedController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\NotificationRoomController;
 use App\Http\Controllers\FeedbackController;
+
+
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PostImageController
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -182,7 +186,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
   Route::get('/admin/get-all-transactions ', [AdminController::class, 'getAllTransactions']);
   Route::get('/admin/stats', [AdminController::class, 'stats']);
-Route::get('/admin/get-all-feedback-paginate', [AdminController::class, 'getAllClientFeedBackPaginate']);
+Route::get('/admin/get-all-feedback-paginate', [AdminController::class, 'getAllFeedBackPaginate']);
 
 //moderator
   Route::delete('/moderator/delete-user/{id}', [AdminController::class, 'deleteUser']);
@@ -212,6 +216,21 @@ Route::get('/user/{id}/notification/room', [NotificationRoomController::class, '
 Route::post('/chat/sendnotification', [ChatController::class, 'sendNotification']);
 
 Route::get('/notification/room', [NotificationRoomController::class, 'getAthUserRoomNotifications']);
+
+
+
+
+
+Route::post('/blog/post', [PostController::class, 'store']);
+Route::get('/blog/post/{id}', [PostController::class, 'getPostById']);
+Route::get('/blog/user/{id}posts', [PostController::class, 'getUserPosts']);
+Route::get('blog/{title}/post', [PostController::class, 'getPostsByCategory']);
+Route::get('/blog/posts/paginate', [PostController::class, 'PaginatePosts']);
+
+Route::post('/blog/podt/image', [PostImageController::class, 'upload_post_image']);
+
+
+
 
 });
 

@@ -172,8 +172,8 @@ public function stats (){
 }
 
 
-public function getAllClientFeedBackPaginate (){
-    $feedbacks = FeedbackResource::collection(Feedback::paginate(5));
+public function getAllFeedBackPaginate (){
+    $feedbacks = FeedbackResource::collection(Feedback::orderBy('created_at', 'desc')->paginate(5));
     return $feedbacks;
 }
 
