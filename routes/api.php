@@ -181,7 +181,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
   Route::get('/admin/get-all-admins-paginate', [AdminController::class, 'getAllAdminsPaginate']);
   Route::get('/admin/get-all-moderators-paginate', [AdminController::class, 'getAllModeratorsPaginate']);
   Route::get('/admin/get-all-transactions ', [AdminController::class, 'getAllTransactions']);
-
+  Route::get('/admin/stats', [AdminController::class, 'stats']);
 
 //moderator
   Route::delete('/moderator/delete-user/{id}', [AdminController::class, 'deleteUser']);

@@ -10,7 +10,7 @@ use App\Http\Resources\ClientRequestResource;
 use App\Models\Transaction;
 
 use App\Http\Resources\TransactionResource;
-
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -148,6 +148,22 @@ public function getAllTransactions (){
     $transactions = TransactionResource::collection(Transaction::paginate(5));
 
     return $transactions;
+}
+
+
+public function stats (){
+    $stats = [
+        'users' => User::count(),
+        'gigs' => Gig::count(),
+        'clientRequests' => ClientRequest::count(),
+        'transactions' => Transaction::count(),
+        'handymen' => User::where('is_handyman', true)->count(),
+        'clients' => User::where('is_client', true)->count(),
+        'moderators' => User::where('is_moderator', true)->count(),
+        'admins' => User::where('is_admin', true)->count(),
+        'categories' => Category::count(),
+    ];
+    return $stats;
 }
 
 }
