@@ -11,6 +11,11 @@ use App\Models\Transaction;
 
 use App\Http\Resources\TransactionResource;
 use App\Models\Category;
+
+use App\Models\Feedback;
+
+use App\Http\Resources\FeedbackResource;
+
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -164,6 +169,12 @@ public function stats (){
         'categories' => Category::count(),
     ];
     return $stats;
+}
+
+
+public function getAllClientFeedBackPaginate (){
+    $feedbacks = FeedbackResource::collection(Feedback::paginate(5));
+    return $feedbacks;
 }
 
 }
