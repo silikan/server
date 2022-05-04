@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Post extends Model implements Likeable
 {
-    use HasFactory;
+    use HasFactory , Likes;
 
     public function user()
     {
@@ -19,4 +19,8 @@ class Post extends Model
         return $this->belongsToMany(Category::class, 'category_post');
     }
 
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable')->whereNull('parent_id');
+    }
 }

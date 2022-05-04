@@ -36,7 +36,13 @@ use App\Http\Controllers\FeedbackController;
 
 
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PostImageController
+use App\Http\Controllers\PostImageController;
+use App\Http\Controllers\CommentController;
+
+use App\Http\Controllers\LikeController;
+
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -230,8 +236,12 @@ Route::get('/blog/posts/paginate', [PostController::class, 'PaginatePosts']);
 Route::post('/blog/podt/image', [PostImageController::class, 'upload_post_image']);
 
 
+Route::post('/comment/store', [CommentController::class, 'store']);
+Route::post('/reply/store', [CommentController::class, 'replyStore']);
 
 
+Route::post('like', [CommentController::class, 'like']);
+Route::delete('like', [CommentController::class, 'unlike']);
 });
 
 
