@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model implements Likeable
+class Post extends Model
 {
-    use HasFactory , Likes;
+    use HasFactory ;
 
     public function user()
     {

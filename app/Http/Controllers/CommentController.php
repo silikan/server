@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 
 use App\Models\Comment;
 use Illuminate\Http\Request;
+use App\Http\Resources\CommentResource;
+use App\Models\User;
 
 class CommentController extends Controller
 {
@@ -66,6 +68,17 @@ class CommentController extends Controller
         return $comment;
 
     }
+
+    public function getPostCommentsPaginate($post_id)
+    {
+        $post = Post::find($post_id);
+
+        $comments = CommentResource::collection($post->comments()->paginate(5)) ;
+
+        return $comments;
+    }
+
+
     /**
      * Display the specified resource.
      *

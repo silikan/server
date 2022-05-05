@@ -68,8 +68,8 @@ return [
   ],
   'post_images' => [
     'driver' => 'local',
-    'root' => storage_path('app/public/post-images'),
-    'url' => env('APP_URL').'/storage/post-images',
+    'root' => storage_path('app/public/post-image'),
+    'url' => env('APP_URL').'/storage/post-image',
     'visibility' => 'public',
   ],
 

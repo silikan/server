@@ -57,8 +57,8 @@ class PostController extends Controller
 return $post;
     }
     public function getPostById ($id) {
-        $post = Post::find($id);
-        return $post;
+        $post = PostResource::collection(Post::find($id)->get());
+        return $post[0];
     }
 
     public function getUserPosts($id) {
