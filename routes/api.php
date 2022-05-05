@@ -234,12 +234,14 @@ Route::get('blog/{title}/post', [PostController::class, 'getPostsByCategory']);
 Route::get('/blog/posts/paginate', [PostController::class, 'PaginatePosts']);
 Route::post('/blog/post/{post_id}/image', [PostImageController::class, 'upload_post_image']);
 Route::post('/blog/post/comment/store', [CommentController::class, 'store']);
-Route::post('/blog/post/reply/store', [CommentController::class, 'replyStore']);
+Route::post('/blog/post/comment/reply/store', [CommentController::class, 'replyStore']);
 Route::post('/blog/post/like', [CommentController::class, 'like']);
 Route::delete('/blog/post/like', [CommentController::class, 'unlike']);
 
 Route::get('/blog/post/{post_id}/comment/paginate', [CommentController::class, 'getPostCommentsPaginate']);
 
+//getPostCommentRepliesPaginate
+Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
 
 });
 

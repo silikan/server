@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use App\Http\Resources\CommentResource;
+use App\Http\Resources\ReplyResource;
+
+
 use App\Models\User;
 use App\Models\Post;
 
@@ -66,7 +69,7 @@ class CommentController extends Controller
 
         $post->comments()->save($reply);
 
-        return $comment;
+        return $post;
 
     }
 
@@ -79,7 +82,14 @@ class CommentController extends Controller
         return $comments;
     }
 
+public function getPostCommentRepliesPaginate($post_id , $comment_id)
+    {
+        $post = Post::find($post_id);
 
+        $comments = ReplyResource::collection($post->comments()->where('parent_id', $comment_id)->paginate(5)) ;
+
+        return $comments;
+    }
     /**
      * Display the specified resource.
      *
