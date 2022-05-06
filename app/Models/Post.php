@@ -9,6 +9,10 @@ class Post extends Model
 {
     use HasFactory ;
 
+    public function reactions()
+    {
+        return $this->hasMany(User::class);
+    }
     public function user()
     {
         return $this->belongsTo(User::class);

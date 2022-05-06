@@ -41,6 +41,7 @@ use App\Http\Controllers\CommentController;
 
 use App\Http\Controllers\LikeController;
 
+use App\Http\Controllers\ReactionController;
 
 
 /*
@@ -240,6 +241,11 @@ Route::delete('/blog/post/like', [CommentController::class, 'unlike']);
 Route::get('/blog/post/{id}/views', [PostController::class, 'views']);
 Route::get('/blog/post/{post_id}/comment/paginate', [CommentController::class, 'getPostCommentsPaginate']);
 Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
+
+
+//PostReaction
+Route::post('/blog/post/{post_id}/reaction', [PostReactionController::class, 'PostReaction']);
+Route::get('/blog/post/{post_id}/reaction', [PostReactionController::class, 'getPostReaction']);
 });
 
 
