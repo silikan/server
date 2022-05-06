@@ -237,13 +237,8 @@ Route::post('/blog/post/comment/store', [CommentController::class, 'store']);
 Route::post('/blog/post/comment/reply/store', [CommentController::class, 'replyStore']);
 Route::post('/blog/post/like', [CommentController::class, 'like']);
 Route::delete('/blog/post/like', [CommentController::class, 'unlike']);
-
-
-//getPostCommentRepliesPaginate
-
+Route::get('/blog/post/{id}/views', [PostController::class, 'views']);
 Route::get('/blog/post/{post_id}/comment/paginate', [CommentController::class, 'getPostCommentsPaginate']);
-
-
 Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
 });
 

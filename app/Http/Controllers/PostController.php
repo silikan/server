@@ -78,7 +78,10 @@ public function PaginatePosts () {
     $posts =  PostResource::collection(Post::orderBy('created_at', 'desc')->paginate(5));
     return $posts;
 }
-
+public function views($id){
+    Post::find($id)->increment('total_views');
+    return response()->json(['success'=>'Views incremented.']);
+}
     /**
      * Display the specified resource.
      *

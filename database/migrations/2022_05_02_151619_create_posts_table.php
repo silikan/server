@@ -20,6 +20,8 @@ return new class extends Migration
             $table->text('content');
             $table->string('image')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->integer('total_views')->default(0);
+
             $table->timestamps();
         });
     }
