@@ -1,8 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use App\Models\Reaction;
+use App\Models\Post;
+
 use Illuminate\Http\Request;
 
 class ReactionController extends Controller

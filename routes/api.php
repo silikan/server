@@ -244,8 +244,8 @@ Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [Commen
 
 
 //PostReaction
-Route::post('/blog/post/{post_id}/reaction', [PostReactionController::class, 'PostReaction']);
-Route::get('/blog/post/{post_id}/reaction', [PostReactionController::class, 'getPostReaction']);
+Route::post('/blog/post/{post_id}/reaction', [ReactionController::class, 'PostReaction']);
+Route::get('/blog/post/{post_id}/reaction', [ReactionController::class, 'getPostReaction']);
 });
 
 
