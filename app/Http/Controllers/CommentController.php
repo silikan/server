@@ -84,11 +84,12 @@ class CommentController extends Controller
 
 public function getPostCommentRepliesPaginate($post_id , $comment_id)
     {
-        $post = Post::find($post_id);
 
-        $comments = ReplyResource::collection($post->comments()->where('parent_id', $comment_id)->paginate(5)) ;
+        $post = Comment::find($comment_id);
 
-        return $comments;
+        $replies = ReplyResource::collection($post->replies()->paginate(5)) ;
+
+        return $replies;
     }
     /**
      * Display the specified resource.
