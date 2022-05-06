@@ -18,7 +18,11 @@ return new class extends Migration
             $table->string('reaction')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('post_id');
-
+            $table->string('name')->nullable();
+            $table->string('value')->nullable();
+            $table->string('icon')->nullable();
+            $table->string('iconColor')->nullable();
+            $table->string('bgColor')->nullable();
             $table->unsignedBigInteger('comment_id')->nullable();
             $table->unsignedBigInteger('reply_id')->nullable();
             $table->timestamps();

@@ -26,11 +26,21 @@ public function PostReaction (Request $request , $post_id) {
     $reaction = Reaction::where('user_id', Auth::user()->id)->where('post_id', $post_id)->first();
     if ($reaction) {
         $reaction->reaction = $request->reaction;
+        $reaction->name = $request->name;
+        $reaction->value = $request->value;
+        $reaction->icon = $request->icon;
+        $reaction->iconColor = $request->iconColor;
+        $reaction->bgColor = $request->bgColor;
+
         $reaction->save();
     } else {
         $reaction = new Reaction;
-        $reaction->reaction = $request->reaction;
-        $reaction->user()->associate(Auth::user());
+       $reaction->reaction = $request->reaction;
+        $reaction->name = $request->name;
+        $reaction->value = $request->value;
+        $reaction->icon = $request->icon;
+        $reaction->iconColor = $request->iconColor;
+        $reaction->bgColor = $request->bgColor;        $reaction->user()->associate(Auth::user());
         $reaction->post()->associate(Post::find($post_id));
         $reaction->save();
 }

@@ -29,7 +29,7 @@ class PostResource extends JsonResource
             'comments' => CommentResource::collection($this->comments),
             //count comments and replies
             'comments_count' => $this->comments->count() ,
-
+                'reactions_count' => $this->reactions->count() ,
 
         ];
     }
