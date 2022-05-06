@@ -11,7 +11,7 @@ class Post extends Model
 
     public function reactions()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(Reaction::class);
     }
     public function user()
     {

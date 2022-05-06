@@ -246,6 +246,7 @@ Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [Commen
 //PostReaction
 Route::post('/blog/post/{post_id}/reaction', [ReactionController::class, 'PostReaction']);
 Route::get('/blog/post/{post_id}/reaction', [ReactionController::class, 'getPostReaction']);
+Route::get('/blog/post/{post_id}/user/{user_id}/reaction/', [ReactionController::class, 'getUserPostReaction']);
 });
 
 

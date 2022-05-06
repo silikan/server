@@ -46,7 +46,10 @@ public function getPostReactions ($post_id) {
     return $reactions;
 }
 
-
+public function getUserPostReaction ($user_id , $post_id) {
+    $reaction = Reaction::where('user_id', $user_id)->where('post_id', $post_id)->first();
+    return $reaction;
+}
     /**
      * Show the form for creating a new resource.
      *
