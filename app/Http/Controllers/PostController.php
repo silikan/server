@@ -78,6 +78,12 @@ public function PaginatePosts () {
     $posts =  PostResource::collection(Post::orderBy('created_at', 'desc')->paginate(5));
     return $posts;
 }
+    public function PaginateTrendingPosts () {
+      //post with the most likes
+        $posts =  PostResource::collection(Post::orderBy('total_views', 'desc')->paginate(5));
+        return $posts;
+    }
+
 public function views($id){
     Post::find($id)->increment('total_views');
     return response()->json(['success'=>'Views incremented.']);

@@ -241,7 +241,7 @@ Route::delete('/blog/post/like', [CommentController::class, 'unlike']);
 Route::get('/blog/post/{id}/views', [PostController::class, 'views']);
 Route::get('/blog/post/{post_id}/comment/paginate', [CommentController::class, 'getPostCommentsPaginate']);
 Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
-
+//PaginateTrendingPosts
 
 //PostReaction
 Route::post('/blog/post/{post_id}/reaction', [ReactionController::class, 'PostReaction']);
@@ -251,3 +251,4 @@ Route::get('/blog/post/{post_id}/user/{user_id}/reaction/', [ReactionController:
 
 
 
+Route::get('/blog/trending/posts/paginate', [PostController::class, 'PaginateTrendingPosts']);
