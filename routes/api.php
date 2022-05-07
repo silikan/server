@@ -247,8 +247,13 @@ Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [Commen
 Route::post('/blog/post/{post_id}/reaction', [ReactionController::class, 'PostReaction']);
 Route::get('/blog/post/{post_id}/reaction', [ReactionController::class, 'getPostReaction']);
 Route::get('/blog/post/{post_id}/user/{user_id}/reaction/', [ReactionController::class, 'getUserPostReaction']);
+
+
+//getPostByCategoryPaginate
+Route::get('/blog/trending/posts/paginate', [PostController::class, 'PaginateTrendingPosts']);
+
 });
 
 
 
-Route::get('/blog/trending/posts/paginate', [PostController::class, 'PaginateTrendingPosts']);
+Route::get('/blog/category/{title}/post/paginate', [PostController::class, 'getPostByCategoryPaginate']);

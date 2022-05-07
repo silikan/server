@@ -94,6 +94,12 @@ public function views($id){
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
+
+     public function getPostByCategoryPaginate($title) {
+            $category = Category::where('title', $title)->first();
+            $posts = PostResource::collection($category->posts()->paginate(5));
+            return $posts;
+        }
     public function show(Post $post)
     {
         //

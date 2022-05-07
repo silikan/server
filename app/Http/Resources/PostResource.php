@@ -30,6 +30,7 @@ class PostResource extends JsonResource
             //count comments and replies
             'comments_count' => $this->comments->count() ,
                 'reactions_count' => $this->reactions->count() ,
+                'category' => $this->categories,
 
         ];
     }
