@@ -77,7 +77,7 @@ class CommentController extends Controller
     {
         $post = Post::find($post_id);
 
-        $comments = CommentResource::collection($post->comments()->paginate(5)) ;
+        $comments = CommentResource::collection($post->comments()->orderBy('created_at', 'desc')->paginate(5)) ;
 
         return $comments;
     }

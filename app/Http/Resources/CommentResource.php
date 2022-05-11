@@ -23,6 +23,7 @@ class CommentResource extends JsonResource
             'updated_at' => $this->updated_at,
             'user' => new UserResource($this->user),
             'replies' => ReplyResource::collection($this->replies),
+            'parent_id' => $this->parent_id,
         ];
     }
 }
