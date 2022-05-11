@@ -91,6 +91,12 @@ public function getPostCommentRepliesPaginate($post_id , $comment_id)
 
         return $replies;
     }
+    public function getCommentById($id)
+    {
+        $comment = new CommentResource(Comment::find($id));
+
+        return $comment;
+    }
     /**
      * Display the specified resource.
      *

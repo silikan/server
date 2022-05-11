@@ -254,6 +254,9 @@ Route::get('/blog/category/{title}/post/paginate', [PostController::class, 'getP
 Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
 
 
+Route::get('/blog/post/comment/{comment_id}', [CommentController::class, 'getCommentById']);
+
+
 
 });
 
