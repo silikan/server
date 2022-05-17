@@ -157,7 +157,11 @@ return $gig;
         $gigs = Gig::orderBy('total_views', 'desc')->take(9)->get();
         return $gigs;
     }
-
+    public function getGigCategory ($id){
+        $gig = Gig::find($id);
+        $category = $gig->categories;
+        return $category;
+    }
     /**
      * Update the specified resource in storage.
      *

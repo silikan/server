@@ -31,6 +31,7 @@ class GigResource extends JsonResource
              'category' => $this->categories,
              'images' => $this->images,
                 'user' => $this->user,
+                'category' => $this->categories,
 
     ];
 

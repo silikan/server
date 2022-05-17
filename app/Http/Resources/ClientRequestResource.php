@@ -23,6 +23,7 @@ class ClientRequestResource extends JsonResource
                 'priceDescription' => $this->priceDescription,
                 'payment_method' => $this->payment_method,
                 'user' => $this->user,
+                'category' => $this->categories,
         ];
     }
 }

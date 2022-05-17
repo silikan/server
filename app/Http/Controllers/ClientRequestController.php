@@ -117,6 +117,12 @@ public function getMostViewed(){
     return $clientRequest;
 }
 
+public function getClientRequestCategory ($id){
+    $clientRequest = ClientRequest::find($id);
+    $categories = $clientRequest->categories;
+    return $categories;
+}
+
     /**
      * Show the form for editing the specified resource.
      *

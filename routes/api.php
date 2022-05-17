@@ -94,6 +94,11 @@ Route::get('category/{title}/requests/paginate', [CategoryController::class, 'ge
 
 Route::get('category', [CategoryController::class, 'index']);
 
+
+Route::get('/gig/{id}/category', [GigController::class, 'getGigCategory']);
+Route::get('/request/{id}/category', [ClientRequestController::class, 'getClientRequestCategory']);
+
+
 Route::get('guest-users/handymen/search', [UserController::class, 'searchHandymen']);
 Route::get('guest-users/handymen/search/paginate', [UserController::class, 'searchHandymenPaginate']);
 Route::get('guest-users/handymen', [UserController::class, 'handymen']);
@@ -240,21 +245,19 @@ Route::post('/blog/post/like', [CommentController::class, 'like']);
 Route::delete('/blog/post/like', [CommentController::class, 'unlike']);
 Route::get('/blog/post/{id}/views', [PostController::class, 'views']);
 Route::get('/blog/post/{post_id}/comment/paginate', [CommentController::class, 'getPostCommentsPaginate']);
-//PaginateTrendingPosts
 
-//PostReaction
 Route::post('/blog/post/{post_id}/reaction', [ReactionController::class, 'PostReaction']);
 Route::get('/blog/post/{post_id}/reaction', [ReactionController::class, 'getPostReaction']);
 Route::get('/blog/post/{post_id}/user/{user_id}/reaction/', [ReactionController::class, 'getUserPostReaction']);
 
 
-//getPostByCategoryPaginate
 Route::get('/blog/trending/posts/paginate', [PostController::class, 'PaginateTrendingPosts']);
 Route::get('/blog/category/{title}/post/paginate', [PostController::class, 'getPostByCategoryPaginate']);
 Route::get('/blog/post/{post_id}/comment/{comment_id}/replies/paginate', [CommentController::class, 'getPostCommentRepliesPaginate']);
 
 
 Route::get('/blog/post/comment/{comment_id}', [CommentController::class, 'getCommentById']);
+
 
 
 
