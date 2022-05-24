@@ -53,7 +53,7 @@ class GigImagesController extends Controller
                 $img = Image::make($image->path());
 
 
-                $img->resize(200, 500, function ($constraint) {
+                $img->resize(500, 500, function ($constraint) {
                     $constraint->aspectRatio();
                 });
                 $path = 'storage/gig-image/' . $image_name;

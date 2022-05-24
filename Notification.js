@@ -10,7 +10,7 @@ var Redis = require("ioredis");
 
 var redis = new Redis();
 
-redis.on("pmessage", function (channel, message, data) {
+redis.on("pmessage", function(channel, message, data) {
     console.log("channel: " + channel);
     console.log("message: " + message);
     let notification = JSON.parse(data);
@@ -20,18 +20,18 @@ redis.on("pmessage", function (channel, message, data) {
 io.on("connection", (socket) => {
     console.log("made socket connection", socket.id);
 
-    socket.on("notificationRoom", function (room) {
-        redis.psubscribe(room, function (err, count) {});
+    socket.on("notificationRoom", function(room) {
+        redis.psubscribe(room, function(err, count) {});
         socket.join(room);
     });
 
-    socket.on("notification", function (data) {
+    socket.on("notification", function(data) {
         io.sockets
             .in(`notification-room-${data.data.room_id}`)
             .emit("notification", data.data);
     });
 });
 
-http.listen(4000, function () {
+http.listen(4000, function() {
     console.log("Listening on Port: 4000");
 });
